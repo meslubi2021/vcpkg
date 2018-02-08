@@ -1,0 +1,82 @@
+include(vcpkg_common_functions)
+
+set(PROJECT_NAME "bss-util")
+set(SOURCE_PATH "${CURRENT_BUILDTREES_DIR}/src/${PROJECT_NAME}")
+
+#architecture detection
+if(VCPKG_TARGET_ARCHITECTURE STREQUAL "x86")
+   set(PROJECT_ARCH 32)
+elseif(VCPKG_TARGET_ARCHITECTURE STREQUAL "x64")
+   set(PROJECT_ARCH "")
+else()
+   message(FATAL_ERROR "unsupported architecture")
+endif()
+
+set(PROJECT_RELEASE "Release")
+set(PROJECT_DEBUG "Debug")
+#linking
+if (NOT VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
+    set(PROJECT_RELEASE "Release-Static")
+    set(PROJECT_DEBUG "Debug-Static")
+    set(PROJECT_SUFFIX "_s")
+endif()
+
+if(EXISTS "${CURRENT_BUILDTREES_DIR}/src/.git")
+    file(REMOVE_RECURSE ${CURRENT_BUILDTREES_DIR}/src)
+endif()
+
+vcpkg_from_github(
+    OUT_SOURCE_PATH SOURCE_PATH
+    REPO black-sphere-studios/${PROJECT_NAME}
+    REF dd647c7f7689b44f9f0f1a9d0b4604b533e6c504
+    SHA512 015285bce926c7ca792f03fd014eab81c4675130c2aa90a304cae2f578dfda74f8bd2468db935f7765a075a98ff3381f49a5ff5d027878b9c092053d70c3ab2f
+    HEAD_REF master
+)
+
+vcpkg_build_msbuild(
+    PROJECT_PATH ${SOURCE_PATH}/${PROJECT_NAME}/${PROJECT_NAME}.vcxproj
+    RELEASE_CONFIGURATION ${PROJECT_RELEASE}
+    DEBUG_CONFIGURATION ${PROJECT_DEBUG}
+)
+
+message(STATUS "Installing")
+if(VCPKG_LIBRARY_LINKAGE STREQUAL "dynamic")
+    file(INSTALL
+        ${SOURCE_PATH}/bin${PROJECT_ARCH}/${PROJECT_NAME}${PROJECT_ARCH}_d.dll
+        ${SOURCE_PATH}/bin${PROJECT_ARCH}/${PROJECT_NAME}${PROJECT_ARCH}_d.pdb
+        DESTINATION ${CURRENT_PACKAGES_DIR}/debug/bin
+    )
+    file(INSTALL
+        ${SOURCE_PATH}/bin${PROJECT_ARCH}/${PROJECT_NAME}${PROJECT_ARCH}.dll
+        ${SOURCE_PATH}/bin${PROJECT_ARCH}/${PROJECT_NAME}${PROJECT_ARCH}.pdb
+        DESTINATION ${CURRENT_PACKAGES_DIR}/bin
+    )
+else()
+    file(INSTALL
+        ${SOURCE_PATH}/bin${PROJECT_ARCH}/${PROJECT_NAME}${PROJECT_ARCH}_d_s.pdb
+        DESTINATION ${CURRENT_PACKAGES_DIR}/debug/lib
+    )
+    file(INSTALL
+        ${SOURCE_PATH}/bin${PROJECT_ARCH}/${PROJECT_NAME}${PROJECT_ARCH}_s.pdb
+        DESTINATION ${CURRENT_PACKAGES_DIR}/lib
+    )
+endif()
+
+file(INSTALL
+    ${SOURCE_PATH}/bin${PROJECT_ARCH}/${PROJECT_NAME}${PROJECT_ARCH}_d${PROJECT_SUFFIX}.lib
+    DESTINATION ${CURRENT_PACKAGES_DIR}/debug/lib
+)
+file(INSTALL
+    ${SOURCE_PATH}/bin${PROJECT_ARCH}/${PROJECT_NAME}${PROJECT_ARCH}${PROJECT_SUFFIX}.lib
+    DESTINATION ${CURRENT_PACKAGES_DIR}/lib
+)
+
+file(
+    INSTALL ${SOURCE_PATH}/include
+    DESTINATION ${CURRENT_PACKAGES_DIR}
+    FILES_MATCHING PATTERN "*.h"
+)
+
+file(INSTALL ${SOURCE_PATH}/LICENSE DESTINATION ${CURRENT_PACKAGES_DIR}/share/${PROJECT_NAME} RENAME copyright)
+
+message(STATUS "Installing done")

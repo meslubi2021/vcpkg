@@ -1,4 +1,4 @@
 Source: planeshader-unstable
 Version: infinity
-Build-Depends: bss-util-unstable, feathergui-unstable, freetype, harfbuzz
+Build-Depends: bss-util-unstable, feathergui-unstable, freetype, harfbuzz, directxtk
 Description: Planeshader is an advanced 2D graphics engine.

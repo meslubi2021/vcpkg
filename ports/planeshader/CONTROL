@@ -1,0 +1,4 @@
+Source: planeshader
+Version: 0.1.0
+Build-Depends: bss-util, feathergui, freetype, harfbuzz, directxtk
+Description: Planeshader is an advanced 2D graphics engine.

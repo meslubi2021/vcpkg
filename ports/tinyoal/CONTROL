@@ -1,0 +1,4 @@
+Source: tinyoal
+Version: 1.1.0
+Build-Depends: bss-util, openal-soft, libvorbis, libogg, libflac, mpg123
+Description: TinyOAL is a simple audio engine built using openAL-soft.

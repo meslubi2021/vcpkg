@@ -1,0 +1,4 @@
+Source: magnesium
+Version: 0.1.0
+Build-Depends: bss-util, planeshader, tinyoal, box2d-bss, luajit, enet
+Description: Magnesium is a simple, modular game engine based on a component entity system.

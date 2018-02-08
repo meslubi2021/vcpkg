@@ -1,0 +1,4 @@
+Source: feathergui
+Version: 0.1.0
+Build-Depends: bss-util
+Description: FeatherGUI is a lightweight, platform-agnostic universal GUI library.

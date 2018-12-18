@@ -48,7 +48,8 @@ file(INSTALL ${SRC}/luajit.exe 			DESTINATION ${CURRENT_PACKAGES_DIR}/debug/tool
 file(INSTALL ${SRC}/lua51.lib 		    DESTINATION ${CURRENT_PACKAGES_DIR}/debug/lib)
 
 if (VCPKG_LIBRARY_LINKAGE STREQUAL dynamic)
-	file(INSTALL ${SRC}/lua51.dll 		DESTINATION ${CURRENT_PACKAGES_DIR}/debug/bin)
+    file(INSTALL ${SRC}/lua51.dll 		DESTINATION ${CURRENT_PACKAGES_DIR}/debug/bin)
+    file(INSTALL ${SRC}/lua51.dll   	DESTINATION ${CURRENT_PACKAGES_DIR}/debug/tools)
 endif()
 vcpkg_copy_pdbs()
 
@@ -69,7 +70,8 @@ file(INSTALL ${SRC}/luajit.exe 		    DESTINATION ${CURRENT_PACKAGES_DIR}/tools)
 file(INSTALL ${SRC}/lua51.lib 		    DESTINATION ${CURRENT_PACKAGES_DIR}/lib)
 
 if (VCPKG_LIBRARY_LINKAGE STREQUAL dynamic)
-	file(INSTALL ${SRC}/lua51.dll   	DESTINATION ${CURRENT_PACKAGES_DIR}/bin)
+    file(INSTALL ${SRC}/lua51.dll   	DESTINATION ${CURRENT_PACKAGES_DIR}/bin)
+    file(INSTALL ${SRC}/lua51.dll   	DESTINATION ${CURRENT_PACKAGES_DIR}/tools)
 endif()
 vcpkg_copy_pdbs()
 

@@ -49,7 +49,9 @@ packageList = [
     (['tiff'], False),
     (['wtl'], False),
     (['wxwidgets'], False),
-    (['xerces-c[icu]'], False)
+    (['xerces-c[icu]'], False),
+    (['qt5'], False),
+    (['sdl2', 'sdl2-net', 'sdl2-ttf', 'sdl2pp'], False),
 ]
 
 
@@ -102,3 +104,4 @@ def InstallPackagesInPackageList():
     return True
 
 InstallPackagesInPackageList()
+

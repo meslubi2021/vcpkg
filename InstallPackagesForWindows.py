@@ -92,7 +92,7 @@ def InstallPackages(packages, recurse):
         return False
     print()
     print("+++++++++++++++++")
-    print("++x86-windows ++")
+    print("++ x86-windows ++")
     print("+++++++++++++++++")
     print()
     ret = InstallPackagesWorker(packages, "x86-windows", recurse)

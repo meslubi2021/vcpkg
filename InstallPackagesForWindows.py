@@ -52,6 +52,9 @@ packageList = [
     (['xerces-c[icu]'], False),
     (['qt5'], False),
     (['sdl2', 'sdl2-net', 'sdl2-ttf', 'sdl2pp'], False),
+    (['detours'], False),
+    (['dlib'], False),
+    (['glui'], False),
 ]
 
 
@@ -104,4 +107,3 @@ def InstallPackagesInPackageList():
     return True
 
 InstallPackagesInPackageList()
-

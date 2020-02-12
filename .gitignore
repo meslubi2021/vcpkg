@@ -317,6 +317,3 @@ __pycache__/
 # vcpkg - End
 ############################################################
 archives
-
-# The batch file I use to modify the environment of the VCPKG shell to meet my needs.
-update-env.bat

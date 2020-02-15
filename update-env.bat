@@ -1,4 +1,7 @@
 @echo off
+set _ShowDebugMessages=%~1
+if "%_ShowDebugMessages%" equ "" set _ShowDebugMessages=no
+
 call :GetBatchFileDirectory _MyDir
 
 call :SetOPT
@@ -6,13 +9,19 @@ if not defined OPT goto :EOF
 
 for %%a in (
 "%_MyDir%\downloads\tools\cmake-3.14.0-windows\cmake-3.14.0-win32-x86\bin"
+"%_MyDir%\downloads\tools\perl\c\bin"
+"%_MyDir%\downloads\tools\perl\site\bin"
+"%_MyDir%\downloads\tools\perl\perl\bin"
 "%_MyDir%\downloads\tools\powershell-core-6.2.1-windows"
 "%_MyDir%\downloads\tools\python\python-3.7.3-x64"
-"%ProgramFiles%\Python38"
-"%ProgramW6432%\Python38"
 "%ProgramFiles%\Git\cmd"
 "%ProgramW6432%\Git\cmd"
 "%LOCALAPPDATA%\Programs\PortableGit\cmd"
+"%SystemDrive%\Perl64\c\bin"
+"%SystemDrive%\Perl64\perl\site\bin"
+"%SystemDrive%\Perl64\perl\bin"
+"%ProgramFiles%\Python38"
+"%ProgramW6432%\Python38"
 "%OPT%\Apache-Subversion-1.12.2\bin"
 "%OPT%\bin\X64"
 "%OPT%\bin\X86"
@@ -65,5 +74,12 @@ GOTO :EOF
 goto :EOF
 
 :AppendToPathIfExists
+	if exist "%~1\." call :ShowDebugMessage "Adding '%~1' to the path."
+	if not exist "%~1\." call :ShowDebugMessage "'%~1' does not exist."
 	if exist "%~1\." set PATH=%PATH%;%~1
+goto :EOF
+
+:ShowDebugMessage
+	if "%_ShowDebugMessages%" neq "yes" exit /b 1
+	echo %~1
 goto :EOF

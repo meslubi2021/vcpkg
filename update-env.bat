@@ -22,9 +22,12 @@ for %%a in (
 "%SystemDrive%\Perl64\perl\bin"
 "%ProgramFiles%\Python38"
 "%ProgramW6432%\Python38"
+"%ProgramFiles%\Perforce"
+"%ProgramW6432%\Perforce"
 "%OPT%\Apache-Subversion-1.12.2\bin"
 "%OPT%\bin\X64"
 "%OPT%\bin\X86"
+"%OPT%\ExamDiff"
 "%OPT%\Scripts"
 ) do (
 	call :AppendToPathIfExists "%%~a"

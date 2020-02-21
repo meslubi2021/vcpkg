@@ -7,6 +7,8 @@ call :GetBatchFileDirectory _MyDir
 call :SetOPT
 if not defined OPT goto :EOF
 
+set VCPKG_ROOT=%_MyDir%
+
 for %%a in (
 "%_MyDir%\downloads\tools\cmake-3.14.0-windows\cmake-3.14.0-win32-x86\bin"
 "%_MyDir%\downloads\tools\perl\c\bin"

@@ -7,11 +7,12 @@ call :GetBatchFileDirectory _MyDir
 call :SetOPT
 if not defined OPT goto :EOF
 
+set HOME=%USERPROFILE%\Home
 set VCPKG_ROOT=%_MyDir%
 
 for %%a in (
 "%_MyDir%\downloads\tools\cmake-3.14.0-windows\cmake-3.14.0-win32-x86\bin"
-"%_MyDir%\downloads\tools\git-2.25.1-1-windows\cmd"
+"%_MyDir%\downloads\tools\git-2.26.2-1-windows\cmd"
 "%_MyDir%\downloads\tools\perl\c\bin"
 "%_MyDir%\downloads\tools\perl\site\bin"
 "%_MyDir%\downloads\tools\perl\perl\bin"
@@ -22,6 +23,8 @@ for %%a in (
 "%SystemDrive%\Perl64\c\bin"
 "%SystemDrive%\Perl64\perl\site\bin"
 "%SystemDrive%\Perl64\perl\bin"
+"%ProgramW6432%\LLVM\bin"
+"%ProgramW6432%\LLVM\share\clang"
 "%ProgramW6432%\nodejs"
 "%ProgramW6432%\Python38"
 "%ProgramW6432%\Perforce"

@@ -42,7 +42,7 @@ packageList = [
     (['freeglut'], False),
     (['gettimeofday'], False),
     (['glui'], False),
-    (['imgui', 'imgui[example]', 'imgui-sfml'], False),
+    (['imgui', 'imgui[bindings]', 'imgui-sfml'], False),
     (['jbigkit'], False),
     (['json-spirit'] , False),
     (['json11'] , False),

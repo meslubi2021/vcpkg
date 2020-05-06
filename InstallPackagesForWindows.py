@@ -50,7 +50,7 @@ packageList = [
     (['libsndfile'], False),
     (['libui'], False),
     (['libxml2'], False),
-    (['llvm', 'llvm[tools]', 'llvm[utils]', 'llvm[example]'], False),
+    (['llvm', 'llvm[clang-tools-extra]', 'llvm[utils]'], False),
     (['lua', 'lua[cpp]', 'luabridge'], False),
     (['mhook'], False),
     (['minhook'], False),

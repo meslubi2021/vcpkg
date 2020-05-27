@@ -62,7 +62,7 @@ packageList = [
     (['libsndfile'], False),
     (['libui'], False),
     (['libxml2'], False),
-    (['llvm', 'llvm[clang-tools-extra]', 'llvm[utils]'], False),
+    # (['llvm', 'llvm[clang-tools-extra]', 'llvm[utils]'], False),
     (['lua', 'lua[cpp]', 'luabridge', 'luafilesystem'], False),
     (['magic-enum'], False),
     (['mhook'], False),

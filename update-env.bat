@@ -11,13 +11,15 @@ set HOME=%USERPROFILE%\Home
 set VCPKG_ROOT=%_MyDir%
 
 for %%a in (
-"%_MyDir%\downloads\tools\cmake-3.14.0-windows\cmake-3.14.0-win32-x86\bin"
+"%_MyDir%\downloads\tools\cmake-3.17.2-windows\cmake-3.17.2-win32-x86\bin"
 "%_MyDir%\downloads\tools\git-2.26.2-1-windows\cmd"
+"%_MyDir%\downloads\tools\nasm\nasm-2.14.02"
 "%_MyDir%\downloads\tools\perl\c\bin"
 "%_MyDir%\downloads\tools\perl\site\bin"
 "%_MyDir%\downloads\tools\perl\perl\bin"
 "%_MyDir%\downloads\tools\powershell-core-6.2.1-windows"
 "%_MyDir%\downloads\tools\python\python-3.7.3-x64"
+"%_MyDir%\downloads\tools\yasm\1.3.0.6"
 "%ProgramW6432%\Git\cmd"
 "%LOCALAPPDATA%\Programs\PortableGit\cmd"
 "%SystemDrive%\Perl64\c\bin"

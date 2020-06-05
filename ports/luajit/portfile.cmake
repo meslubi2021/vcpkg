@@ -2,9 +2,9 @@ vcpkg_fail_port_install(MESSAGE "${PORT} currently only supports being built for
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
-    REPO LuaJIT/LuaJIT
-    REF v2.0.5
-    SHA512 65d982d7fe532a61335613f414f3b8fa5333747bdf7aefc2c2d52022d227594ade827639049b97e3c4ffae9f38f32cb15f1a17b1780fb0a943e1a3af05e2b576
+    REPO openresty/luajit2
+    REF v2.1-20200102
+    SHA512 d363e48eea2c0145f7c198b30685a40c02e02ab2e5cb8b076b07735d05f28cb2e3651d5464ca2423845455e6afbfbc9a9d92aa363a42b2743e6bd89ad16f227d
     HEAD_REF master
     PATCHES
         001-fix-build-path.patch

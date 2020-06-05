@@ -1,25 +1,36 @@
+From 631c9c91fe91595ea1247271d214ed521866ebf4 Mon Sep 17 00:00:00 2001
+From: Doug Crawford <doug.crawford@intelight-its.com>
+Date: Fri, 5 Jun 2020 21:41:24 -0700
+Subject: [PATCH 2/2] fix-crt-linkage
+
+---
+ src/msvcbuild.bat | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
+
 diff --git a/src/msvcbuild.bat b/src/msvcbuild.bat
-index 6a889e1..08c4e3c 100644
+index 7f9caec..1a93e57 100644
 --- a/src/msvcbuild.bat
 +++ b/src/msvcbuild.bat
-@@ -64,20 +64,23 @@ buildvm -m vmdef -o %SOURCEDIR%\jit\vmdef.lua %ALL_LIB%
+@@ -74,22 +74,25 @@ buildvm -m vmdef -o %SOURCEDIR%\jit\vmdef.lua %ALL_LIB%
  buildvm -m folddef -o %SOURCEDIR%\lj_folddef.h %SOURCEDIR%\lj_opt_fold.c
  @if errorlevel 1 goto :BAD
  
 +@if "%2"=="static" set CRT_LINKAGE=/MT
 +@if "%2"=="dynamic" set CRT_LINKAGE=/MD
- @set LJLINK=%LJLINK% /debug
+ @set LJLINK=%LJLINK% /opt:ref /opt:icf /incremental:no
 -@if "%2" neq "debug" goto :NODEBUG
 +@if "%3" neq "debug" goto :NODEBUG
  @shift
- @set LJCOMPILE=%LJCOMPILE% /Zi
+ @set BUILDTYPE=debug
+ @set LJCOMPILE=%LJCOMPILE% /Zi %DEBUGCFLAGS%
 +@set CRT_LINKAGE=%CRT_LINKAGE%d
  :NODEBUG
+ @set LJLINK=%LJLINK% /%BUILDTYPE%
 -@if "%2"=="amalg" goto :AMALGDLL
-+@if "%3"=="amalg" goto :AMALGDLL
 -@if "%2"=="static" goto :STATIC
-+@if "%3"=="static" goto :STATIC
 -%LJCOMPILE% /MD /DLUA_BUILD_AS_DLL %SOURCEDIR%\lj_*.c %SOURCEDIR%\lib_*.c /Fdlua51.pdb
++@if "%3"=="amalg" goto :AMALGDLL
++@if "%3"=="static" goto :STATIC
 +%LJCOMPILE% %CRT_LINKAGE% /DLUA_BUILD_AS_DLL %SOURCEDIR%\lj_*.c %SOURCEDIR%\lib_*.c /Fdlua51.pdb
  @if errorlevel 1 goto :BAD
  %LJLINK% /DLL /out:%LJDLLNAME% lj_*.obj lib_*.obj
@@ -31,7 +42,7 @@ index 6a889e1..08c4e3c 100644
  @if errorlevel 1 goto :BAD
  %LJLIB% /OUT:%LJLIBNAME% lj_*.obj lib_*.obj
  @if errorlevel 1 goto :BAD
-@@ -94,7 +94,7 @@
+@@ -103,7 +106,7 @@ buildvm -m folddef -o %SOURCEDIR%\lj_folddef.h %SOURCEDIR%\lj_opt_fold.c
  if exist %LJDLLNAME%.manifest^
    %LJMT% -manifest %LJDLLNAME%.manifest -outputresource:%LJDLLNAME%;2
  
@@ -40,3 +51,6 @@ index 6a889e1..08c4e3c 100644
  @if errorlevel 1 goto :BAD
  %LJLINK% /out:luajit.exe luajit.obj %LJLIBNAME%
  @if errorlevel 1 goto :BAD
+-- 
+2.26.0.windows.1
+

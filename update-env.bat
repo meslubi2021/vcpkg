@@ -11,6 +11,7 @@ set HOME=%USERPROFILE%\Home
 set VCPKG_ROOT=%_MyDir%
 
 for %%a in (
+"%_MyDir%\installed\%Platform%-windows\share\clang"
 "%_MyDir%\downloads\tools\cmake-3.17.2-windows\cmake-3.17.2-win32-x86\bin"
 "%_MyDir%\downloads\tools\git-2.26.2-1-windows\cmd"
 "%_MyDir%\downloads\tools\nasm\nasm-2.14.02"

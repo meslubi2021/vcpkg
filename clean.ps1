@@ -21,6 +21,6 @@ If (Test-Path installed) {
 }
 
 If (Test-Path vcpkg) {
-	echo "Removing installed..."
+	echo "Removing vcpkg..."
 	Remove-Item vcpkg -recurse -force
 }

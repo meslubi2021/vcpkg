@@ -52,7 +52,7 @@ packageList = [
     (['getopt'], False),
     (['gettimeofday'], False),
     (['glui'], False),
-    (['imgui', 'imgui[bindings]', 'imgui-sfml'], False),
+    (['imgui', 'imgui[glut-binding]', 'imgui[sdl2-binding]', 'imgui[win32-binding]', 'imgui-sfml'], False),
     (['jansson'] , False),
     (['jbigkit'], False),
     (['jemalloc'] , False),

@@ -4,7 +4,7 @@ import os
 import subprocess
 
 packageList = [
-    (['boost-locale[icu]', 'boost[mpi]', 'icu', 'mpi'], False),
+    (['boost[mpi]', 'icu', 'mpi'], False),
 
     (['abseil', 'abseil[cxx17]'] , False),
     (['angelscript', 'angelscript[addons]'], False),

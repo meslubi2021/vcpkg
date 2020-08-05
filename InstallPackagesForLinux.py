@@ -20,7 +20,6 @@ packageList = [
     (['capstone', 'capstone[x86]', 'cccapstone'] , False),
     (['catch2'] , False),
     (['chaiscript'], False),
-    (['chakracore'], False),
     (['check'], False),
     (['chmlib'], False),
     (['constexpr'], False),

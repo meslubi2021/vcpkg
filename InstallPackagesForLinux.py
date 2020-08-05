@@ -26,7 +26,6 @@ packageList = [
     (['cpp-base64'], False),
     (['cpprestsdk'] , False),
     (['cpptoml'] , False),
-    (['cppunit'], False),
     (['cpuid'], False),
     (['cpuinfo', 'cpuinfo[tools]'], False),
     (['crossguid'], False),

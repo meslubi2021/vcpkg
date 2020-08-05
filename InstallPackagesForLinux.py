@@ -12,7 +12,6 @@ packageList = [
     (['apr', 'apr-util'], False),
     (['arabica'], False),
     (['asmjit'] , False),
-    (['atk', 'gtk'], False),
     (['bdwgc'], False),
     (['benchmark'], False),
     (['bigint'], False),

@@ -106,7 +106,7 @@ packageList = [
     (['xerces-c[icu]'], False),
     (['yasm'], False),
 
-    (['dlib'], False),
+    # (['dlib'], False),
 ]
 
 

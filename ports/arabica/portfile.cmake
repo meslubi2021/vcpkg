@@ -6,9 +6,9 @@ endif()
 
 vcpkg_from_github(
   OUT_SOURCE_PATH SOURCE_PATH
-  REPO BenKeyFSI/arabica
-  REF 2020-February
-  SHA512 3cf56a71c53e35eb2bc48332c96958e6800e5735a629f292f47e9b22b106f378e45abe046d6a7ed8604fe434d356efbf8744bd31fa905de6fcec62c7223f9e4c
+  REPO jezhiggins/arabica
+  REF 2020-April
+  SHA512 6397b4ba140acb528ae9cca4a29752363fbe694ecb53b00f7301de108cb0792f961239df2aede00ab95b0d06ac2a220071b8cec3c71b3c14ee562b3af7968c82
   HEAD_REF master
 )
 

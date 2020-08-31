@@ -16,7 +16,6 @@ packageList = [
     (['bdwgc'], False),
     (['benchmark'], False),
     (['bigint'], False),
-    (['boringssl', 'boringssl[tools]'], False),
     (['bustache'] , False),
     (['capstone', 'capstone[x86]', 'cccapstone'] , False),
     (['catch2'] , False),

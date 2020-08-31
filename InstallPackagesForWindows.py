@@ -82,7 +82,7 @@ packageList = [
     (['pdcurses'], False),
     (['platform-folders'], False),
     (['poco', 'sqlite3', 'sqlite3[tool]', 'sqlitecpp', 'sqlite-modern-cpp'], False),
-    (['portaudio'], False),
+    # (['portaudio'], False),
     (['pprint'], False),
     (['pthreads'], False),
     (['pugixml'], False),

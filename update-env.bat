@@ -54,6 +54,7 @@ for %%a in (
 )
 
 set HOME=%USERPROFILE%\Home
+if exist "%_MyDir%\installed\%Platform%-windows\share\hunspell\dictionaries\." set DICPATH=%_MyDir%\installed\%Platform%-windows\share\hunspell\dictionaries
 
 goto :EOF
 

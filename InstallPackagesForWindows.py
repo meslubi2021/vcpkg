@@ -32,7 +32,7 @@ packageList = [
     (['chakracore'], False),
     (['check'], False),
     (['chmlib'], False),
-    (['chromium-base'], False),
+    # (['chromium-base'], False),
     (['constexpr'], False),
     (['cpp-base64'], False),
     (['cpprestsdk'] , False),

@@ -31,6 +31,7 @@ for %%a in (
 "%_MyDir%\downloads\tools\yasm\1.3.0.6"
 "%ProgramW6432%\Git\cmd"
 "%LOCALAPPDATA%\Programs\PortableGit\cmd"
+"%SystemDrive%\Emacs\x86_64\bin"
 "%SystemDrive%\Perl64\c\bin"
 "%SystemDrive%\Perl64\perl\site\bin"
 "%SystemDrive%\Perl64\perl\bin"

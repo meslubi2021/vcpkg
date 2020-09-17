@@ -112,7 +112,7 @@ packageList = [
     (['pthreads'], False),
     (['pugixml'], False),
     (['pystring'], False),
-    (['qt5', 'qwt', 'qt5[doc]', 'qt5[speech]', 'qt5-winextras'], False),
+    # (['qt5', 'qwt', 'qt5[doc]', 'qt5[speech]', 'qt5-winextras'], False),
     (['range-v3'], False),
     (['rapidxml'], False),
     (['rttr'], False),

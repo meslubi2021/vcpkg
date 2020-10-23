@@ -1,0 +1,4 @@
+Source: magnesium-unstable
+Version: infinity
+Build-Depends: bss-util-unstable, planeshader-unstable, tinyoal-unstable, box2d-bss, luajit, enet
+Description: Magnesium is a simple, modular game engine based on a component entity system.

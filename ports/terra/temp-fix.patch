@@ -1,0 +1,14 @@
+diff --git a/msvc/Makefile b/msvc/Makefile
+index debe80b..8687e97 100755
+--- a/msvc/Makefile
++++ b/msvc/Makefile
+@@ -143,7 +143,8 @@ $(TERRA_DIR)\release\bin\terra.dll: $(BUILD)\terra.obj
+ 	$(LINK) /nologo /MACHINE:X64 /DLL /DEBUG /PDB:terralib.pdb /out:terra.dll /IMPLIB:terra.lib $(BUILD)/*.obj $(LIBS) $(LIBPATHS) $(EXPORTS)
+ 	move terra.lib ..\lib\terra.lib
+ 
+-REDIST=$(VCINSTALLDIR)redist\x64\Microsoft.VC$(VC_VERSION).CRT
++VC_DIR=C:\Program Files (x86)\Microsoft Visual Studio $(VS_MAJOR_VERSION).$(VS_MINOR_VERSION)\VC
++REDIST=$(VC_DIR)\redist\x64\Microsoft.VC$(VC_VERSION).CRT
+ 
+ $(TERRA_DIR)\release\bin\terra.exe: $(TERRA_DIR)\release\bin\terra.dll $(SRC)\main.cpp
+ 	cd $(TERRA_DIR)

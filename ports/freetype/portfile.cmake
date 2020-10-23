@@ -23,6 +23,12 @@ vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
     INVERTED_FEATURES
         bzip2       CMAKE_DISABLE_FIND_PACKAGE_BZip2
         png         CMAKE_DISABLE_FIND_PACKAGE_PNG
+vcpkg_apply_patches(
+    SOURCE_PATH ${SOURCE_PATH}
+    PATCHES ${CMAKE_CURRENT_LIST_DIR}/0001-Support-Windows-DLLs-via-CMAKE_WINDOWS_EXPORT_ALL_SY.patch
+            ${CMAKE_CURRENT_LIST_DIR}/0002-Add-CONFIG_INSTALL_PATH-option.patch
+            ${CMAKE_CURRENT_LIST_DIR}/0003-Fix-UWP.patch
+            ${CMAKE_CURRENT_LIST_DIR}/0004-Support-Subpixel-Hinting.patch
 )
 
 vcpkg_configure_cmake(

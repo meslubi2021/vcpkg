@@ -1,4 +1,13 @@
-vcpkg_check_linkage(ONLY_STATIC_LIBRARY ONLY_DYNAMIC_CRT)
+include(vcpkg_common_functions)
+
+if (VCPKG_LIBRARY_LINKAGE STREQUAL dynamic)
+    message(STATUS "Warning: Dynamic building not supported yet. Building static.")
+    set(VCPKG_LIBRARY_LINKAGE static)
+endif()
+
+#if(NOT VCPKG_CRT_LINKAGE STREQUAL "dynamic")
+#  message(FATAL_ERROR "DirectXTK only supports dynamic CRT linkage")
+#endif()
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
@@ -32,6 +41,11 @@ else()
     else()
         set(SLN_NAME "Desktop_${VS_VERSION}")
     endif()
+if(VCPKG_CRT_LINKAGE STREQUAL "static")
+  vcpkg_apply_patches(
+      SOURCE_PATH ${SOURCE_PATH} 
+      PATCHES ${CMAKE_CURRENT_LIST_DIR}/0001-fixStaticLinking.patch
+  )
 endif()
 
 vcpkg_build_msbuild(

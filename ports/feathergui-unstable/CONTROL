@@ -1,0 +1,4 @@
+Source: feathergui-unstable
+Version: infinity
+Build-Depends: bss-util-unstable
+Description: FeatherGUI is a lightweight, platform-agnostic universal GUI library.

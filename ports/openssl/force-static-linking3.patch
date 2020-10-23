@@ -1,0 +1,13 @@
+diff --git a/shlib/win32.bat b/shlib/win32.bat
+index 2b0faaa..cbd6584 100755
+--- a/shlib/win32.bat
++++ b/shlib/win32.bat
+@@ -1,7 +1,7 @@
+ rem win32 dll build
+ 
+ set OPTIONS1=-DDES_ASM -DBN_ASM -DBF_ASM -DFLAT_INC -Iout -Itmp -DL_ENDIAN
+-set OPTIONS2=/W3 /WX /Ox /Gs0 /GF /Gy /nologo
++set OPTIONS2=/W3 /WX /Ox /Gs0 /GF /Gy /nologo /MT
+ 
+ set OPTIONS=%OPTIONS1% %OPTIONS2%
+ 

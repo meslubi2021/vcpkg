@@ -1,0 +1,24 @@
+diff --git a/src/msvcbuild.bat b/src/msvcbuild.bat
+index cd31544e..a40cc1c4 100644
+--- a/src/msvcbuild.bat
++++ b/src/msvcbuild.bat
+@@ -71,8 +71,8 @@ buildvm -m folddef -o lj_folddef.h lj_opt_fold.c
+ :NODEBUG
+ @if "%1"=="amalg" goto :AMALGDLL
+ @if "%1"=="static" goto :STATIC
+-@if "%DEBUG%"=="1" set LJCOMPILE=%LJCOMPILE% /MDd
+-@if "%DEBUG%"=="" set LJCOMPILE=%LJCOMPILE% /MD
++@if "%DEBUG%"=="1" set LJCOMPILE=%LJCOMPILE% /MTd
++@if "%DEBUG%"=="" set LJCOMPILE=%LJCOMPILE% /MT
+ %LJCOMPILE% /DLUA_BUILD_AS_DLL lj_*.c lib_*.c
+ @if errorlevel 1 goto :BAD
+ %LJLINK% /DLL /out:%LJDLLNAME% lj_*.obj lib_*.obj
+@@ -87,7 +87,7 @@ buildvm -m folddef -o lj_folddef.h lj_opt_fold.c
+ @if errorlevel 1 goto :BAD
+ @goto :MTDLL
+ :AMALGDLL
+-%LJCOMPILE% /MD /DLUA_BUILD_AS_DLL ljamalg.c
++%LJCOMPILE% /MT /DLUA_BUILD_AS_DLL ljamalg.c
+ @if errorlevel 1 goto :BAD
+ %LJLINK% /DLL /out:%LJDLLNAME% ljamalg.obj lj_vm.obj
+ @if errorlevel 1 goto :BAD

@@ -72,6 +72,13 @@ if(VCPKG_TARGET_IS_UWP)
         DESTINATION ${CURRENT_PACKAGES_DIR}/include
     )
 elseif(VCPKG_TARGET_IS_WINDOWS)
+    if(VCPKG_CRT_LINKAGE STREQUAL "static")
+      vcpkg_apply_patches(
+        SOURCE_PATH ${SOURCE_PATH} 
+        PATCHES
+            "${CURRENT_PORT_DIR}/0003-static-linking.patch")
+    endif()
+
     vcpkg_build_msbuild(
         PROJECT_PATH ${SOURCE_PATH}/ports/MSVC++/2015/win32/libmpg123/libmpg123.vcxproj
         OPTIONS /p:UseEnv=True

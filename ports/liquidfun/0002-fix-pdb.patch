@@ -1,0 +1,36 @@
+diff --git a/Box2D/Box2D.vcxproj b/Box2D/Box2D.vcxproj
+index 6c1fca1..2d724d0 100755
+--- a/Box2D/Box2D.vcxproj
++++ b/Box2D/Box2D.vcxproj
+@@ -93,6 +93,7 @@
+       <WarningLevel>Level4</WarningLevel>
+       <PreprocessorDefinitions>WIN32;_WINDOWS;DEBUG=1;LIQUIDFUN_EXTERNAL_LANGUAGE_API=1;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+       <ObjectFileName>$(IntDir)</ObjectFileName>
++      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+     </ClCompile>
+     <ResourceCompile>
+       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;DEBUG=1;LIQUIDFUN_EXTERNAL_LANGUAGE_API=1;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+@@ -125,6 +126,7 @@
+       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;DEBUG=0;LIQUIDFUN_EXTERNAL_LANGUAGE_API=1;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+       <ObjectFileName>$(IntDir)</ObjectFileName>
+       <DebugInformationFormat></DebugInformationFormat>
++      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+     </ClCompile>
+     <ResourceCompile>
+       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;DEBUG=0;LIQUIDFUN_EXTERNAL_LANGUAGE_API=1;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+@@ -157,6 +159,7 @@
+       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;DEBUG=0;LIQUIDFUN_EXTERNAL_LANGUAGE_API=1;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+       <ObjectFileName>$(IntDir)</ObjectFileName>
+       <DebugInformationFormat></DebugInformationFormat>
++      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+     </ClCompile>
+     <ResourceCompile>
+       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;DEBUG=0;LIQUIDFUN_EXTERNAL_LANGUAGE_API=1;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+@@ -189,6 +192,7 @@
+       <WarningLevel>Level4</WarningLevel>
+       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;DEBUG=0;LIQUIDFUN_EXTERNAL_LANGUAGE_API=1;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+       <ObjectFileName>$(IntDir)</ObjectFileName>
++      <ProgramDataBaseFileName>$(TargetDir)$(TargetName).pdb</ProgramDataBaseFileName>
+     </ClCompile>
+     <ResourceCompile>
+       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;DEBUG=0;LIQUIDFUN_EXTERNAL_LANGUAGE_API=1;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>

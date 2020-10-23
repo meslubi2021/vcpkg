@@ -1,0 +1,3 @@
+Source: zdelta
+Version: 2.1.1
+Description: zdelta is a delta-compression library built on top of zlib

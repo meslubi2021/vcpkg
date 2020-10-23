@@ -17,6 +17,19 @@ else()
 	set (LJIT_STATIC "static")
 endif()
 
+vcpkg_apply_patches(
+    SOURCE_PATH ${SOURCE_PATH}
+    PATCHES 
+        ${CMAKE_CURRENT_LIST_DIR}/001-fixStaticBuild.patch
+)
+
+if(VCPKG_CRT_LINKAGE STREQUAL "static")
+  vcpkg_apply_patches(
+      SOURCE_PATH ${SOURCE_PATH} 
+      PATCHES ${CMAKE_CURRENT_LIST_DIR}/002-fixStaticLinking.patch
+  )
+endif()
+
 if (NOT VCPKG_BUILD_TYPE OR VCPKG_BUILD_TYPE STREQUAL debug)
     message(STATUS "Building ${TARGET_TRIPLET}-dbg")
     file(REMOVE_RECURSE "${CURRENT_BUILDTREES_DIR}/${TARGET_TRIPLET}-dbg")
@@ -37,6 +50,12 @@ if (NOT VCPKG_BUILD_TYPE OR VCPKG_BUILD_TYPE STREQUAL debug)
         file(COPY ${CURRENT_PACKAGES_DIR}/debug/bin/lua51.dll DESTINATION ${CURRENT_PACKAGES_DIR}/debug/tools)
     endif()
     vcpkg_copy_pdbs()
+
+file(INSTALL ${SRC}/luajit.exe 			DESTINATION ${CURRENT_PACKAGES_DIR}/debug/tools)
+file(INSTALL ${SRC}/lua51.lib 		    DESTINATION ${CURRENT_PACKAGES_DIR}/debug/lib)
+
+if (VCPKG_LIBRARY_LINKAGE STREQUAL dynamic)
+	file(INSTALL ${SRC}/lua51.dll 		DESTINATION ${CURRENT_PACKAGES_DIR}/debug/bin)
 endif()
 
 

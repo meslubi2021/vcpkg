@@ -7,6 +7,10 @@ x64OnlyPackageList = [
     "chromium-base"
 ]
 
+x86OnlyPackageList = [
+    "yasm-tool"
+]
+
 packageList = [
     (['boost-locale[icu]', 'boost-regex[icu]', 'boost[mpi]', 'icu', 'mpi'], False),
 
@@ -79,7 +83,7 @@ packageList = [
     (['libui'], False),
     (['libxml2'], False),
     (['libyaml'] , False),
-    # (['llvm', 'llvm[clang-tools-extra]', 'llvm[utils]'], False),
+    (['llvm', 'llvm[clang-tools-extra]', 'llvm[utils]'], False),
     (['lua', 'lua[cpp]', 'luabridge', 'luafilesystem'], False),
     (['magic-enum'], False),
     (['mimalloc', 'mimalloc[secure]'] , False),
@@ -87,7 +91,6 @@ packageList = [
     (['minhook'], False),
     (['mman'], False),
     (['mpfr'] , False),
-    (['mpg123'], False),
     (['mp3lame'], False),
     (['ms-gsl'], False),
     (['msinttypes'], False),
@@ -132,6 +135,8 @@ packageList = [
     (['wxwidgets'], False),
     (['xerces-c[icu]'], False),
     (['yasm'], False),
+    (['yasm-tool'], False),
+    (['mpg123'], False),
 
     # (['dlib'], False),
 ]
@@ -168,15 +173,16 @@ def InstallPackages(packages, recurse):
     print("Installing packages: %s" % packages)
     print("################################################################################")
     print()
-    print("+++++++++++++++++")
-    print("++ x64-windows ++")
-    print("+++++++++++++++++")
-    print()
-    ret = InstallPackagesWorker(packages, "x64-windows", recurse)
-    if (not ret):
-        return False
-    if (common_member(x64OnlyPackageList, packages)):
-        return ret
+    if (not common_member(x86OnlyPackageList, packages)):
+        print("+++++++++++++++++")
+        print("++ x64-windows ++")
+        print("+++++++++++++++++")
+        print()
+        ret = InstallPackagesWorker(packages, "x64-windows", recurse)
+        if (not ret):
+            return False
+        if (common_member(x64OnlyPackageList, packages)):
+            return ret
     print()
     print("+++++++++++++++++")
     print("++ x86-windows ++")

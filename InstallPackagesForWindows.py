@@ -12,7 +12,9 @@ x86OnlyPackageList = [
 ]
 
 packageList = [
-    (['boost-locale[icu]', 'boost-regex[icu]', 'boost[mpi]', 'icu', 'mpi'], False),
+    (['boost-locale[icu]', 'boost-regex[icu]', 'boost[mpi]', 'icu', 'mpi', 'poco', 'poco[sqlite3]', 'sqlite3', 'sqlite3[tool]', 'sqlitecpp', 'sqlite-modern-cpp'], False),
+    (['yasm'], False),
+    (['yasm-tool'], False),
 
     (['7zip'], False),
     (['abseil', 'abseil[cxx17]'] , False),
@@ -20,7 +22,7 @@ packageList = [
     (['akali'], False),
     (['angelscript', 'angelscript[addons]'], False),
     (['antlr4'], False),
-    (['apr', 'apr-util'], False),
+    (['apr', 'apr[private-headers]', 'apr-util'], False),
     (['arabica', 'winsock2'], False),
     (['asmjit'] , False),
     (['atk', 'atkmm', 'gtk', 'gtkmm'], False),
@@ -109,13 +111,12 @@ packageList = [
     (['p-ranav-csv2'], False),
     (['phnt'], False),
     (['platform-folders'], False),
-    (['poco', 'sqlite3', 'sqlite3[tool]', 'sqlitecpp', 'sqlite-modern-cpp'], False),
     # (['portaudio'], False),
     (['pprint'], False),
     (['pthreads'], False),
     (['pugixml'], False),
     (['pystring'], False),
-    # (['qt5', 'qwt', 'qt5[doc]', 'qt5[speech]', 'qt5-winextras'], False),
+    (['qt5', 'qwt', 'qt5[doc]', 'qt5[speech]', 'qt5-winextras'], False),
     (['range-v3'], False),
     (['rapidxml'], False),
     (['rttr'], False),
@@ -134,8 +135,6 @@ packageList = [
     (['wtl'], False),
     (['wxwidgets'], False),
     (['xerces-c[icu]'], False),
-    (['yasm'], False),
-    (['yasm-tool'], False),
     (['mpg123'], False),
 
     # (['dlib'], False),

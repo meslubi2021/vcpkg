@@ -16,9 +16,11 @@ for %%a in (
 "%_MyDir%\installed\%Platform%-windows\share\clang"
 "%_MyDir%\downloads\tools\7zip-18.1.0-windows\7-Zip.CommandLine.18.1.0\tools"
 "%_MyDir%\downloads\tools\cmake-3.19.2-windows\cmake-3.19.2-win32-x86\bin"
+"%_MyDir%\downloads\tools\gn\qUkAhy9J0P7c5racy-9wB6AHNK_btS18im8S06_ehhwC"
 "%_MyDir%\downloads\tools\gperf\bin"
 "%_MyDir%\downloads\tools\jom\jom-1.1.3"
 "%_MyDir%\downloads\tools\nasm\nasm-2.15.05"
+"%_MyDir%\downloads\tools\nasm\nasm-2.15.05\rdoff"
 "%_MyDir%\downloads\tools\ninja\1.10.1-windows"
 "%_MyDir%\downloads\tools\nuget-5.5.1-windows"
 "%_MyDir%\downloads\tools\perl\5.30.0.1\c\bin"
@@ -37,6 +39,7 @@ for %%a in (
 "%ProgramW6432%\nodejs"
 "%ProgramW6432%\Python38"
 "%ProgramW6432%\Perforce"
+"%ProgramW6432%\PowerShell\7"
 "%ProgramW6432%\TortoiseSVN\bin"
 "%LOCALAPPDATA%\Pandoc"
 "%ProgramW6432%\Pandoc"
@@ -48,7 +51,7 @@ for %%a in (
 "%OPT%\ExamDiff"
 "%OPT%\Scripts"
 ) do (
-	call :AppendToPathIfExists "%%~a"
+  call :AppendToPathIfExists "%%~a"
 )
 
 goto :EOF

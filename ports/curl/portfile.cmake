@@ -94,10 +94,6 @@ vcpkg_configure_cmake(
         -DCMAKE_DISABLE_FIND_PACKAGE_Perl=ON
         -DENABLE_DEBUG=ON
         -DCURL_CA_FALLBACK=ON
-    OPTIONS_DEBUG
-        ${EXTRA_ARGS_DEBUG}
-    OPTIONS_RELEASE
-        ${EXTRA_ARGS_RELEASE}
 )
 
 vcpkg_install_cmake()

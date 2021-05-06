@@ -1081,8 +1081,8 @@
       "port-version": 0
     },
     "cairo": {
-      "baseline": "1.16.0",
-      "port-version": 12
+      "baseline": "1.17.4",
+      "port-version": 0
     },
     "cairomm": {
       "baseline": "1.16.0",
@@ -1493,7 +1493,7 @@
       "port-version": 0
     },
     "cryptopp": {
-      "baseline": "8.2.0-2",
+      "baseline": "8.5.0",
       "port-version": 0
     },
     "cspice": {
@@ -2446,7 +2446,7 @@
     },
     "hdf5": {
       "baseline": "1.12.0",
-      "port-version": 1
+      "port-version": 2
     },
     "healpix": {
       "baseline": "1.12.10",
@@ -2633,8 +2633,8 @@
       "port-version": 0
     },
     "infoware": {
-      "baseline": "0.5.5",
-      "port-version": 1
+      "baseline": "0.6.0",
+      "port-version": 0
     },
     "inih": {
       "baseline": "51",
@@ -2965,8 +2965,8 @@
       "port-version": 5
     },
     "libass": {
-      "baseline": "0.15.0",
-      "port-version": 1
+      "baseline": "0.15.1",
+      "port-version": 0
     },
     "libassuan": {
       "baseline": "2.5.3",
@@ -4542,7 +4542,7 @@
     },
     "openssl": {
       "baseline": "1.1.1k",
-      "port-version": 0
+      "port-version": 1
     },
     "openssl-unix": {
       "baseline": "1.1.1h",

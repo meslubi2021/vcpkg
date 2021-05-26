@@ -12,7 +12,8 @@ x86OnlyPackageList = [
 ]
 
 packageList = [
-    (['boost-locale[icu]', 'boost-regex[icu]', 'boost[mpi]', 'icu', 'mpi', 'poco', 'poco[sqlite3]', 'sqlite3', 'sqlite3[tool]', 'sqlitecpp', 'sqlite-modern-cpp'], False),
+    (['mpi'], False),
+    (['boost-locale[icu]', 'boost-regex[icu]', 'boost[mpi]', 'icu', 'poco', 'poco[sqlite3]', 'sqlite3', 'sqlite3[tool]', 'sqlitecpp', 'sqlite-modern-cpp'], False),
     (['yasm'], False),
     (['yasm-tool'], False),
 
@@ -25,6 +26,7 @@ packageList = [
     (['apr', 'apr[private-headers]', 'apr-util'], False),
     (['arabica', 'winsock2'], False),
     (['asmjit'] , False),
+    # (['atk', 'atkmm', 'gtk', 'gtkmm', 'hunspell', 'hunspell[tools]'], False),
     (['atk', 'atkmm', 'gtk', 'gtkmm'], False),
     (['audiofile'] , False),
     (['bdwgc'], False),
@@ -38,7 +40,6 @@ packageList = [
     (['chakracore'], False),
     (['check'], False),
     (['chmlib'], False),
-    # (['chromium-base'], False),
     (['constexpr'], False),
     (['cpp-base64'], False),
     (['cpprestsdk'] , False),
@@ -72,7 +73,6 @@ packageList = [
     (['getopt'], False),
     (['gettimeofday'], False),
     (['glew', 'glui'], False),
-    (['hunspell', 'hunspell[tools]'], False),
     (['imgui', 'imgui[glfw-binding]', 'imgui[glut-binding]', 'imgui[sdl2-binding]', 'imgui[win32-binding]', 'imgui-sfml', 'sdl2', 'sdl2-gfx', 'sdl2-image', 'sdl2-image[libjpeg-turbo]', 'sdl2-image[libwebp]', 'sdl2-image[tiff]', 'sdl2-mixer', 'sdl2-mixer[nativemidi]', 'sdl2-net', 'sdl2-ttf', 'sdl2pp'], False),
     (['jansson'] , False),
     (['jbigkit'], False),

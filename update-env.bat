@@ -37,7 +37,7 @@ for %%a in (
 "%ProgramW6432%\LLVM\bin"
 "%ProgramW6432%\LLVM\share\clang"
 "%ProgramW6432%\nodejs"
-"%ProgramW6432%\Python38"
+"%ProgramW6432%\Python39"
 "%ProgramW6432%\Perforce"
 "%ProgramW6432%\PowerShell\7"
 "%ProgramW6432%\TortoiseSVN\bin"

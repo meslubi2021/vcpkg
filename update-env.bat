@@ -15,7 +15,7 @@ if exist "%_MyDir%\installed\%Platform%-windows\share\hunspell\dictionaries\." s
 for %%a in (
 "%_MyDir%\installed\%Platform%-windows\share\clang"
 "%_MyDir%\downloads\tools\7zip-18.1.0-windows\7-Zip.CommandLine.18.1.0\tools"
-"%_MyDir%\downloads\tools\cmake-3.19.2-windows\cmake-3.19.2-win32-x86\bin"
+"%_MyDir%\downloads\tools\cmake-3.20.2-windows\cmake-3.20.2-windows-i386\bin"
 "%_MyDir%\downloads\tools\gn\qUkAhy9J0P7c5racy-9wB6AHNK_btS18im8S06_ehhwC"
 "%_MyDir%\downloads\tools\gperf\bin"
 "%_MyDir%\downloads\tools\jom\jom-1.1.3"
@@ -27,7 +27,7 @@ for %%a in (
 "%_MyDir%\downloads\tools\perl\5.30.0.1\c\i686-w64-mingw32\bin"
 "%_MyDir%\downloads\tools\perl\5.30.0.1\perl\site\bin"
 "%_MyDir%\downloads\tools\perl\5.30.0.1\perl\bin"
-"%_MyDir%\downloads\tools\python\python-3.9.2-%Platform%"
+"%_MyDir%\downloads\tools\python\python-3.9.5-%Platform%"
 "%_MyDir%\downloads\tools\winflexbison\0a14154bff-a8cf65db07"
 "%ProgramW6432%\Git\cmd"
 "%SystemDrive%\Emacs\x86_64\bin"

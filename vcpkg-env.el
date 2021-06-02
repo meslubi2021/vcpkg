@@ -1,6 +1,6 @@
 (require 'cl-lib)
-(require 'yekneb-env)
 (require 'yekneb-debug)
+(require 'yekneb-env)
 (require 'yekneb-path-manip)
 
 (defconst vcpkg--32-bit-system-p (not (null (string-match "^i386-.*" system-configuration)))
@@ -37,10 +37,11 @@
 (let
   (
    (yekneb-debug-level yekneb-log-entry)
-   (platform nil)
    (dic-path "${VCPKG_ROOT}/installed/${Platform}-windows/share/hunspell/dictionaries")
-   (tools-dir "${VCPKG_ROOT}/installed/${Platform}-windows/tools")
+   (load-file-dir (file-name-directory load-file-name))
+   (platform nil)
    (tool-dirs nil)
+   (tools-dir "${VCPKG_ROOT}/installed/${Platform}-windows/tools")
    )
   (setq
    platform
@@ -67,7 +68,7 @@
     (yekneb-setenv "DICPATH" dic-path)
     )
   (yekneb-log yekneb-log-info "Adding the directories in vcpkg--add-to-path to the path.")
-  (yekneb-add-dirs-to-path vcpkg--add-to-path t t)
+  (yekneb-add-dirs-to-path vcpkg--add-to-path t t load-file-dir)
   (yekneb-log yekneb-log-info "Adding the directories in tool-dirs to the path.")
   (setq tool-dirs (directory-files tools-dir))
   (dolist (tool-dir tool-dirs)

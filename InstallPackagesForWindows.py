@@ -8,14 +8,12 @@ x64OnlyPackageList = [
 ]
 
 x86OnlyPackageList = [
-    "yasm-tool"
 ]
 
 packageList = [
     (['mpi'], False),
     (['boost-locale[icu]', 'boost-regex[icu]', 'boost[mpi]', 'icu', 'poco', 'poco[sqlite3]', 'sqlite3', 'sqlite3[tool]', 'sqlitecpp', 'sqlite-modern-cpp'], False),
-    (['yasm'], False),
-    (['yasm-tool'], False),
+    (['yasm', 'yasm-tool'], False),
 
     (['7zip'], False),
     (['abseil', 'abseil[cxx17]'] , False),
@@ -27,7 +25,7 @@ packageList = [
     (['arabica', 'winsock2'], False),
     (['asmjit'] , False),
     # (['atk', 'atkmm', 'gtk', 'gtkmm', 'hunspell', 'hunspell[tools]'], False),
-    (['atk', 'atkmm', 'gtk', 'gtkmm'], False),
+    (['atk', 'atkmm', 'gettext', 'gtk', 'gtkmm'], False),
     (['audiofile'] , False),
     (['bdwgc'], False),
     (['benchmark'], False),
@@ -52,7 +50,7 @@ packageList = [
     (['ctbignum'], False),
     (['detours'], False),
     (['dirent'], False),
-    (['directxsdk', 'directxtk12', 'dx'], False),
+    (['directx-headers', 'directxsdk', 'directxtk12', 'dx'], False),
     (['discount'], False),
     (['distorm'], False),
     (['dlfcn-win32'], False),
@@ -62,7 +60,7 @@ packageList = [
     (['ecm'] , False),
     (['exiv2', 'exiv2[unicode]'], False),
     (['fast-cpp-csv-parser'], False),
-    (['flatbuffers', 'glog', 'gtest', 'protobuf', 'protobuf[zlib]'], False),
+    (['flatbuffers', 'fruit', 'glog', 'gtest', 'protobuf', 'protobuf[zlib]'], False),
     (['fltk'], False),
     (['fmt'], False),
     (['foonathan-memory', 'foonathan-memory[tool]'], False),
@@ -86,7 +84,7 @@ packageList = [
     (['libxml2'], False),
     (['libyaml'] , False),
     (['llvm', 'llvm[clang-tools-extra]', 'llvm[utils]'], False),
-    (['lua', 'lua[cpp]', 'luabridge', 'luafilesystem'], False),
+    (['lua', 'lua[cpp]', 'lua[tools]', 'luabridge', 'luafilesystem'], False),
     (['magic-enum'], False),
     (['mimalloc', 'mimalloc[secure]'] , False),
     (['mhook'], False),
@@ -118,7 +116,7 @@ packageList = [
     (['pystring'], False),
     (['qt5', 'qwt', 'qt5[doc]', 'qt5[speech]', 'qt5-winextras'], False),
     (['range-v3'], False),
-    (['rapidxml'], False),
+    (['rapidcsv', 'rapidjson', 'rapidxml', 'ryml'], False),
     (['rttr'], False),
     (['safeint'], False),
     (['scintilla'], False),

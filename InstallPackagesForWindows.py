@@ -4,196 +4,97 @@ import os
 import subprocess
 
 x64OnlyPackageList = [
-    "chromium-base"
+  "chromium-base", "crashpad"
 ]
 
 x86OnlyPackageList = [
 ]
 
 packageList = [
-    (['mpi'], False),
-    (['boost-locale[icu]', 'boost-regex[icu]', 'boost[mpi]', 'icu', 'poco', 'poco[sqlite3]', 'sqlite3', 'sqlite3[tool]', 'sqlitecpp', 'sqlite-modern-cpp'], False),
-    (['yasm', 'yasm-tool'], False),
+  (['mpi'], False),
+  (['boost-locale[icu]', 'boost-regex[icu]', 'boost[mpi]', 'flatbuffers', 'freeglut', 'fruit', 'gettext[core,tools]', 'glew', 'glog', 'glui', 'gtest', 'hunspell[core,tools]', 'icu', 'imgui-sfml', 'imgui[core,glfw-binding,glut-binding,sdl2-binding,win32-binding]', 'mpg123', 'mygui[core,opengl]', 'nana', 'nanogui', 'nuklear', 'poco[core,pdf,sqlite3]', 'protobuf[core,zlib]', 'qt[core,default-features]', 'sdl2', 'sdl2-gfx', 'sdl2-image', 'sdl2-image[core,libjpeg-turbo,libwebp,tiff]', 'sdl2-mixer[core,nativemidi,mpg123]', 'sdl2-net', 'sdl2-ttf', 'sdl2pp', 'sqlite-modern-cpp', 'sqlite3[core,json1,tool]', 'sqlitecpp[core,sqlite]', 'v8', 'yasm', 'yasm-tool'], False),
 
-    (['7zip'], False),
-    (['abseil', 'abseil[cxx17]'] , False),
-    (['aixlog'], False),
-    (['akali'], False),
-    (['angelscript', 'angelscript[addons]'], False),
-    (['antlr4'], False),
-    (['apr', 'apr[private-headers]', 'apr-util'], False),
-    (['arabica', 'winsock2'], False),
-    (['asmjit'] , False),
-    # (['atk', 'atkmm', 'gtk', 'gtkmm', 'hunspell', 'hunspell[tools]'], False),
-    (['atk', 'atkmm', 'gettext', 'gtk', 'gtkmm'], False),
-    (['audiofile'] , False),
-    (['bdwgc'], False),
-    (['benchmark'], False),
-    (['berkeleydb'], False),
-    (['bigint'], False),
-    (['bustache'] , False),
-    (['capstone', 'capstone[x86]', 'cccapstone'] , False),
-    (['catch2'] , False),
-    (['chaiscript'], False),
-    (['chakracore'], False),
-    (['check'], False),
-    (['chmlib'], False),
-    (['constexpr'], False),
-    (['cpp-base64'], False),
-    (['cpprestsdk'] , False),
-    (['cpptoml'] , False),
-    (['cppunit'], False),
-    (['cpu-features', 'cpu-features[tools]'], False),
-    (['cpuid'], False),
-    (['cpuinfo', 'cpuinfo[tools]'], False),
-    (['crossguid'], False),
-    (['ctbignum'], False),
-    (['detours'], False),
-    (['dirent'], False),
-    (['directx-headers', 'directxsdk', 'directxtk12', 'dx'], False),
-    (['discount'], False),
-    (['distorm'], False),
-    (['dlfcn-win32'], False),
-    (['duilib'] , False),
-    (['duktape'], False),
-    (['eastl'] , False),
-    (['ecm'] , False),
-    (['exiv2', 'exiv2[unicode]'], False),
-    (['fast-cpp-csv-parser'], False),
-    (['flatbuffers', 'fruit', 'glog', 'gtest', 'protobuf', 'protobuf[zlib]'], False),
-    (['fltk'], False),
-    (['fmt'], False),
-    (['foonathan-memory', 'foonathan-memory[tool]'], False),
-    (['fplus'], False),
-    (['freeglut'], False),
-    (['fruit'], False),
-    (['function2'], False),
-    (['getopt'], False),
-    (['gettimeofday'], False),
-    (['glew', 'glui'], False),
-    (['imgui', 'imgui[glfw-binding]', 'imgui[glut-binding]', 'imgui[sdl2-binding]', 'imgui[win32-binding]', 'imgui-sfml', 'sdl2', 'sdl2-gfx', 'sdl2-image', 'sdl2-image[libjpeg-turbo]', 'sdl2-image[libwebp]', 'sdl2-image[tiff]', 'sdl2-mixer', 'sdl2-mixer[nativemidi]', 'sdl2-net', 'sdl2-ttf', 'sdl2pp'], False),
-    (['jansson'] , False),
-    (['jbigkit'], False),
-    (['jemalloc'] , False),
-    (['json-spirit'] , False),
-    (['json11'] , False),
-    (['libevent', 'libevent[thread]'], False),
-    (['libguarded'] , False),
-    (['libsndfile'], False),
-    (['libui'], False),
-    (['libxml2'], False),
-    (['libyaml'] , False),
-    (['llvm', 'llvm[clang-tools-extra]', 'llvm[utils]'], False),
-    (['lua', 'lua[cpp]', 'lua[tools]', 'luabridge', 'luafilesystem'], False),
-    (['magic-enum'], False),
-    (['mimalloc', 'mimalloc[secure]'] , False),
-    (['mhook'], False),
-    (['minhook'], False),
-    (['mman'], False),
-    (['mpfr'] , False),
-    (['mp3lame'], False),
-    (['ms-gsl'], False),
-    (['msinttypes'], False),
-    (['mstch'], False),
-    (['mujs'], False),
-    (['mygui', 'mygui[opengl]'] , False),
-    (['nana'], False),
-    (['nanogui'], False),
-    (['nt-wrapper'], False),
-    (['nuklear'], False),
-    (['numcpp'], False),
-    (['openal-soft'], False),
-    (['opencv4'], False),
-    (['openjpeg'], False),
-    (['pdcurses'], False),
-    (['p-ranav-csv2'], False),
-    (['phnt'], False),
-    (['platform-folders'], False),
-    # (['portaudio'], False),
-    (['pprint'], False),
-    (['pthreads'], False),
-    (['pugixml'], False),
-    (['pystring'], False),
-    (['qt5', 'qwt', 'qt5[doc]', 'qt5[speech]', 'qt5-winextras'], False),
-    (['range-v3'], False),
-    (['rapidcsv', 'rapidjson', 'rapidxml', 'ryml'], False),
-    (['rttr'], False),
-    (['safeint'], False),
-    (['scintilla'], False),
-    (['sfgui'], False),
-    (['strtk'], False),
-    (['tgc'], False),
-    (['tgui', 'tgui[tool]'] , False),
-    (['tidy-html5'], False),
-    (['tinyxml'], False),
-    (['utf8h', 'utfcpp'] , False),
-    (['v8'], False),
-    (['wil'] , False),
-    (['winreg'], False),
-    (['wtl'], False),
-    (['wxwidgets'], False),
-    (['xerces-c[icu]'], False),
-    (['mpg123'], False),
+  (['7zip', 'abseil[core,cxx17]', 'aixlog', 'akali', 'angelscript[addons,core]', 'antlr4', 'approval-tests-cpp', 'apr[core,private-headers]', 'apr-util'], False),
+  (['arabica', 'winsock2'], False),
+  (['asmjit', 'atk', 'atkmm', 'dirent', 'gtk', 'gtkmm', 'scintilla'], False),
+  (['audiofile', 'bdwgc', 'benchmark', 'berkeleydb', 'bigint', 'breakpad', 'bustache', 'capstone[core,x86]', 'cccapstone', 'catch2', 'chaiscript', 'chakracore', 'check', 'chmlib', 'cli', 'cli11', 'cmark', 'constexpr', 'constexpr-contracts', 'cpp-base64', 'cpp-httplib', 'cpp-peglib', 'cpprestsdk', 'cpptoml', 'cppunit', 'cppwinrt'] , False),
+  (['cpu-features[core,tools]', 'cpuid', 'cpuinfo[core,tools]', 'crossguid', 'ctbignum', 'cute-headers', 'dbg-macro', 'dbghelp', 'detours'], False),
+  (['crashpad'], False),
+  (['d3dx12', 'directx-headers', 'directxsdk', 'directxtk12', 'dx', 'duilib'], False),
+  (['discount', 'distorm', 'dlfcn-win32', 'duckx', 'duktape', 'eastl', 'easyhook', 'ecm'], False),
+  (['exiv2[core,unicode]', 'fast-cpp-csv-parser', 'fast-float'], False),
+  (['fltk', 'fmt', 'foonathan-memory[core,tool]', 'fplus', 'function2', 'gettimeofday'], False),
+  (['inih', 'jansson', 'jbigkit', 'jemalloc', 'json-spirit', 'json11'] , False),
+  (['libevent[core,thread]', 'libguarded', 'libsndfile', 'libui', 'libunibreak', 'libxml2', 'libxmlmm', 'libxslt', 'libyaml', 'licensepp'], False),
+  (['llvm[core,clang-tools-extra,utils]'], False),
+  (['lua[core,cpp,tools]', 'luabridge', 'luafilesystem', 'luajit'], False),
+  (['magic-enum', 'mimalloc[core,secure]', 'mhook', 'minhook', 'mman', 'mp3lame', 'mpfr', 'ms-gsl', 'msinttypes', 'mstch', 'mujs'], False),
+  (['nt-wrapper', 'numcpp', 'openal-soft', 'opencv4', 'openjpeg', 'p-ranav-csv2', 'pdcurses', 'phnt', 'platform-folders', 'portaudio', 'pprint', 'pthreads', 'pystring'], False),
+  (['range-v3', 'rapidcsv', 'rapidjson', 'rapidxml', 'ryml'], False),
+  (['rttr', 'safeint', 'sfgui', 'strtk', 'simpleini', 'tbb', 'tgc', 'tgui[core,tool]', 'tidy-html5', 'tinyutf8', 'tinyxml', 'utf8h', 'utfcpp'], False),
+  (['wil', 'wincrypt', 'winreg', 'wintoast', 'wtl'] , False),
+  (['wxwidgets'], False),
+  (['xerces-c[core,icu]', 'yaml-cpp'], False),
 
-    # (['dlib'], False),
+  # (['dlib'], False),
 ]
 
 def common_member(a, b): 
-    a_set = set(a)
-    b_set = set(b)
-    if len(a_set.intersection(b_set)) > 0:
-        return(True)
-    return(False)
+  a_set = set(a)
+  b_set = set(b)
+  if len(a_set.intersection(b_set)) > 0:
+    return(True)
+  return(False)
 
 def InstallPackagesWorker(packages, triplet, recurse):
-    args = []
-    args.append("vcpkg")
-    args.append("install")
-    args.extend(packages)
-    args.append("--triplet")
-    args.append(triplet)
-    if (recurse):
-        args.append("--recurse")
-    try:
-        seperator = ' '
-        print("Calling '%s'." % seperator.join(args))
-        subprocess.check_call(args)
-        return True
-    except subprocess.CalledProcessError as err:
-        return False
-    except OSError as err:
-        return False
+  args = []
+  args.append("vcpkg")
+  args.append("install")
+  args.extend(packages)
+  args.append("--triplet")
+  args.append(triplet)
+  if (recurse):
+    args.append("--recurse")
+  try:
+    seperator = ' '
+    print("Calling '%s'." % seperator.join(args))
+    subprocess.check_call(args)
+    return True
+  except subprocess.CalledProcessError as err:
+    return False
+  except OSError as err:
+    return False
 
 def InstallPackages(packages, recurse):
-    print()
-    print("################################################################################")
-    print("Installing packages: %s" % packages)
-    print("################################################################################")
-    print()
-    if (not common_member(x86OnlyPackageList, packages)):
-        print("+++++++++++++++++")
-        print("++ x64-windows ++")
-        print("+++++++++++++++++")
-        print()
-        ret = InstallPackagesWorker(packages, "x64-windows", recurse)
-        if (not ret):
-            return False
-        if (common_member(x64OnlyPackageList, packages)):
-            return ret
-    print()
+  print()
+  print("################################################################################")
+  print("Installing packages: %s" % packages)
+  print("################################################################################")
+  print()
+  if (not common_member(x86OnlyPackageList, packages)):
     print("+++++++++++++++++")
-    print("++ x86-windows ++")
+    print("++ x64-windows ++")
     print("+++++++++++++++++")
     print()
-    ret = InstallPackagesWorker(packages, "x86-windows", recurse)
-    print()
-    return ret
+    ret = InstallPackagesWorker(packages, "x64-windows", recurse)
+    if (not ret):
+      return False
+    if (common_member(x64OnlyPackageList, packages)):
+      return ret
+  print()
+  print("+++++++++++++++++")
+  print("++ x86-windows ++")
+  print("+++++++++++++++++")
+  print()
+  ret = InstallPackagesWorker(packages, "x86-windows", recurse)
+  print()
+  return ret
 
 def InstallPackagesInPackageList():
-    for package in packageList:
-         ret = InstallPackages(package[0], package[1])
-         if ret == False:
-             return False
-    return True
+  for package in packageList:
+    ret = InstallPackages(package[0], package[1])
+    if ret == False:
+      return False
+  return True
 
 InstallPackagesInPackageList()

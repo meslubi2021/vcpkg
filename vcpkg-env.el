@@ -15,7 +15,7 @@
     "${VCPKG_ROOT}/downloads/tools/nasm/nasm-2.15.05"
     "${VCPKG_ROOT}/downloads/tools/nasm/nasm-2.15.05/rdoff"
     "${VCPKG_ROOT}/downloads/tools/ninja/1.10.1-windows"
-    "${VCPKG_ROOT}/downloads/tools/nuget-5.5.1-windows"
+    "${VCPKG_ROOT}/downloads/tools/nuget-5.9.1-windows"
     "${VCPKG_ROOT}/downloads/tools/perl/5.30.0.1/c/bin"
     "${VCPKG_ROOT}/downloads/tools/perl/5.30.0.1/c/i686-w64-mingw32/bin"
     "${VCPKG_ROOT}/downloads/tools/perl/5.30.0.1/perl/site/bin"
@@ -24,8 +24,6 @@
     "${VCPKG_ROOT}/downloads/tools/winflexbison/0a14154bff-a8cf65db07"
     "${VCPKG_ROOT}/installed/${Platform}-windows/bin"
     "${VCPKG_ROOT}/installed/${Platform}-windows/tools"
-    "${ProgramFiles(x86)}/Poedit"
-    "${ProgramFiles(x86)}/Poedit/GettextTools/bin"
    )
   "Directories to add to the path for Windows."
  )
@@ -33,7 +31,7 @@
 (defconst vcpkg--add-to-path-linux
   '(
     "${VCPKG_ROOT}/downloads/tools/cmake-3.20.2-linux/cmake-3.20.2-linux-x86_64/bin"
-    "${VCPKG_ROOT}/downloads/tools//ninja-1.10.1-linux"
+    "${VCPKG_ROOT}/downloads/tools/ninja-1.10.1-linux"
     "${VCPKG_ROOT}/installed/${Platform}-linux/tools"
     )
   "Directories to add to the path for Linux."
@@ -49,6 +47,12 @@
      (platform nil)
      (tool-dirs nil)
      (tools-dir "${VCPKG_ROOT}/installed/${Platform}-windows/tools")
+     (poedit-dirs
+      '(
+        "${ProgramFiles(x86)}/Poedit"
+        "${ProgramFiles(x86)}/Poedit/GettextTools/bin"
+        )
+      )
      )
     (setq
      platform
@@ -86,9 +90,15 @@
           (when (file-directory-p tool-dir)
             (yekneb-add-to-path tool-dir t)
             )
+          (setq tool-dir (expand-file-name "bin" tool-dir))
+          (when (file-directory-p tool-dir)
+            (yekneb-add-to-path tool-dir t)
+            )
           )
         )
       )
+    (yekneb-log yekneb-log-info "Adding the directories in poedit-dirs to the path.")
+    (yekneb-add-dirs-to-path poedit-dirs t t load-file-dir)
     )
   )
 
@@ -129,6 +139,10 @@
       (dolist (tool-dir tool-dirs)
         (when (and (not (string= tool-dir ".")) (not (string= tool-dir "..")))
           (setq tool-dir (expand-file-name tool-dir tools-dir))
+          (when (file-directory-p tool-dir)
+            (yekneb-add-to-path tool-dir t)
+            )
+          (setq tool-dir (expand-file-name "bin" tool-dir))
           (when (file-directory-p tool-dir)
             (yekneb-add-to-path tool-dir t)
             )

@@ -14,6 +14,13 @@ if exist "%_MyDir%\installed\%Platform%-windows\share\hunspell\dictionaries\." s
 
 for %%a in (
 "%_MyDir%\installed\%Platform%-windows\share\clang"
+"%_MyDir%\installed\%Platform%-windows\tools\fontconfig\bin"
+"%_MyDir%\installed\%Platform%-windows\tools\gettext\bin"
+"%_MyDir%\installed\%Platform%-windows\tools\icu\bin"
+"%_MyDir%\installed\%Platform%-windows\tools\libiconv\bin"
+"%_MyDir%\installed\%Platform%-windows\tools\Qt6\bin"
+"%_MyDir%\installed\%Platform%-windows\tools\sassc\bin"
+"%_MyDir%\installed\%Platform%-windows\tools\tcl\bin"
 "%_MyDir%\downloads\tools\7zip-18.1.0-windows\7-Zip.CommandLine.18.1.0\tools"
 "%_MyDir%\downloads\tools\cmake-3.20.2-windows\cmake-3.20.2-windows-i386\bin"
 "%_MyDir%\downloads\tools\gn\qUkAhy9J0P7c5racy-9wB6AHNK_btS18im8S06_ehhwC"
@@ -22,7 +29,7 @@ for %%a in (
 "%_MyDir%\downloads\tools\nasm\nasm-2.15.05"
 "%_MyDir%\downloads\tools\nasm\nasm-2.15.05\rdoff"
 "%_MyDir%\downloads\tools\ninja\1.10.1-windows"
-"%_MyDir%\downloads\tools\nuget-5.5.1-windows"
+"%_MyDir%\downloads\tools\nuget-5.9.1-windows"
 "%_MyDir%\downloads\tools\perl\5.30.0.1\c\bin"
 "%_MyDir%\downloads\tools\perl\5.30.0.1\c\i686-w64-mingw32\bin"
 "%_MyDir%\downloads\tools\perl\5.30.0.1\perl\site\bin"

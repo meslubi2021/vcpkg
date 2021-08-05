@@ -4,14 +4,10 @@ import os
 import subprocess
 
 packageList = [
+    (['mpi'], False),
     (['boost-locale[icu]', 'boost-regex[icu]', 'boost[mpi]', 'icu', 'mpi', 'poco', 'poco[sqlite3]', 'sqlite3', 'sqlite3[tool]', 'sqlitecpp', 'sqlite-modern-cpp'], False),
 
-    (['abseil', 'abseil[cxx17]'] , False),
-    (['aixlog'], False),
-    (['akali'], False),
-    (['angelscript', 'angelscript[addons]'], False),
-    (['antlr4'], False),
-    (['apr', 'apr[private-headers]', 'apr-util'], False),
+    (['abseil', 'abseil[cxx17]', 'aixlog', 'akali', 'angelscript', 'angelscript[addons]', 'antlr4', 'apr', 'apr[private-headers]', 'apr-util'] , False),
     (['arabica'], False),
     (['asmjit'] , False),
 ]

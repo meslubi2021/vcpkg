@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import os
 import subprocess
 
 x64OnlyPackageList = [
@@ -12,7 +11,7 @@ x86OnlyPackageList = [
 
 packageList = [
   (['mpi'], False),
-  (['boost-locale[icu]', 'boost-regex[icu]', 'boost[mpi]', 'flatbuffers', 'freeglut', 'fruit', 'gettext[core,tools]', 'glew', 'glog', 'glui', 'gtest', 'hunspell[core,tools]', 'icu', 'imgui-sfml', 'imgui[core,glfw-binding,glut-binding,sdl2-binding,win32-binding]', 'mpg123', 'mygui[core,opengl]', 'nana', 'nanogui', 'nuklear', 'poco[core,pdf,sqlite3]', 'protobuf[core,zlib]', 'qt[core,default-features]', 'sdl2', 'sdl2-gfx', 'sdl2-image', 'sdl2-image[core,libjpeg-turbo,libwebp,tiff]', 'sdl2-mixer[core,nativemidi,mpg123]', 'sdl2-net', 'sdl2-ttf', 'sdl2pp', 'sqlite-modern-cpp', 'sqlite3[core,json1,tool]', 'sqlitecpp[core,sqlite]', 'v8', 'yasm', 'yasm-tool'], False),
+  (['boost-locale[icu]', 'boost-regex[icu]', 'boost[mpi]', 'flatbuffers', 'freeglut', 'fruit', 'gettext[core,tools]', 'glew', 'glog', 'glui', 'gtest', 'hunspell[core,tools]', 'icu', 'imgui-sfml', 'imgui[core,allegro5-binding,glfw-binding,glut-binding,libigl-imgui,sdl2-binding,win32-binding]', 'imguizmo', 'implot', 'mpg123', 'mygui[core,opengl]', 'nana', 'nanogui', 'nuklear[core,demo,example]', 'poco[core,pdf,sqlite3]', 'protobuf[core,zlib]', 'qt[core,default-features]', 'sdl2', 'sdl2-gfx', 'sdl2-image[core,libjpeg-turbo,libwebp,tiff]', 'sdl2-mixer[core,nativemidi,mpg123]', 'sdl2-net', 'sdl2-ttf', 'sdl2pp', 'sqlite-modern-cpp', 'sqlite3[core,json1,tool]', 'sqlitecpp[core,sqlite]', 'v8', 'yasm', 'yasm-tool'], False),
 
   (['7zip', 'abseil[core,cxx17]', 'aixlog', 'akali', 'angelscript[addons,core]', 'antlr4', 'approval-tests-cpp', 'apr[core,private-headers]', 'apr-util'], False),
   (['arabica', 'winsock2'], False),
@@ -22,17 +21,17 @@ packageList = [
   (['crashpad'], False),
   (['d3dx12', 'directx-headers', 'directxsdk', 'directxtk12', 'dx', 'duilib'], False),
   (['discount', 'distorm', 'dlfcn-win32', 'duckx', 'duktape', 'eastl', 'easyhook', 'ecm'], False),
-  (['exiv2[core,unicode]', 'fast-cpp-csv-parser', 'fast-float'], False),
-  (['fltk', 'fmt', 'foonathan-memory[core,tool]', 'fplus', 'function2', 'gettimeofday'], False),
+  (['exiv2[core,png,unicode]', 'fast-cpp-csv-parser', 'fast-float'], False),
+  (['fltk', 'fmt', 'foonathan-memory[core,tool]', 'fplus', 'function2', 'ftxui', 'gettimeofday'], False),
   (['inih', 'jansson', 'jbigkit', 'jemalloc', 'json-spirit', 'json11'] , False),
-  (['libevent[core,thread]', 'libguarded', 'libsndfile', 'libui', 'libunibreak', 'libxml2', 'libxmlmm', 'libxslt', 'libyaml', 'licensepp'], False),
+  (['libevent[core,thread]', 'libguarded', 'libsndfile', 'libui', 'libunibreak', 'libxml2[core,tools]', 'libxmlmm', 'libxslt', 'libyaml', 'licensepp'], False),
   (['llvm[core,clang,clang-tools-extra,default-options,default-targets,enable-ffi,enable-libxml2,lld,lldb,target-webassembly,tools,utils]'], False),
   (['lua[core,cpp,tools]', 'luabridge', 'luafilesystem', 'luajit'], False),
   (['magic-enum', 'mimalloc[core,secure]', 'mhook', 'minhook', 'mman', 'mp3lame', 'mpfr', 'ms-gsl', 'msinttypes', 'mstch', 'mujs'], False),
-  (['nt-wrapper', 'numcpp', 'openal-soft', 'opencv4', 'openjpeg', 'p-ranav-csv2', 'pdcurses', 'phnt', 'platform-folders', 'portaudio', 'pprint', 'pthreads', 'pystring'], False),
-  (['range-v3', 'rapidcsv', 'rapidjson', 'rapidxml', 'rmlui[core,freetype,lua]', 'ryml'], False),
+  (['nt-wrapper', 'numcpp', 'openal-soft', 'opencv4', 'openjpeg', 'p-ranav-csv2', 'pdcurses', 'phnt', 'pkgconf', 'platform-folders', 'portaudio', 'pprint', 'pthreads', 'pystring'], False),
+  (['range-v3', 'rapidcsv', 'rapidjson', 'rapidxml', 'raylib[core,hidpi,use-audio]', 'rmlui[core,freetype,lua]', 'ryml'], False),
   (['rttr', 'safeint', 'sfgui', 'strtk', 'simpleini', 'tbb', 'tgc', 'tgui[core,tool]', 'tidy-html5', 'tinyutf8', 'tinyxml', 'utf8h', 'utfcpp'], False),
-  (['tcl', 'uriparser[core,tool]', 'xalan-c', 'wren', 'zstr', False),
+  (['tcl', 'uriparser[core,tool]', 'xalan-c', 'wren', 'zstr'], False),
   (['wil', 'wincrypt', 'winreg', 'wintoast', 'wtl'] , False),
   (['wxwidgets'], False),
   (['xerces-c[core,icu]', 'yaml-cpp'], False),

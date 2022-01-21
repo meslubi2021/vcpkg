@@ -330,7 +330,7 @@
     },
     "azure-kinect-sensor-sdk": {
       "baseline": "1.4.1",
-      "port-version": 3
+      "port-version": 4
     },
     "azure-macro-utils-c": {
       "baseline": "2020-06-17",
@@ -822,7 +822,7 @@
     },
     "boost-modular-build-helper": {
       "baseline": "1.78.0",
-      "port-version": 1
+      "port-version": 2
     },
     "boost-move": {
       "baseline": "1.78.0",
@@ -2274,7 +2274,7 @@
     },
     "freeimage": {
       "baseline": "3.18.0",
-      "port-version": 21
+      "port-version": 22
     },
     "freeopcua": {
       "baseline": "20190125",
@@ -3237,7 +3237,7 @@
       "port-version": 1
     },
     "kubernetes": {
-      "baseline": "2021-11-24",
+      "baseline": "2022-01-19",
       "port-version": 0
     },
     "kuku": {
@@ -4346,7 +4346,7 @@
     },
     "mdnsresponder": {
       "baseline": "878.270.2",
-      "port-version": 0
+      "port-version": 1
     },
     "mdspan": {
       "baseline": "2021-11-03",
@@ -4681,8 +4681,8 @@
       "port-version": 4
     },
     "nativefiledialog": {
-      "baseline": "2019-08-28",
-      "port-version": 1
+      "baseline": "2022-01-20",
+      "port-version": 0
     },
     "nayuki-qr-code-generator": {
       "baseline": "1.7.0",
@@ -7058,7 +7058,7 @@
     },
     "unrar": {
       "baseline": "5.8.1",
-      "port-version": 1
+      "port-version": 2
     },
     "upb": {
       "baseline": "2021-10-19",

@@ -18,6 +18,8 @@ Invoke-VcpkgBuild "boost-asio"
 Invoke-VcpkgBuild "boost-geometry"
 Invoke-VcpkgBuild "boost-qvm"
 Invoke-VcpkgBuild "fmt"
+Invoke-VcpkgBuild "spdlog"
+Invoke-VcpkgBuild "nlohmann-json"
 Invoke-VcpkgBuild "json-c"
 Invoke-VcpkgBuild "luajit"
 Invoke-VcpkgBuild "lua-intf"
@@ -33,4 +35,4 @@ Invoke-VcpkgBuild "gtest"
 # export created libraries and set version
 .\vcpkg.exe export --x-all-installed --raw
 Move-Item -Path .\vcpkg-export-* -Destination .\vcpkg
-Write-Output 12 > vcpkg\installed\version.txt
+Write-Output 14 > vcpkg\installed\version.txt

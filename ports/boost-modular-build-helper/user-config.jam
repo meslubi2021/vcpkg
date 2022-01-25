@@ -2,7 +2,7 @@ import toolset ;
 
 if "@VCPKG_PLATFORM_TOOLSET@" != "external"
 {
-    using msvc : @MSVC_VERSION@ : cl.exe
+    using msvc : : cl.exe
         :
         <setup>"@NOTHING_BAT@"
         @TOOLSET_OPTIONS@
@@ -68,9 +68,8 @@ else
     }
     else
     {
-        lib dl ;
-        lib icuuc : : <name>icuuc <search>"@CURRENT_INSTALLED_DIR@/lib" <variant>release : : <library>dl ;
-        lib icuuc : : <name>icuuc <search>"@CURRENT_INSTALLED_DIR@/debug/lib" <variant>debug : : <library>dl ;
+        lib icuuc : : <name>icuuc <search>"@CURRENT_INSTALLED_DIR@/lib" <variant>release : : ;
+        lib icuuc : : <name>icuuc <search>"@CURRENT_INSTALLED_DIR@/debug/lib" <variant>debug : : ;
 
         lib icuin : : <name>icui18n <search>"@CURRENT_INSTALLED_DIR@/lib" <variant>release : : ;
         lib icuin : : <name>icui18n <search>"@CURRENT_INSTALLED_DIR@/debug/lib" <variant>debug : : ;

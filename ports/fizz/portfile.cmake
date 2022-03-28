@@ -3,43 +3,38 @@ vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO facebookincubator/fizz
-    REF c0bafd67140e8c6f4f585c1077f2fd89102e4582 # v2020.02.03.00
-    SHA512 7db706ffdd79f6d753c5530eb67646747d1e7b8b380387f34bd1fc7a06b289a68a6bb4c13faa74e108d4dede72bb2d993d7ad8f60fabcfb3b48abbf4326291c2
+    REF v2022.01.31.00
+    SHA512 544f843f47cb6113d0ad804079e6d767f33723d9d529c2751c5c6317d65c35bd327b43852904b2a37c2af615276176fe2de667907a9a460c0dfc7593eca46459
     HEAD_REF master
     PATCHES
-        find-zlib.patch
+        0001-fix-libsodium.patch
+        0002-fix-libevent.patch
 )
 
 # Prefer installed config files
 file(REMOVE
+    ${SOURCE_PATH}/fizz/cmake/FindGMock.cmake
     ${SOURCE_PATH}/fizz/cmake/FindGflags.cmake
     ${SOURCE_PATH}/fizz/cmake/FindGlog.cmake
+    ${SOURCE_PATH}/fizz/cmake/FindLibevent.cmake
 )
 
-vcpkg_configure_cmake(
+vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}/fizz"
-    PREFER_NINJA
     OPTIONS
         -DBUILD_TESTS=OFF
         -DBUILD_EXAMPLES=OFF
         -DINCLUDE_INSTALL_DIR:STRING=include
 )
 
-vcpkg_install_cmake()
-vcpkg_fixup_cmake_targets(CONFIG_PATH lib/cmake/fizz)
+vcpkg_cmake_install()
+vcpkg_cmake_config_fixup(CONFIG_PATH lib/cmake/fizz)
 vcpkg_copy_pdbs()
 
-file(READ ${CURRENT_PACKAGES_DIR}/share/fizz/fizz-config.cmake _contents)
-string(REPLACE "lib/cmake/fizz" "share/fizz" _contents "${_contents}")
-file(WRITE ${CURRENT_PACKAGES_DIR}/share/fizz/fizz-config.cmake
-"include(CMakeFindDependencyMacro)
-find_dependency(folly CONFIG)
-find_dependency(ZLIB)
-${_contents}")
+vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/share/fizz/fizz-config.cmake" "lib/cmake/fizz" "share/fizz")
 
-file(REMOVE_RECURSE
-    ${CURRENT_PACKAGES_DIR}/debug/include
-)
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
 
-# Handle copyright
-file(INSTALL ${SOURCE_PATH}/LICENSE DESTINATION ${CURRENT_PACKAGES_DIR}/share/${PORT} RENAME copyright)
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/include/fizz/tool/test" "${CURRENT_PACKAGES_DIR}/include/fizz/util/test")
+
+file(INSTALL "${SOURCE_PATH}/LICENSE" DESTINATION "${CURRENT_PACKAGES_DIR}/share/${PORT}" RENAME copyright)

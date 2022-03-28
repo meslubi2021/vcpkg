@@ -2,8 +2,8 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO martinus/nanobench
-    REF c534992696b9341274c6714931d0064d74239fcb #v4.0.0
-    SHA512 09078f1100c6f843e7646b8aaab687c32e71ba2dc05a2a5b282c72ab064ceffbf4aeb5ad14c4a2bdbe2ea66dca9cd207dee5eade44f77844cddfa490b4c09c32
+    REF v4.3.6
+    SHA512 03e92a9fe903d273ee76c30bb6474c739858f0a65adebdcdd1e4b9ae294bd790a8e20161cb2d493fc1ea2987dbfa25a2a620cf7c3739d909595f81693f1f17d4
     HEAD_REF master
 )
 

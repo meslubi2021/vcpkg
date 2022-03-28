@@ -1,4 +1,4 @@
-vcpkg_fail_port_install(ON_ARCH "arm" "arm64" ON_TARGET "uwp")
+set(VCPKG_POLICY_MISMATCHED_NUMBER_OF_BINARIES enabled)
 
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
@@ -22,7 +22,17 @@ if (NOT VCPKG_TARGET_IS_WINDOWS)
     vcpkg_install_cmake()
 
     # Settings for TBBConfigInternal.cmake.in
-    set(TBB_LIB_EXT a)
+    if (VCPKG_LIBRARY_LINKAGE STREQUAL static)
+        set(TBB_LIB_EXT a)
+    else()
+        if (VCPKG_TARGET_IS_LINUX)
+            set(TBB_LIB_EXT "so.2")
+        elseif(VCPKG_TARGET_IS_OSX)
+            set(TBB_LIB_EXT "dylib")
+        else()
+            set(TBB_LIB_EXT "so")
+        endif()
+    endif()
     set(TBB_LIB_PREFIX lib)
 else()
     if (VCPKG_CRT_LINKAGE STREQUAL static)
@@ -32,7 +42,7 @@ else()
         set(RELEASE_CONFIGURATION Release)
         set(DEBUG_CONFIGURATION Debug)
     endif()
-    
+
     macro(CONFIGURE_PROJ_FILE arg)
         set(CONFIGURE_FILE_NAME ${arg})
         set(CONFIGURE_BAK_FILE_NAME ${arg}.bak)
@@ -40,21 +50,19 @@ else()
             configure_file(${CONFIGURE_FILE_NAME} ${CONFIGURE_BAK_FILE_NAME} COPYONLY)
         endif()
         configure_file(${CONFIGURE_BAK_FILE_NAME} ${CONFIGURE_FILE_NAME} COPYONLY)
+        file(READ ${CONFIGURE_FILE_NAME} SLN_CONFIGURE)
         if (VCPKG_LIBRARY_LINKAGE STREQUAL static)
-            file(READ ${CONFIGURE_FILE_NAME} SLN_CONFIGURE)
             string(REPLACE "<ConfigurationType>DynamicLibrary<\/ConfigurationType>"
                         "<ConfigurationType>StaticLibrary<\/ConfigurationType>" SLN_CONFIGURE "${SLN_CONFIGURE}")
             string(REPLACE "\/D_CRT_SECURE_NO_DEPRECATE"
                         "\/D_CRT_SECURE_NO_DEPRECATE \/DIN_CILK_STATIC" SLN_CONFIGURE "${SLN_CONFIGURE}")
-            file(WRITE ${CONFIGURE_FILE_NAME} "${SLN_CONFIGURE}")
         else()
-            file(READ ${CONFIGURE_FILE_NAME} SLN_CONFIGURE)
             string(REPLACE "\/D_CRT_SECURE_NO_DEPRECATE"
                         "\/D_CRT_SECURE_NO_DEPRECATE \/DIN_CILK_RUNTIME" SLN_CONFIGURE "${SLN_CONFIGURE}")
-            file(WRITE ${CONFIGURE_FILE_NAME} "${SLN_CONFIGURE}")
         endif()
+        file(WRITE ${CONFIGURE_FILE_NAME} "${SLN_CONFIGURE}")
     endmacro()
-    
+
     CONFIGURE_PROJ_FILE(${SOURCE_PATH}/build/vs2013/tbb.vcxproj)
     CONFIGURE_PROJ_FILE(${SOURCE_PATH}/build/vs2013/tbbmalloc.vcxproj)
     CONFIGURE_PROJ_FILE(${SOURCE_PATH}/build/vs2013/tbbmalloc_proxy.vcxproj)
@@ -95,6 +103,13 @@ configure_file(
     ${CURRENT_PACKAGES_DIR}/share/tbb/TBBConfig.cmake
     @ONLY
 )
+
+configure_file(
+    ${SOURCE_PATH}/cmake/templates/TBBConfigVersion.cmake.in
+    ${CURRENT_PACKAGES_DIR}/share/tbb/TBBConfigVersion.cmake
+    @ONLY
+)
+
 file(READ ${CURRENT_PACKAGES_DIR}/share/tbb/TBBConfig.cmake _contents)
 string(REPLACE
     "get_filename_component(_tbb_root \"\${_tbb_root}\" PATH)"
@@ -114,6 +129,7 @@ string(REPLACE
     _contents
     "${_contents}"
 )
+
 string(REPLACE "SHARED IMPORTED)" "UNKNOWN IMPORTED)" _contents "${_contents}")
 file(WRITE ${CURRENT_PACKAGES_DIR}/share/tbb/TBBConfig.cmake "${_contents}")
 

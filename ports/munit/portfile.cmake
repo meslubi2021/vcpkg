@@ -1,5 +1,3 @@
-vcpkg_fail_port_install(ON_ARCH "arm" "arm64" ON_TARGET "uwp")
-
 vcpkg_check_linkage(ONLY_STATIC_LIBRARY)
 
 vcpkg_from_github(
@@ -14,8 +12,6 @@ vcpkg_from_github(
 
 vcpkg_configure_meson(
     SOURCE_PATH ${SOURCE_PATH}
-    OPTIONS
-        --backend=ninja
 )
 
 vcpkg_install_meson()
@@ -23,3 +19,5 @@ vcpkg_install_meson()
 vcpkg_copy_pdbs()
 
 file(INSTALL ${SOURCE_PATH}/COPYING DESTINATION ${CURRENT_PACKAGES_DIR}/share/${PORT} RENAME copyright)
+
+vcpkg_fixup_pkgconfig()

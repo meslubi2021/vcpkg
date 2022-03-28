@@ -1,5 +1,3 @@
-include(vcpkg_common_functions)
-
 vcpkg_check_linkage(ONLY_DYNAMIC_LIBRARY)
 
 vcpkg_find_acquire_program(PYTHON3)
@@ -12,40 +10,43 @@ vcpkg_from_github(
     HEAD_REF next
 )
 
-vcpkg_configure_cmake(
-    SOURCE_PATH ${SOURCE_PATH}
-    PREFER_NINJA
+vcpkg_cmake_configure(
+    SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
         -DPYTHON_EXECUTABLE=${PYTHON3}
         -DLIB_SUFFIX=
         -DBUILD_GO=no
-        -DBUILD_RUBY=no
-        -DBUILD_PYTHON=no
         -DENABLE_JSONCPP=ON
         -DCMAKE_DISABLE_FIND_PACKAGE_CyrusSASL=ON
 )
 
-vcpkg_install_cmake()
+vcpkg_cmake_install()
 
 vcpkg_copy_pdbs()
+vcpkg_cmake_config_fixup(CONFIG_PATH lib/cmake)
+set(configFiles
+    "${CURRENT_PACKAGES_DIR}/share/${PORT}/Proton/ProtonConfig.cmake"
+    "${CURRENT_PACKAGES_DIR}/share/${PORT}/ProtonCpp/ProtonCppConfig.cmake"
+)
+foreach(configFile IN LISTS configFiles)
+    vcpkg_replace_string("${configFile}"
+        "IMPORTED_LOCATION_DEBUG \"\${_IMPORT_PREFIX}/lib"
+        "IMPORTED_LOCATION_DEBUG \"\${_IMPORT_PREFIX}/debug/lib"
+    )
+    vcpkg_replace_string("${configFile}"
+        "debug \${_IMPORT_PREFIX}/lib"
+        "debug \${_IMPORT_PREFIX}/debug/lib"
+    )
+endforeach()
+vcpkg_fixup_pkgconfig()
 
-file(GLOB SHARE_DIR ${CURRENT_PACKAGES_DIR}/share/*)
-file(RENAME ${SHARE_DIR} ${CURRENT_PACKAGES_DIR}/share/${PORT})
+configure_file(${CMAKE_CURRENT_LIST_DIR}/qpid-protonConfig.cmake
+    ${CURRENT_PACKAGES_DIR}/share/${PORT}/qpid-protonConfig.cmake COPYONLY)
+file(RENAME "${CURRENT_PACKAGES_DIR}/share/proton/LICENSE.txt"
+            "${CURRENT_PACKAGES_DIR}/share/${PORT}/copyright")
 
-file(MAKE_DIRECTORY ${CURRENT_PACKAGES_DIR}/lib/cmake/tmp)
-file(MAKE_DIRECTORY ${CURRENT_PACKAGES_DIR}/debug/lib/cmake/tmp)
-file(RENAME ${CURRENT_PACKAGES_DIR}/lib/cmake/Proton ${CURRENT_PACKAGES_DIR}/lib/cmake/tmp/Proton)
-file(RENAME ${CURRENT_PACKAGES_DIR}/debug/lib/cmake/Proton ${CURRENT_PACKAGES_DIR}/debug/lib/cmake/tmp/Proton)
-vcpkg_fixup_cmake_targets(CONFIG_PATH lib/cmake/tmp/Proton TARGET_PATH share/proton)
-vcpkg_fixup_cmake_targets(CONFIG_PATH lib/cmake/ProtonCpp TARGET_PATH share/protoncpp)
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/include")
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
+file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/share/proton")
 
-file(RENAME ${CURRENT_PACKAGES_DIR}/share/${PORT}/LICENSE.txt
-            ${CURRENT_PACKAGES_DIR}/share/${PORT}/copyright)
-
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/include)
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/share)
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/debug/lib/pkgconfig)
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/lib/pkgconfig)
-file(REMOVE ${CURRENT_PACKAGES_DIR}/share/qpid-proton/CMakeLists.txt)
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/share/qpid-proton/tests)
-file(REMOVE_RECURSE ${CURRENT_PACKAGES_DIR}/share/qpid-proton/examples)
+vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/include/proton/version.h" "#define PN_INSTALL_PREFIX \"${CURRENT_PACKAGES_DIR}\"" "")

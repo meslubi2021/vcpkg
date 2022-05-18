@@ -226,6 +226,7 @@ packageList = [
     'treehh',
     'tvision',
     'type-safe',
+    'uberswitch',
     'uchardet[core,tool]',
     'uriparser[core,tool]',
     'utf8h',

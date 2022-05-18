@@ -3,7 +3,7 @@
 import subprocess
 
 x64OnlyPackageList = [
-  "crashpad", 'yasm-tool', 'yasm-tool-helper'
+  'cpuinfo[core,tools]', "crashpad", 'yasm-tool', 'yasm-tool-helper'
 ]
 
 x86OnlyPackageList = [
@@ -70,7 +70,6 @@ packageList = [
     'cppwinrt',
     'cpu-features[core,tools]',
     'cpuid',
-    'cpuinfo[core,tools]',
     'crashrpt',
     'crossguid',
     'ctbignum',
@@ -92,6 +91,7 @@ packageList = [
     'eastl',
     'easyhook',
     'ecm',
+    'eventpp',
     'exiv2[core,png,unicode]',
     'fast-cpp-csv-parser',
     'fast-float',
@@ -128,6 +128,7 @@ packageList = [
     'jemalloc',
     'json-spirit',
     'json11',
+    'libcpplocate',
     'libevent[core,thread]',
     'libguarded',
     'libsndfile',
@@ -150,8 +151,8 @@ packageList = [
     'minhook',
     'mman',
     'mp3lame',
-    'mpg123',
     'mpfr',
+    'mpg123',
     'mpi',
     'ms-gsl',
     'msinttypes',
@@ -161,6 +162,7 @@ packageList = [
     'nana',
     'nanogui',
     'nativefiledialog',
+    'nspr',
     'nt-wrapper',
     'nuklear[core,demo,example]',
     'numcpp',
@@ -188,6 +190,7 @@ packageList = [
     'raylib[core,hidpi,use-audio]',
     'readline',
     'refl-cpp',
+    'rmlui[core,freetype,lua]',
     'rttr',
     'ryml',
     'safeint',
@@ -240,11 +243,12 @@ packageList = [
     'wxwidgets',
     'xalan-c',
     'xerces-c[core,icu]',
+    'xqilla',
     'yaml-cpp',
     'yasm',
     'zstr'
   ], False),
-  (['crashpad'], False),
+  (['cpuinfo[core,tools]', 'crashpad'], False),
 
   # (['dlib'], False),
 ]

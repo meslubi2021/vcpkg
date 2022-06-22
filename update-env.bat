@@ -7,6 +7,9 @@ call :SetOPT
 if not defined OPT goto :EOF
 
 set HOME=%USERPROFILE%\Home
+set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.3.7-hotspot
+set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-17.0.3.7-hotspot
+set JDK_HOME_X86=C:\Program Files (x86)\Eclipse Adoptium\jdk-17.0.3.7-hotspot
 set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%
 
@@ -22,7 +25,6 @@ for %%a in (
 "%_MyDir%\installed\%Platform%-windows\tools\tcl\bin"
 "%_MyDir%\downloads\tools\7z\Files\7-Zip"
 "%_MyDir%\downloads\tools\cmake-3.22.2-windows\cmake-3.22.2-windows-i386\bin"
-"%_MyDir%\downloads\tools\gn\qUkAhy9J0P7c5racy-9wB6AHNK_btS18im8S06_ehhwC"
 "%_MyDir%\downloads\tools\gperf\bin"
 "%_MyDir%\downloads\tools\jom\jom-1.1.3"
 "%_MyDir%\downloads\tools\nasm\nasm-2.15.05"
@@ -39,6 +41,8 @@ for %%a in (
 "%SystemDrive%\Perl64\c\bin"
 "%SystemDrive%\Perl64\perl\site\bin"
 "%SystemDrive%\Perl64\perl\bin"
+"%JDK_HOME%\bin"
+"%JDK_HOME%\bin\server"
 "%ProgramW6432%\LLVM\bin"
 "%ProgramW6432%\LLVM\share\clang"
 "%ProgramW6432%\nodejs"

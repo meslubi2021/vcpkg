@@ -73,6 +73,18 @@ if(VCPKG_TARGET_IS_LINUX AND NOT VCPKG_CROSSCOMPILING AND NOT DEFINED ENV{PKG_CO
     endif()
 endif()
 
+if (VCPKG_TARGET_IS_WINDOWS)
+    # Use the edge browser on Windows
+    #
+	# ToDo: This assumes that webview2 is installed. How do I check that it is?
+	# https://developer.microsoft.com/en-us/microsoft-edge/webview2/
+    list(APPEND OPTIONS -DwxUSE_WEBVIEW_EDGE=ON)
+else()
+    # Use gtk webkit on linux/mac
+    list(APPEND OPTIONS -DwxUSE_WEBVIEW_WEBKIT=ON)
+endif()
+
+
 # This may be set to ON by users in a custom triplet.
 # The use of 'wxUSE_STL' and 'WXWIDGETS_USE_STD_CONTAINERS' (ON or OFF) are not API compatible
 # which is why they must be set in a custom triplet rather than a port feature.

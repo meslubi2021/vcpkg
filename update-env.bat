@@ -6,6 +6,7 @@ call :GetBatchFileDirectory _MyDir
 call :SetOPT
 if not defined OPT goto :EOF
 
+set DOTNET_VERSION=6.0.302
 set HOME=%USERPROFILE%\Home
 set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.3.7-hotspot
 set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-17.0.3.7-hotspot
@@ -43,6 +44,9 @@ for %%a in (
 "%SystemDrive%\Perl64\perl\bin"
 "%JDK_HOME%\bin"
 "%JDK_HOME%\bin\server"
+"%ProgramW6432%\dotnet"
+"%ProgramW6432%\dotnet\sdk\%DOTNET_VERSION%"
+"%USERPROFILE%\.dotnet\tools"
 "%ProgramW6432%\LLVM\bin"
 "%ProgramW6432%\LLVM\share\clang"
 "%ProgramW6432%\nodejs"

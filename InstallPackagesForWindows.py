@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
+import os
 import subprocess
+import sys
 
 x64OnlyPackageList = [
-  'cpuinfo[core,tools]', "crashpad", 'yasm-tool', 'yasm-tool-helper'
+  "crashpad", 'eathread', 'folly[bzip2,zlib,zstd]', 'qt[default-features]', 'yasm-tool', 'yasm-tool-helper'
 ]
 
 x86OnlyPackageList = [
@@ -34,11 +36,14 @@ packageList = [
     'benchmark',
     'berkeleydb',
     'bigint',
+    'blake3',
+    'boost-asio[ssl]',
     'boost-locale[icu]',
+    'boost-mpi[python3]',
     'boost-odeint[mpi]',
     'boost-regex[icu]',
     'boost[mpi]',
-    'botan',
+    'botan[core,zlib]',
     'breakpad',
     'buck-yeh-bux',
     'bullet3[core,multithreading]',
@@ -54,6 +59,7 @@ packageList = [
     'cli',
     'cli11',
     'cmark[core,tools]',
+    'color-console',
     'compoundfilereader',
     'constexpr-contracts',
     'constexpr',
@@ -64,15 +70,17 @@ packageList = [
     'cpp-peglib',
     'cpp-taskflow',
     'cpp-timsort',
-    'cpprestsdk',
+    'cpprestsdk[default-features]',
     'cpptoml',
     'cppunit',
     'cppwinrt',
+    'cppxaml',
     'cpu-features[core,tools]',
     'cpuid',
     'crashrpt',
     'crossguid',
     'ctbignum',
+    'ctemplate',
     'cute-headers',
     'd3dx12',
     'dbg-macro',
@@ -85,16 +93,21 @@ packageList = [
     'discount',
     'distorm',
     'dlfcn-win32',
+    'duckx',
     'duilib',
     'duktape',
     'dx',
     'eastl',
     'easyhook',
+    'easyloggingpp',
+    'ebml',
     'ecm',
     'eventpp',
     'exiv2[core,png,unicode]',
+    'fakeit',
     'fast-cpp-csv-parser',
     'fast-float',
+    'flash-runtime-extensions',
     'flatbuffers',
     'fltk',
     'fmt',
@@ -111,6 +124,7 @@ packageList = [
     'glog',
     'glui',
     'gperf',
+    'gppanel',
     'gtest',
     'gtk',
     'gtkmm',
@@ -129,6 +143,8 @@ packageList = [
     'jemalloc',
     'json-spirit',
     'json11',
+    'json5-parser',
+    'jsoncpp',
     'libcpplocate',
     'libevent[core,thread]',
     'libguarded',
@@ -180,6 +196,7 @@ packageList = [
     'pprint',
     'promise-cpp',
     'protobuf[core,zlib]',
+    'proxy',
     'pthreads',
     'pystring',
     'quadtree',
@@ -214,7 +231,7 @@ packageList = [
     'tbb',
     'tcl',
     'tgc',
-    'tgui[core,tool]',
+    'tgui[core,sdl2,sfml,tool]',
     'threadpool',
     'tidy-html5',
     'tiny-aes-c',
@@ -251,10 +268,45 @@ packageList = [
     'yasm',
     'zstr'
   ], False),
-  (['cpuinfo[core,tools]', 'crashpad'], False),
+  (['cpuinfo[core,tools]'], False),
+  (['crashpad'], False),
+  (['eathread'], False),
+  (['folly[bzip2,zlib,zstd]'], False),
+  (['qt[default-features]'], False),
 
   # (['dlib'], False),
 ]
+
+def GetScriptFile() -> str:
+  """Obtains the full path and file name of the Python script."""
+  if (hasattr(GetScriptFile, "file")):
+    return GetScriptFile.file
+  ret: str = ""
+  try:
+    # The easy way. Just use __file__.
+    # Unfortunately, __file__ is not available when cx_freeze is used or in IDLE.
+    ret = os.path.realpath(__file__)
+  except NameError:
+    # The hard way.
+    if (len(sys.argv) > 0 and len(sys.argv[0]) > 0 and os.path.isabs(sys.argv[0])):
+      ret = os.path.realpath(sys.argv[0])
+    else:
+      ret = os.path.realpath(inspect.getfile(GetScriptFile))
+      if (not os.path.exists(ret)):
+        # If cx_freeze is used the value of the ret variable at this point is in
+        # the following format: {PathToExeFile}\{NameOfPythonSourceFile}. This
+        # makes it necessary to strip off the file name to get the correct path.
+        ret = os.path.dirname(ret)
+  GetScriptFile.file: str = ret
+  return GetScriptFile.file
+
+def GetScriptDirectory() -> str:
+  """Obtains the path to the directory containing the script."""
+  if (hasattr(GetScriptDirectory, "dir")):
+    return GetScriptDirectory.dir
+  module_path: str = GetScriptFile()
+  GetScriptDirectory.dir: str = os.path.dirname(module_path)
+  return GetScriptDirectory.dir
 
 def common_member(a, b): 
   a_set = set(a)
@@ -270,6 +322,7 @@ def InstallPackagesWorker(packages, triplet, recurse):
   args.extend(packages)
   args.append("--triplet")
   args.append(triplet)
+  args.append("--x-buildtrees-root=%s/bt" % GetScriptDirectory())
   if (recurse):
     args.append("--recurse")
   try:

@@ -8,6 +8,10 @@ vcpkg_from_github(
         tweak-install.patch
 )
 
+SET(GCC_PERMISSIVE_FLAGS "-fpermissive")
+SET(VCPKG_CXX_FLAGS "${VCPKG_CXX_FLAGS} ${GCC_PERMISSIVE_FLAGS}")
+SET(VCPKG_C_FLAGS "${VCPKG_C_FLAGS}")
+
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}/src"
     OPTIONS
@@ -15,6 +19,7 @@ vcpkg_cmake_configure(
         -DBUILD_EXAMPLES=OFF
         -DSUFFIX_LIB=
 )
+
 
 vcpkg_cmake_install()
 

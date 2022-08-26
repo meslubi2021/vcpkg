@@ -1,0 +1,51 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 1bdefd4..2647ec4 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -128,9 +128,16 @@ include (GNUInstallDirs)
+ include (colors)
+ include (check_is_enabled)
+ include (checked_find_package)
+-include (fancy_add_executable)
++get_filename_component (_target_NAME ${CMAKE_CURRENT_SOURCE_DIR} NAME)
++message ("Dir: ${_target_NAME}")
++include (fancy_add_executable asd)
+ include (add_oiio_plugin)
+ 
++# CMAKE_CURRENT_SOURCE_DIR is used as target name in the fancy_add_executable script. The script can be found in the src/cmake folder
++#target_link_libraries(${_target_NAME} LINK_PUBLIC -llcms2)
++#target_link_libraries(OpenImageIO -llcms2)
++#target_link_libraries(OpenImageIO LINK_PUBLIC -llcms2)
++
+ # All the C++ and compiler related options and adjustments
+ include (compiler)
+ 
+@@ -267,8 +274,16 @@ write_basic_package_version_file (
+ # generate the Targets file in the binary dir using the targets collected in
+ # OIIO_EXPORTED_TARGETS each target is added to OIIO_EXPORTED_TARGETS
+ # through the macro install_target().
++message("Binary Dir: ${CMAKE_BINARY_DIR}/${OIIO_TARGETS_EXPORT_NAME}")
+ export (EXPORT OIIO_EXPORTED_TARGETS FILE "${CMAKE_BINARY_DIR}/${OIIO_TARGETS_EXPORT_NAME}")
+ 
++message("All targets: ${OIIO_EXPORTED_TARGETS}")
++foreach(ASD ${OIIO_EXPORTED_TARGETS})
++        message("Target: ${ASD}")
++endforeach()
++cmake_policy(SET CMP0079 NEW)
++target_link_libraries(OpenImageIO PRIVATE -llcms2)
++
+ # generate the config file from the template in the binary dir
+ configure_package_config_file ("${PROJECT_SOURCE_DIR}/src/cmake/Config.cmake.in"
+         "${OIIO_PROJECT_CONFIG}"
+diff --git a/src/cmake/fancy_add_executable.cmake b/src/cmake/fancy_add_executable.cmake
+index 5e287b9..df9ee8f 100644
+--- a/src/cmake/fancy_add_executable.cmake
++++ b/src/cmake/fancy_add_executable.cmake
+@@ -32,6 +32,7 @@ macro (fancy_add_executable)
+         # If SRC is not supplied, assume local cpp files are its source.
+         file (GLOB _target_SRC *.cpp)
+     endif ()
++    message(STATUS "Target name: ${_target_NAME}")
+     check_is_enabled (${_target_NAME} _target_NAME_enabled)
+     if (_target_NAME_enabled)
+         add_executable (${_target_NAME} ${_target_SRC})

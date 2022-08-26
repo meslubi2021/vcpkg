@@ -9,6 +9,7 @@ vcpkg_from_github(
         fix-static-ffmpeg.patch
         fix-openexr-dll.patch
         imath-version-guard.patch
+        add-cms2-link.patch
 )
 
 file(REMOVE_RECURSE "${SOURCE_PATH}/ext")

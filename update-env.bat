@@ -8,9 +8,9 @@ if not defined OPT goto :EOF
 
 set DOTNET_VERSION=6.0.400
 set HOME=%USERPROFILE%\Home
-set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.4.8-hotspot
-set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-17.0.4.8-hotspot
-set JDK_HOME_X86=C:\Program Files (x86)\Eclipse Adoptium\jdk-17.0.4.8-hotspot
+set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.4.101-hotspot
+set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-17.0.4.101-hotspot
+set JDK_HOME_X86=C:\Program Files (x86)\Eclipse Adoptium\jdk-17.0.4.101-hotspot
 set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%
 
@@ -26,7 +26,6 @@ for %%a in (
 "%_MyDir%\installed\%Platform%-windows\tools\tcl\bin"
 "%_MyDir%\downloads\tools\7z\Files\7-Zip"
 "%_MyDir%\downloads\tools\cmake-3.24.0-windows\cmake-3.24.0-windows-i386\bin"
-"%_MyDir%\downloads\tools\gperf\bin"
 "%_MyDir%\downloads\tools\jom\jom-1.1.3"
 "%_MyDir%\downloads\tools\nasm\nasm-2.15.05"
 "%_MyDir%\downloads\tools\nasm\nasm-2.15.05\rdoff"

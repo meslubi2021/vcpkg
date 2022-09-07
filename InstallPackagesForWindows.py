@@ -97,6 +97,7 @@ packageList = [
     'duilib',
     'duktape',
     'dx',
+    'dxut[dxtk]',
     'eastl',
     'easyhook',
     'easyloggingpp',
@@ -108,6 +109,7 @@ packageList = [
     'fast-cpp-csv-parser',
     'fast-float',
     'flash-runtime-extensions',
+    'flat',
     'flatbuffers',
     'fltk',
     'fmt',
@@ -128,7 +130,6 @@ packageList = [
     'gtest',
     'gtk',
     'gtkmm',
-    'guilite',
     'guilite',
     'hash-library',
     'hunspell[core,tools]',
@@ -226,6 +227,7 @@ packageList = [
     'sqlite-modern-cpp',
     'sqlite3[core,json1,tool]',
     'sqlitecpp[core,sqlite]',
+    'squirrel[interpreter]',
     'status-code',
     'strtk',
     'tbb',
@@ -240,6 +242,7 @@ packageList = [
     'tinytoml',
     'tinyutf8',
     'tinyxml',
+    'toml11',
     'tomlplusplus',
     'treehh',
     'tvision',
@@ -260,7 +263,7 @@ packageList = [
     'wt[core,dbo,openssl,sqlite3]',
     'wtl',
     'wxcharts',
-    'wxwidgets[core,example,sound]',
+    'wxwidgets[core,example,sound,webview]',
     'xalan-c',
     'xerces-c[core,icu]',
     'xqilla',
@@ -273,8 +276,7 @@ packageList = [
   (['eathread'], False),
   (['folly[bzip2,zlib,zstd]'], False),
   (['qt[default-features]'], False),
-
-  # (['dlib'], False),
+  (['dlib'], False)
 ]
 
 def GetScriptFile() -> str:

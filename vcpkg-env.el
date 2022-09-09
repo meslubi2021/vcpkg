@@ -7,21 +7,18 @@
 (defconst vcpkg--add-to-path-windows
   '(
     "${VCPKG_ROOT}/installed/${Platform}-windows/share/clang"
-    "${VCPKG_ROOT}/downloads/tools/7zip-18.1.0-windows/7-Zip.CommandLine.18.1.0/tools"
-    "${VCPKG_ROOT}/downloads/tools/cmake-3.20.2-windows/cmake-3.20.2-windows-i386/bin"
-    "${VCPKG_ROOT}/downloads/tools/gn/qUkAhy9J0P7c5racy-9wB6AHNK_btS18im8S06_ehhwC"
-    "${VCPKG_ROOT}/downloads/tools/gperf/bin"
+    "${VCPKG_ROOT}/downloads/tools/7z/Files/7-Zip"
+    "${VCPKG_ROOT}/downloads/tools/cmake-3.24.0-windows/cmake-3.24.0-windows-i386/bin"
     "${VCPKG_ROOT}/downloads/tools/jom/jom-1.1.3"
     "${VCPKG_ROOT}/downloads/tools/nasm/nasm-2.15.05"
     "${VCPKG_ROOT}/downloads/tools/nasm/nasm-2.15.05/rdoff"
-    "${VCPKG_ROOT}/downloads/tools/ninja/1.10.1-windows"
-    "${VCPKG_ROOT}/downloads/tools/nuget-5.9.1-windows"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.30.0.1/c/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.30.0.1/c/i686-w64-mingw32/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.30.0.1/perl/site/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.30.0.1/perl/bin"
-    "${VCPKG_ROOT}/downloads/tools/python/python-3.9.5-${Platform}"
-    "${VCPKG_ROOT}/downloads/tools/winflexbison/0a14154bff-a8cf65db07"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.32.1.1/c/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.32.1.1/c/i686-w64-mingw32/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.32.1.1/perl/site/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.32.1.1/perl/bin"
+    "${VCPKG_ROOT}/downloads/tools/python/python-3.10.5-${Platform}"
+    "${VCPKG_ROOT}/downloads/tools/win_bison/2.5.25"
+    "${VCPKG_ROOT}/downloads/tools/win_flex/2.5.25"
     "${VCPKG_ROOT}/installed/${Platform}-windows/bin"
     "${VCPKG_ROOT}/installed/${Platform}-windows/tools"
    )
@@ -30,7 +27,7 @@
 
 (defconst vcpkg--add-to-path-linux
   '(
-    "${VCPKG_ROOT}/downloads/tools/cmake-3.20.2-linux/cmake-3.20.2-linux-x86_64/bin"
+    "${VCPKG_ROOT}/downloads/tools/cmake-3.24.0-linux/cmake-3.24.0-linux-x86_64/bin"
     "${VCPKG_ROOT}/downloads/tools/ninja-1.10.1-linux"
     "${VCPKG_ROOT}/installed/${Platform}-linux/tools"
     )

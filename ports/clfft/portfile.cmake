@@ -6,6 +6,7 @@ vcpkg_from_github(
     HEAD_REF master
     PATCHES
         tweak-install.patch
+        fix-build.patch
 )
 
 SET(GCC_PERMISSIVE_FLAGS "-fpermissive")

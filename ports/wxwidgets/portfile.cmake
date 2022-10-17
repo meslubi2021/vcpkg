@@ -45,16 +45,16 @@ endif()
 
 vcpkg_find_acquire_program(PKGCONFIG)
 
-if (VCPKG_TARGET_IS_WINDOWS)
-    # Use the edge browser on Windows
-    #
-	# ToDo: This assumes that webview2 is installed. How do I check that it is?
-	# https://developer.microsoft.com/en-us/microsoft-edge/webview2/
-    list(APPEND OPTIONS -DwxUSE_WEBVIEW_EDGE=ON)
-else()
-    # Use gtk webkit on linux/mac
-    list(APPEND OPTIONS -DwxUSE_WEBVIEW_WEBKIT=ON)
-endif()
+#if (VCPKG_TARGET_IS_WINDOWS)
+#    # Use the edge browser on Windows
+#    #
+#	# ToDo: This assumes that webview2 is installed. How do I check that it is?
+#	# https://developer.microsoft.com/en-us/microsoft-edge/webview2/
+#    list(APPEND OPTIONS -DwxUSE_WEBVIEW_EDGE=ON)
+#else()
+#    # Use gtk webkit on linux/mac
+#    list(APPEND OPTIONS -DwxUSE_WEBVIEW_WEBKIT=ON)
+#endif()
 
 
 # This may be set to ON by users in a custom triplet.

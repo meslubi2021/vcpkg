@@ -92,7 +92,10 @@
     "webview": {
       "description": "The Edge backend uses Microsoft's Edge WebView2",
       "dependencies": [
-        "webview2"
+        {
+          "name": "webview2",
+          "platform": "windows"
+        }
       ]
     }
   }

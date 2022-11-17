@@ -31,6 +31,14 @@ These development packages can be installed on Ubuntu systems via
     endforeach()
 endif()
 
+if(VCPKG_TARGET_IS_LINUX)
+vcpkg_check_features(
+    OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+    FEATURES
+        sound   wxUSE_SOUND
+        fonts   wxUSE_PRIVATE_FONTS
+)
+else()
 vcpkg_check_features(
     OUT_FEATURE_OPTIONS FEATURE_OPTIONS
     FEATURES
@@ -38,6 +46,7 @@ vcpkg_check_features(
         fonts   wxUSE_PRIVATE_FONTS
         webview wxUSE_WEBVIEW_EDGE
 )
+endif()
 
 set(OPTIONS_RELEASE "")
 if(NOT "debug-support" IN_LIST FEATURES)

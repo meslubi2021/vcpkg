@@ -28,7 +28,7 @@
 (defconst vcpkg--add-to-path-linux
   '(
     "${VCPKG_ROOT}/downloads/tools/cmake-3.24.0-linux/cmake-3.24.0-linux-x86_64/bin"
-    "${VCPKG_ROOT}/downloads/tools/ninja-1.10.1-linux"
+    "${VCPKG_ROOT}/downloads/tools/ninja/1.10.2-linux"
     "${VCPKG_ROOT}/installed/${Platform}-linux/tools"
     )
   "Directories to add to the path for Linux."

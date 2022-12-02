@@ -2,7 +2,7 @@ if (EXISTS "${CURRENT_INSTALLED_DIR}/Media/HLMS/Blendfunctions_piece_fs.glslt")
     message(FATAL_ERROR "FATAL ERROR: ogre-next and ogre are incompatible.")
 endif()
 
-if(NOT VCPKG_TARGET_IS_WINDOWS)
+if(NOT VCPKG_TARGET_IS_WINDOWS AND NOT VCPKG_TARGET_IS_OSX)
     message("${PORT} currently requires the following library from the system package manager:\n    Xaw\n\nIt can be installed on Ubuntu systems via apt-get install libxaw7-dev")
 endif()
 
@@ -94,12 +94,15 @@ vcpkg_cmake_configure(
         -DOGRE_BUILD_RENDERSYSTEM_GLES2=OFF
         -DCMAKE_REQUIRE_FIND_PACKAGE_ZLIB=ON
         -DCMAKE_DISABLE_FIND_PACKAGE_Doxygen=ON
+        -DCMAKE_DISABLE_FIND_PACKAGE_QT=ON
         -DCMAKE_DISABLE_FIND_PACKAGE_Qt5=ON
         -DCMAKE_DISABLE_FIND_PACKAGE_Qt6=ON
     OPTIONS_DEBUG
         -DOGRE_BUILD_TOOLS=OFF
         -DOGRE_INSTALL_TOOLS=OFF
     MAYBE_UNUSED_VARIABLES
+        CMAKE_DISABLE_FIND_PACKAGE_Qt5
+        CMAKE_DISABLE_FIND_PACKAGE_Qt6
         CMAKE_REQUIRE_FIND_PACKAGE_OpenEXR
         OGRE_COPY_DEPENDENCIES
         OGRE_BUILD_MSVC_MP
@@ -115,10 +118,13 @@ vcpkg_copy_pdbs()
 vcpkg_cmake_config_fixup()
 vcpkg_fixup_pkgconfig()
 
+
 if(NOT VCPKG_BUILD_TYPE)
     vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/debug/etc/${PORT}/resources.cfg" "=../../share" "=../../../share")
+    vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/debug/etc/${PORT}/resources.cfg" "[Tests]\nFileSystem=${CURRENT_PACKAGES_DIR}/debug/Tests/Media" "")
     vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/share/${PORT}/OgreTargets-debug.cmake" "${_IMPORT_PREFIX}/plugins" "${_IMPORT_PREFIX}/debug/plugins")
 endif()
+vcpkg_replace_string("${CURRENT_PACKAGES_DIR}/etc/${PORT}/resources.cfg" "[Tests]\nFileSystem=${CURRENT_PACKAGES_DIR}/Tests/Media" "")
 
 file(REMOVE_RECURSE
     "${CURRENT_PACKAGES_DIR}/etc/ogre/samples.cfg"

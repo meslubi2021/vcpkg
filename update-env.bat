@@ -6,11 +6,11 @@ call :GetBatchFileDirectory _MyDir
 call :SetOPT
 if not defined OPT goto :EOF
 
-set DOTNET_VERSION=7.0.100
+set DOTNET_VERSION=7.0.102
 set HOME=%USERPROFILE%\Home
-set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.4.101-hotspot
-set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-17.0.4.101-hotspot
-set JDK_HOME_X86=C:\Program Files (x86)\Eclipse Adoptium\jdk-17.0.4.101-hotspot
+set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot
+set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot
+set JDK_HOME_X86=C:\Program Files (x86)\Eclipse Adoptium\jdk-17.0.5.8-hotspot
 set PANDOC_EXE=%LOCALAPPDATA%\Pandoc\pandoc.exe
 set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%

@@ -8,7 +8,7 @@
   '(
     "${VCPKG_ROOT}/installed/${Platform}-windows/share/clang"
     "${VCPKG_ROOT}/downloads/tools/7z/Files/7-Zip"
-    "${VCPKG_ROOT}/downloads/tools/cmake-3.24.0-windows/cmake-3.24.0-windows-i386/bin"
+    "${VCPKG_ROOT}/downloads/tools/cmake-3.25.0-windows/cmake-3.25.0-windows-i386/bin"
     "${VCPKG_ROOT}/downloads/tools/jom/jom-1.1.3"
     "${VCPKG_ROOT}/downloads/tools/nasm/nasm-2.15.05"
     "${VCPKG_ROOT}/downloads/tools/nasm/nasm-2.15.05/rdoff"
@@ -16,7 +16,7 @@
     "${VCPKG_ROOT}/downloads/tools/perl/5.32.1.1/c/i686-w64-mingw32/bin"
     "${VCPKG_ROOT}/downloads/tools/perl/5.32.1.1/perl/site/bin"
     "${VCPKG_ROOT}/downloads/tools/perl/5.32.1.1/perl/bin"
-    "${VCPKG_ROOT}/downloads/tools/python/python-3.10.5-${Platform}"
+    "${VCPKG_ROOT}/downloads/tools/python/python-3.10.7-${Platform}"
     "${VCPKG_ROOT}/downloads/tools/win_bison/2.5.25"
     "${VCPKG_ROOT}/downloads/tools/win_flex/2.5.25"
     "${VCPKG_ROOT}/installed/${Platform}-windows/bin"
@@ -27,7 +27,7 @@
 
 (defconst vcpkg--add-to-path-linux
   '(
-    "${VCPKG_ROOT}/downloads/tools/cmake-3.24.0-linux/cmake-3.24.0-linux-x86_64/bin"
+    "${VCPKG_ROOT}/downloads/tools/cmake-3.25.0-linux/cmake-3.25.0-linux-x86_64/bin"
     "${VCPKG_ROOT}/downloads/tools/ninja/1.10.2-linux"
     "${VCPKG_ROOT}/installed/${Platform}-linux/tools"
     )

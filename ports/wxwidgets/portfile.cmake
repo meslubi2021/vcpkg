@@ -14,15 +14,26 @@ vcpkg_from_github(
         sdl2.patch
 )
 
-vcpkg_check_features(
-    OUT_FEATURE_OPTIONS FEATURE_OPTIONS
-    FEATURES
-        fonts   wxUSE_PRIVATE_FONTS
-        media   wxUSE_MEDIACTRL
-        sound   wxUSE_SOUND
-        webview wxUSE_WEBVIEW
-        webview wxUSE_WEBVIEW_EDGE
-)
+if(VCPKG_TARGET_IS_WINDOWS)
+	vcpkg_check_features(
+		OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+		FEATURES
+		    fonts   wxUSE_PRIVATE_FONTS
+		    media   wxUSE_MEDIACTRL
+		    sound   wxUSE_SOUND
+		    webview wxUSE_WEBVIEW
+		    webview wxUSE_WEBVIEW_EDGE
+	)
+else()
+	vcpkg_check_features(
+		OUT_FEATURE_OPTIONS FEATURE_OPTIONS
+		FEATURES
+		    fonts   wxUSE_PRIVATE_FONTS
+		    media   wxUSE_MEDIACTRL
+		    sound   wxUSE_SOUND
+		    webview wxUSE_WEBVIEW #  same as for windows, but without edge
+	)
+endif()
 
 set(OPTIONS_RELEASE "")
 if(NOT "debug-support" IN_LIST FEATURES)

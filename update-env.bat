@@ -2,11 +2,15 @@
 set _ShowDebugMessages=%~1
 if "%_ShowDebugMessages%" equ "" set _ShowDebugMessages=no
 
+set _IncludeMSYS64=%~2
+if "%_IncludeMSYS64%" equ "" set _IncludeMSYS64=no
+
+
 call :GetBatchFileDirectory _MyDir
 call :SetOPT
 if not defined OPT goto :EOF
 
-set DOTNET_VERSION=7.0.102
+set DOTNET_VERSION=7.0.202
 set HOME=%USERPROFILE%\Home
 set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot
 set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot
@@ -68,6 +72,8 @@ for %%a in (
   call :AppendToPathIfExists "%%~a"
 )
 
+call :AddMSYS64
+
 goto :EOF
 
 ::
@@ -118,4 +124,17 @@ goto :EOF
 :ShowDebugMessage
   if "%_ShowDebugMessages%" neq "yes" exit /b 1
   echo %~1
+goto :EOF
+
+:AddMSYS64
+  if "%_IncludeMSYS64%" neq "yes" exit /b 1
+  for %%a in (
+  "%SystemDrive%\msys64\mingw64\local\bin"
+  "%SystemDrive%\msys64\mingw64\opt\bin"
+  "%SystemDrive%\msys64\mingw64\bin"
+  "%SystemDrive%\msys64\usr\local\bin"
+  "%SystemDrive%\msys64\usr\bin"
+  ) do (
+    call :AppendToPathIfExists "%%~a"
+  )
 goto :EOF

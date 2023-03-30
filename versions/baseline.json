@@ -2381,7 +2381,7 @@
       "port-version": 2
     },
     "fast-float": {
-      "baseline": "3.5.1",
+      "baseline": "3.11.0",
       "port-version": 0
     },
     "fastcdr": {
@@ -2650,7 +2650,7 @@
     },
     "g3log": {
       "baseline": "2.3",
-      "port-version": 0
+      "port-version": 1
     },
     "gainput": {
       "baseline": "1.0.0",
@@ -4305,7 +4305,7 @@
       "port-version": 0
     },
     "libphonenumber": {
-      "baseline": "8.13.7",
+      "baseline": "8.13.9",
       "port-version": 0
     },
     "libplist": {
@@ -5165,7 +5165,7 @@
       "port-version": 0
     },
     "mio": {
-      "baseline": "2023-01-25",
+      "baseline": "2023-03-03",
       "port-version": 0
     },
     "mlpack": {
@@ -6981,7 +6981,7 @@
       "port-version": 0
     },
     "rocksdb": {
-      "baseline": "7.10.2",
+      "baseline": "8.0.0",
       "port-version": 0
     },
     "rpclib": {
@@ -7253,7 +7253,7 @@
       "port-version": 3
     },
     "shaderwriter": {
-      "baseline": "2.5.0",
+      "baseline": "2.6.0",
       "port-version": 0
     },
     "shapelib": {

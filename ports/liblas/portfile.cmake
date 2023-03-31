@@ -16,8 +16,7 @@ vcpkg_extract_source_archive_ex(
         fix-boost-headers.patch
         fix-cmake-config.patch
         misc-fixes.patch
-        check-cross-compiling-boolean.patch
-        fix-liblas-depends.patch
+        cross-compile.patch
 )
 
 file(REMOVE_RECURSE "${SOURCE_PATH}/cmake/modules")

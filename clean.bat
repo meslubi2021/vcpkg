@@ -1,4 +1,5 @@
 @echo off
+setlocal enableextensions
 
 call :GetBatchFileDirectory _MyDir
 
@@ -8,14 +9,18 @@ for %%a in (
 "downloads"
 "installed"
 "packages"
-"WebKit"
 ) do (
-  echo Deleting %%~a directory.
-  rmdir /q /s "%_MyDir%\%%~a"
+  if exist "%_MyDir%\%%~a\." (
+    echo Deleting %%~a directory.
+    rmdir /q /s "%_MyDir%\%%~a"
+  )
 )
 
-del /q "%_MyDir%\vcpkg.exe"
+if exist "%_MyDir%\vcpkg.exe" (
+  del /q "%_MyDir%\vcpkg.exe"
+)
 
+endlocal
 goto :EOF
 
 ::

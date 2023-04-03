@@ -46,7 +46,12 @@ else()
 endif()
 
 vcpkg_replace_string ("${CURRENT_PACKAGES_DIR}/share/liblas/liblas-config.cmake" "_DIR}/.." "_DIR}/../..")
+# Here's one line that replaces /lib with a dynamic value. The issue is that there is a line in the file
+#	that contains /liblas-depends. That particalar value should not be replaces since it points out a config
+#	file. We fix that by temporarily rename that before replacing all occurences of /lib.
+vcpkg_replace_string ("${CURRENT_PACKAGES_DIR}/share/liblas/liblas-config.cmake" "liblas-depends" "iconic-temp-var")
 vcpkg_replace_string ("${CURRENT_PACKAGES_DIR}/share/liblas/liblas-config.cmake" "/lib" "$<$<CONFIG:DEBUG>:/debug>/lib")
+vcpkg_replace_string ("${CURRENT_PACKAGES_DIR}/share/liblas/liblas-config.cmake" "iconic-temp-var" "liblas-depends")
 vcpkg_replace_string ("${CURRENT_PACKAGES_DIR}/share/liblas/liblas-config.cmake" "/bin" "/tools/${PORT}")
 
 file(REMOVE_RECURSE

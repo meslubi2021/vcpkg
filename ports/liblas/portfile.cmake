@@ -16,8 +16,8 @@ vcpkg_extract_source_archive_ex(
         fix-boost-headers.patch
         fix-cmake-config.patch
         misc-fixes.patch
-        check-cross-compiling-boolean.patch
-        fix-liblas-depends.patch
+        cross-compile.patch
+        correct-path.patch
 )
 
 file(REMOVE_RECURSE "${SOURCE_PATH}/cmake/modules")
@@ -44,6 +44,15 @@ if (VCPKG_TARGET_IS_WINDOWS)
 else()
     vcpkg_cmake_config_fixup(CONFIG_PATH share/cmake/libLAS)
 endif()
+
+vcpkg_replace_string ("${CURRENT_PACKAGES_DIR}/share/liblas/liblas-config.cmake" "_DIR}/.." "_DIR}/../..")
+# Here's one line that replaces /lib with a dynamic value. The issue is that there is a line in the file
+#	that contains /liblas-depends. That particalar value should not be replaces since it points out a config
+#	file. We fix that by temporarily rename that before replacing all occurences of /lib.
+vcpkg_replace_string ("${CURRENT_PACKAGES_DIR}/share/liblas/liblas-config.cmake" "liblas-depends" "iconic-temp-var")
+vcpkg_replace_string ("${CURRENT_PACKAGES_DIR}/share/liblas/liblas-config.cmake" "/lib" "$<$<CONFIG:DEBUG>:/debug>/lib")
+vcpkg_replace_string ("${CURRENT_PACKAGES_DIR}/share/liblas/liblas-config.cmake" "iconic-temp-var" "liblas-depends")
+vcpkg_replace_string ("${CURRENT_PACKAGES_DIR}/share/liblas/liblas-config.cmake" "/bin" "/tools/${PORT}")
 
 file(REMOVE_RECURSE
     "${CURRENT_PACKAGES_DIR}/debug/include"

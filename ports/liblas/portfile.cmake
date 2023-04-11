@@ -18,6 +18,7 @@ vcpkg_extract_source_archive_ex(
         misc-fixes.patch
         cross-compile.patch
         correct-path.patch
+		ignore-msvc-version.patch
 )
 
 file(REMOVE_RECURSE "${SOURCE_PATH}/cmake/modules")

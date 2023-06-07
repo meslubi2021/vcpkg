@@ -1,8 +1,8 @@
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO Azure/azure-sdk-for-cpp
-    REF azure-storage-files-shares_12.5.0
-    SHA512 e56a3af0df71f9887248fdf48274345b236a56a7556235d1c3bab61668fee0c1163e86339c080166445c6b66dfbbba1938204592ca6f6a2b232303836317d7f6
+    REF 9bc784050e90920138bab99d4f4517db822c519f
+    SHA512 3d1bf8c6a236beb9153e292fc3764b73f1eed3d54c22a3c1615d2c879dede04d368a4b873df0594206ddacce905be7e78732ad40b888eab64121d2a46349b169
 )
 
 vcpkg_cmake_configure(

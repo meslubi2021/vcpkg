@@ -92,6 +92,7 @@ vcpkg_cmake_configure(
         -DwxUSE_LIBTIFF=sys
         -DwxUSE_NANOSVG=sys
         -DwxUSE_GLCANVAS=ON
+        -DwxUSE_GLCANVAS_EGL=OFF
         -DwxUSE_LIBGNOMEVFS=OFF
         -DwxUSE_LIBNOTIFY=OFF
         -DwxUSE_SECRETSTORE=OFF

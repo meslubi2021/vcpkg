@@ -5,7 +5,7 @@ import subprocess
 import sys
 
 x64OnlyPackageList = [
-  "crashpad", 'eathread', 'folly[bzip2,zlib,zstd]', 'qt[default-features]', 'qtspeech', 'qwt', 'yasm-tool', 'yasm-tool-helper'
+  "crashpad", 'eathread', 'folly[bzip2,zlib,zstd]', 'foonathan-lexy', 'qt[default-features]', 'qtspeech', 'qwt', 'yasm-tool', 'yasm-tool-helper'
 ]
 
 x86OnlyPackageList = [
@@ -115,7 +115,6 @@ packageList = [
     'flatbuffers',
     'fltk',
     'fmt',
-    'foonathan-lexy',
     'foonathan-memory[core,tool]',
     'fplus',
     'freeglut',
@@ -282,7 +281,7 @@ packageList = [
     'yasm[tools]',
     'zstr'
   ], False),
-  (['cpuinfo[core,tools]', 'crashpad', 'eathread', 'folly[bzip2,zlib,zstd]'], False),
+  (['cpuinfo[core,tools]', 'crashpad', 'eathread', 'folly[bzip2,zlib,zstd]', 'foonathan-lexy'], False),
   (['qt[default-features]', 'qtspeech', 'qwt'], False)
 ]
 

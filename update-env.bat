@@ -10,11 +10,11 @@ call :GetBatchFileDirectory _MyDir
 call :SetOPT
 if not defined OPT goto :EOF
 
-set DOTNET_VERSION=7.0.202
+set DOTNET_VERSION=7.0.307
 set HOME=%USERPROFILE%\Home
-set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot
-set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-17.0.5.8-hotspot
-set JDK_HOME_X86=C:\Program Files (x86)\Eclipse Adoptium\jdk-17.0.5.8-hotspot
+set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot
+set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot
+set JDK_HOME_X86=C:\Program Files (x86)\Eclipse Adoptium\jdk-17.0.7.7-hotspot
 set PANDOC_EXE=%LOCALAPPDATA%\Pandoc\pandoc.exe
 set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%
@@ -30,10 +30,10 @@ for %%a in (
 "%_MyDir%\installed\%Platform%-windows\tools\sassc\bin"
 "%_MyDir%\installed\%Platform%-windows\tools\tcl\bin"
 "%_MyDir%\downloads\tools\7z\Files\7-Zip"
-"%_MyDir%\downloads\tools\cmake-3.25.0-windows\cmake-3.25.0-windows-i386\bin"
+"%_MyDir%\downloads\tools\cmake-3.25.1-windows\cmake-3.25.1-windows-i386\bin"
 "%_MyDir%\downloads\tools\jom\jom-1.1.3"
-"%_MyDir%\downloads\tools\nasm\nasm-2.15.05"
-"%_MyDir%\downloads\tools\nasm\nasm-2.15.05\rdoff"
+"%_MyDir%\downloads\tools\nasm\nasm-2.16.01"
+"%_MyDir%\downloads\tools\nasm\nasm-2.16.01\rdoff"
 "%_MyDir%\downloads\tools\perl\5.32.1.1\c\bin"
 "%_MyDir%\downloads\tools\perl\5.32.1.1\c\i686-w64-mingw32\bin"
 "%_MyDir%\downloads\tools\perl\5.32.1.1\perl\site\bin"
@@ -43,7 +43,6 @@ for %%a in (
 "%_MyDir%\downloads\tools\win_flex\2.5.25"
 "%ProgramW6432%\Beyond Compare 4"
 "%ProgramW6432%\Git\cmd"
-"%SystemDrive%\Emacs\x86_64\bin"
 "%SystemDrive%\Perl64\c\bin"
 "%SystemDrive%\Perl64\perl\site\bin"
 "%SystemDrive%\Perl64\perl\bin"
@@ -57,7 +56,7 @@ for %%a in (
 "%ProgramW6432%\nodejs"
 "%ProgramW6432%\Perforce"
 "%ProgramW6432%\PowerShell\7"
-"%ProgramW6432%\Python310"
+"%ProgramW6432%\Python311"
 "%ProgramW6432%\TortoiseSVN\bin"
 "%LOCALAPPDATA%\Pandoc"
 "%ProgramFiles(x86)%\Poedit"

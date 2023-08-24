@@ -13,16 +13,20 @@ x86OnlyPackageList = [
 
 packageList = [
   ([
-    'boost-asio[ssl]',
-    'boost-locale[icu]',
-    'boost-mpi[python3]',
-    'boost-odeint[mpi]',
-    'boost-regex[icu]',
-    'boost[mpi]',
+    'boost-asio[core,ssl]',
+    'boost-locale[core,icu]',
+    'boost-mpi[core,python3]',
+    'boost-odeint[core,mpi]',
+    'boost-regex[core,icu]',
+    'boost[core,mpi]',
     'icu[core,tools]',
     'mp3lame',
     'mpi',
     'ms-gsl',
+    'python3',
+    'sqlite3[core,json1,tool,zlib]',
+    'sqlitecpp',
+    'tiff[core,cxx,jpeg,lzma,tools,zip]',
     'wil',
     'wtl',
     'wxwidgets[core,example,fonts,media,sound,webview]'

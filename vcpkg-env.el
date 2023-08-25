@@ -37,7 +37,6 @@
   (let
     (
      (yekneb-debug-level (if init-file-debug yekneb-log-debug yekneb-log-entry))
-     (dic-path "${VCPKG_ROOT}/installed/${Platform}-windows/share/hunspell/dictionaries")
      (load-file-dir (file-name-directory load-file-name))
      (platform nil)
      (tool-dirs nil)
@@ -68,12 +67,6 @@
       )
     (setq tools-dir (substitute-env-vars tools-dir))
     (yekneb-log yekneb-log-info "tools-dir is '%s'." tools-dir)
-    (setq dic-path (substitute-env-vars dic-path))
-    (yekneb-log yekneb-log-info "dic-path is '%s'." dic-path)
-    (when (file-directory-p dic-path)
-      (yekneb-log yekneb-log-info "Setting DICPATH to '%s'." dic-path)
-      (yekneb-setenv "DICPATH" dic-path)
-      )
     (yekneb-log yekneb-log-info "Adding the directories in vcpkg--add-to-path-windows to the path.")
     (yekneb-add-dirs-to-path vcpkg--add-to-path-windows t t load-file-dir)
     (yekneb-log yekneb-log-info "Adding the directories in tool-dirs to the path.")

@@ -14,6 +14,7 @@ vcpkg_cmake_configure(
         -DWITH_EXAMPLES=OFF
         -DWITH_DAV1D=OFF
         -DPKG_CONFIG_USE_CMAKE_PREFIX_PATH=ON
+        -DWITH_X265=OFF
 )
 vcpkg_cmake_install()
 vcpkg_copy_pdbs()

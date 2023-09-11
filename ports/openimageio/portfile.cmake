@@ -9,7 +9,6 @@ vcpkg_from_github(
         fix-static-ffmpeg.patch
         fix-openexr-dll.patch
         imath-version-guard.patch
-        add-cms2-link.patch
         fix-openimageio_include_dir.patch
         fix-openexr-target-missing.patch
 )

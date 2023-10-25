@@ -24,7 +24,6 @@ for %%a in (
 "%_MyDir%\downloads\tools\cmake-3.27.1-windows\cmake-3.27.1-windows-i386\bin"
 "%_MyDir%\downloads\tools\jom\jom-1.1.3"
 "%_MyDir%\downloads\tools\nasm\nasm-2.16.01"
-"%_MyDir%\downloads\tools\nasm\nasm-2.16.01\rdoff"
 "%_MyDir%\downloads\tools\perl\5.32.1.1\c\bin"
 "%_MyDir%\downloads\tools\perl\5.32.1.1\c\i686-w64-mingw32\bin"
 "%_MyDir%\downloads\tools\perl\5.32.1.1\perl\site\bin"

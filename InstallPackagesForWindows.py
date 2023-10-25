@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 
+import inspect
 import os
 import subprocess
 import sys
 
 x64OnlyPackageList = [
-  "crashpad", 'eathread', 'folly[bzip2,zlib,zstd]', 'foonathan-lexy', 'qt[default-features]', 'qtspeech', 'qwt', 'yasm-tool', 'yasm-tool-helper'
+  'crashpad', 'eathread', 'folly[bzip2,zlib,zstd]', 'foonathan-lexy', 'qt[default-features]', 'qtspeech', 'qwt', 'yasm-tool', 'yasm-tool-helper'
 ]
 
 x86OnlyPackageList = [
@@ -23,7 +24,16 @@ packageList = [
     'mp3lame',
     'mpi',
     'ms-gsl',
+    'openal-soft',
+    'portaudio',
     'python3',
+    'sdl2-gfx',
+    'sdl2-image[core,libjpeg-turbo,libwebp,tiff]',
+    'sdl2-mixer[core,mpg123]',
+    'sdl2-net',
+    'sdl2-ttf',
+    'sdl2',
+    'sdl2pp',
     'sqlite3[core,json1,tool,zlib]',
     'sqlitecpp',
     'tiff[core,cxx,jpeg,lzma,tools,zip]',
@@ -82,13 +92,13 @@ def InstallPackagesWorker(packages, triplet, recurse):
   if (recurse):
     args.append("--recurse")
   try:
-    seperator = ' '
-    print("Calling '%s'." % seperator.join(args))
+    separator = ' '
+    print("Calling '%s'." % separator.join(args))
     subprocess.check_call(args)
     return True
-  except subprocess.CalledProcessError as err:
+  except subprocess.CalledProcessError:
     return False
-  except OSError as err:
+  except OSError:
     return False
 
 def InstallPackages(packages, recurse):

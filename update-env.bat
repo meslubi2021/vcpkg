@@ -10,7 +10,7 @@ call :GetBatchFileDirectory _MyDir
 call :SetOPT
 if not defined OPT goto :EOF
 
-set DOTNET_VERSION=7.0.400
+set DOTNET_VERSION=7.0.403
 set HOME=%USERPROFILE%\Home
 set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot
 set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot
@@ -22,13 +22,13 @@ set VCPKG_ROOT=%_MyDir%
 for %%a in (
 "%_MyDir%\installed\%Platform%-windows\tools\icu\bin"
 "%_MyDir%\downloads\tools\cmake-3.27.1-windows\cmake-3.27.1-windows-i386\bin"
-"%_MyDir%\downloads\tools\jom\jom-1.1.3"
+"%_MyDir%\downloads\tools\jom\jom-1_1_4"
 "%_MyDir%\downloads\tools\nasm\nasm-2.16.01"
-"%_MyDir%\downloads\tools\perl\5.32.1.1\c\bin"
-"%_MyDir%\downloads\tools\perl\5.32.1.1\c\i686-w64-mingw32\bin"
-"%_MyDir%\downloads\tools\perl\5.32.1.1\perl\site\bin"
-"%_MyDir%\downloads\tools\perl\5.32.1.1\perl\bin"
-"%_MyDir%\downloads\tools\python\python-3.11.4-%Platform%"
+"%_MyDir%\downloads\tools\perl\5.38.0.1\c\bin"
+"%_MyDir%\downloads\tools\perl\5.38.0.1\c\i686-w64-mingw32\bin"
+"%_MyDir%\downloads\tools\perl\5.38.0.1\perl\site\bin"
+"%_MyDir%\downloads\tools\perl\5.38.0.1\perl\bin"
+"%_MyDir%\downloads\tools\python\python-3.11.5-%Platform%"
 "%ProgramW6432%\Beyond Compare 4"
 "%ProgramW6432%\Git\cmd"
 "%SystemDrive%\Perl64\c\bin"

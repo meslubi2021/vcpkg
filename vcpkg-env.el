@@ -7,13 +7,13 @@
 (defconst vcpkg--add-to-path-windows
   '(
     "${VCPKG_ROOT}/downloads/tools/cmake-3.27.1-windows/cmake-3.27.1-windows-i386/bin"
-    "${VCPKG_ROOT}/downloads/tools/jom/jom-1.1.3"
+    "${VCPKG_ROOT}/downloads/tools/jom/jom-1_1_4"
     "${VCPKG_ROOT}/downloads/tools/nasm/nasm-2.16.01"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.32.1.1/c/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.32.1.1/c/i686-w64-mingw32/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.32.1.1/perl/site/bin"
-    "${VCPKG_ROOT}/downloads/tools/perl/5.32.1.1/perl/bin"
-    "${VCPKG_ROOT}/downloads/tools/python/python-3.11.4-${Platform}"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.38.0.1/c/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.38.0.1/c/i686-w64-mingw32/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.38.0.1/perl/site/bin"
+    "${VCPKG_ROOT}/downloads/tools/perl/5.38.0.1/perl/bin"
+    "${VCPKG_ROOT}/downloads/tools/python/python-3.11.5-${Platform}"
     "${VCPKG_ROOT}/installed/${Platform}-windows/bin"
     "${VCPKG_ROOT}/installed/${Platform}-windows/tools"
    )

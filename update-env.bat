@@ -12,9 +12,9 @@ if not defined OPT goto :EOF
 
 set DOTNET_VERSION=7.0.403
 set HOME=%USERPROFILE%\Home
-set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot
-set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-17.0.7.7-hotspot
-set JDK_HOME_X86=C:\Program Files (x86)\Eclipse Adoptium\jdk-17.0.7.7-hotspot
+set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-19.0.2.7-hotspot
+set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-19.0.2.7-hotspot
+set JDK_HOME_X86=C:\Program Files (x86)\Eclipse Adoptium\jdk-19.0.2.7-hotspot
 set PANDOC_EXE=%LOCALAPPDATA%\Pandoc\pandoc.exe
 set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%
@@ -44,7 +44,7 @@ for %%a in (
 "%ProgramW6432%\nodejs"
 "%ProgramW6432%\Perforce"
 "%ProgramW6432%\PowerShell\7"
-"%ProgramW6432%\Python311"
+"%ProgramW6432%\Python312"
 "%ProgramW6432%\TortoiseSVN\bin"
 "%LOCALAPPDATA%\Pandoc"
 "%ProgramFiles(x86)%\Poedit"

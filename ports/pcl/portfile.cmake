@@ -71,7 +71,7 @@ vcpkg_cmake_configure(
         PCL_BUILD_WITH_QHULL_DYNAMIC_LINKING_WIN32
 )
 
-vcpkg_cmake_install()
+vcpkg_cmake_install(DISABLE_PARALLEL)
 vcpkg_cmake_config_fixup()
 vcpkg_copy_pdbs()
 

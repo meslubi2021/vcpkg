@@ -11,13 +11,14 @@ call :SetOPT
 if not defined OPT goto :EOF
 
 set DOTNET_VERSION=8.0.202
-set HOME=%USERPROFILE%\Home
+set HOME=%LOCALAPPDATA%\Home
 set JDK_HOME=C:\Program Files\Eclipse Adoptium\jdk-21.0.2.13-hotspot
 set JDK_HOME_X64=C:\Program Files\Eclipse Adoptium\jdk-21.0.2.13-hotspot
 set JDK_HOME_X86=C:\Program Files (x86)\Eclipse Adoptium\jdk-19.0.2.7-hotspot
 set PANDOC_EXE=%LOCALAPPDATA%\Pandoc\pandoc.exe
 set VCPKG_FEATURE_FLAGS=-binarycaching
 set VCPKG_ROOT=%_MyDir%
+set CMAKE_TOOLCHAIN_FILE=%VCPKG_ROOT%/scripts/buildsystems.vcpkg.cmake
 
 for %%a in (
 "%_MyDir%\installed\%Platform%-windows\tools\icu\bin"

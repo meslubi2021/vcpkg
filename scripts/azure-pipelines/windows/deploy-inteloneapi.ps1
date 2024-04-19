@@ -28,11 +28,20 @@ Function InstallInteloneAPI {
     [String]$Components
   )
 
+  [string]$maybeExeName = [System.IO.Path]::GetFileName($Url)
+  [string]$maybeLocalExe = Join-Path $PSScriptRoot $maybeExeName
   try {
-    [string]$installerPath = Get-TempFilePath -Extension 'exe'
     [string]$extractionPath = [System.IO.Path]::GetTempPath() + [System.IO.Path]::GetRandomFileName()
-    Write-Host 'Downloading Intel oneAPI...to: ' $installerPath
-    curl.exe -L -o $installerPath -s -S $Url
+    if (Test-Path $maybeLocalExe) {
+      Write-Host 'Using local copy of Intel oneAPI installer...'
+      [string]$installerPath = $maybeLocalExe
+    }
+    else {
+      [string]$installerPath = Get-TempFilePath -Extension 'exe'
+      Write-Host "Downloading Intel oneAPI installer from $Url to $installerPath"
+      curl.exe -L -o $installerPath -s -S $Url
+    }
+
     Write-Host 'Extracting Intel oneAPI...to folder: ' $extractionPath
     $proc = Start-Process -FilePath $installerPath -ArgumentList @('-s ', '-x ', '-f ' + $extractionPath , '--log extract.log') -Wait -PassThru
     Write-Host 'Install Intel oneAPI...from folder: ' $extractionPath

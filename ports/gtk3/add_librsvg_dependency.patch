@@ -1,0 +1,46 @@
+diff --git a/gdk/meson.build b/gdk/meson.build
+index 4bb1bf2b6c..00e6f9a1c5 100644
+--- a/gdk/meson.build
++++ b/gdk/meson.build
+@@ -208,7 +208,8 @@ gdk_deps = [
+   epoxy_dep,
+   fontconfig_dep,
+   platform_gio_dep,
+-  pangocairo_dep
++  pangocairo_dep,
++  librsvg_dep,
+ ]
+ 
+ if win32_enabled
+diff --git a/gtk/meson.build b/gtk/meson.build
+index 4b7a453e11..48d156aab7 100644
+--- a/gtk/meson.build
++++ b/gtk/meson.build
+@@ -848,6 +848,7 @@ gtk_deps = [
+   atk_dep,
+   epoxy_dep,
+   libm,
++  librsvg_dep,
+ ]
+ 
+ if x11_enabled
+diff --git a/meson.build b/meson.build
+index 0f73529358..0e935903e5 100644
+--- a/meson.build
++++ b/meson.build
+@@ -37,6 +37,7 @@ wayland_req        = '>= 1.14.91'
+ epoxy_req          = '>= 1.4'
+ cloudproviders_req = '>= 0.2.5'
+ xkbcommon_req      = '>= 0.2.0'
++librsvg_req        = '>= 2.40.20'
+ 
+ gnome = import('gnome')
+ 
+@@ -434,6 +435,7 @@ epoxy_dep      = dependency('epoxy', version: epoxy_req,
+                             fallback: ['libepoxy', 'libepoxy_dep'])
+ atk_dep        = dependency('atk', version: atk_req,
+                             fallback : ['atk', 'libatk_dep'])
++librsvg_dep    = dependency('librsvg', version: librsvg_req)
+ 
+ # Update once Meson can have deps declared in a declarative manner or can
+ # find deps properly with CMake again

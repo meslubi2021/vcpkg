@@ -47,7 +47,7 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..1ee4c870 100644
+index e4350da7..85edd403 100644
 --- a/rsvg.h
 +++ b/rsvg.h
 @@ -31,7 +31,80 @@
@@ -88,6 +88,8 @@ index e4350da7..1ee4c870 100644
 +typedef struct _GdkPixbuf GdkPixbuf;
 +struct _GdkPixbufLoader;
 +typedef struct _GdkPixbufLoader GdkPixbufLoader;
++struct _GdkPixbufModulePattern;
++typedef struct _GdkPixbufModulePattern GdkPixbufModulePattern;
 +struct _GdkPixbufFormat {
 +  gchar *name;
 +  GdkPixbufModulePattern *signature;
@@ -102,8 +104,6 @@ index e4350da7..1ee4c870 100644
 +typedef struct _GdkPixbufFormat GdkPixbufFormat;
 +struct _GdkPixbufAnimation;
 +typedef struct _GdkPixbufAnimation GdkPixbufAnimation;
-+struct _GdkPixbufModulePattern;
-+typedef struct _GdkPixbufModulePattern GdkPixbufModulePattern;
 +extern GQuark gdk_pixbuf_error_quark(void);
 +#define GDK_PIXBUF_ERROR gdk_pixbuf_error_quark ()
 +#define GDK_PIXBUF_ERROR_FAILED 5

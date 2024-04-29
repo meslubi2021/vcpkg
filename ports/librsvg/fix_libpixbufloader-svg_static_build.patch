@@ -47,7 +47,7 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..daa33f9c 100644
+index e4350da7..190a4c06 100644
 --- a/rsvg.h
 +++ b/rsvg.h
 @@ -31,7 +31,54 @@
@@ -57,34 +57,34 @@ index e4350da7..daa33f9c 100644
 +#ifndef INCLUDE_svg
  #include <gdk-pixbuf/gdk-pixbuf.h>
 +#else
-+typedef enum {
-+    STORAGE_UNINITIALIZED,
-+    STORAGE_PIXELS,
-+    STORAGE_BYTES
-+} Storage;
-+typedef void (* GdkPixbufDestroyNotify) (guchar *pixels, gpointer data);
-+extern struct Pixels {
-+    guchar *pixels;
-+    GdkPixbufDestroyNotify destroy_fn;
-+    gpointer destroy_fn_data;
-+};
-+extern struct Bytes {
-+        GBytes *bytes;
-+};
-+extern struct GdkPixbuf {
-+    GObject parent_instance;
-+	GdkColorspace colorspace;
-+	int n_channels;
-+	int bits_per_sample;
-+	int width, height;
-+	int rowstride;
-+    Storage storage;
-+    struct {
-+        Pixels pixels;
-+        Bytes bytes;
-+    } s;
-+	guint has_alpha : 1;
-+};
++// typedef enum {
++//     STORAGE_UNINITIALIZED,
++//     STORAGE_PIXELS,
++//     STORAGE_BYTES
++// } Storage;
++// typedef void (* GdkPixbufDestroyNotify) (guchar *pixels, gpointer data);
++// extern struct Pixels {
++//     guchar *pixels;
++//     GdkPixbufDestroyNotify destroy_fn;
++//     gpointer destroy_fn_data;
++// };
++// extern struct Bytes {
++//         GBytes *bytes;
++// };
++extern struct GdkPixbuf; //{
++//     GObject parent_instance;
++// 	GdkColorspace colorspace;
++// 	int n_channels;
++// 	int bits_per_sample;
++// 	int width, height;
++// 	int rowstride;
++//     Storage storage;
++//     struct {
++//         Pixels pixels;
++//         Bytes bytes;
++//     } s;
++// 	guint has_alpha : 1;
++// };
 +// extern void GdkPixbufModuleUpdatedFunc(struct GdkPixbuf *, int, int, int, int, void *);
 +// extern void GdkPixbufModulePreparedFunc(struct GdkPixbuf *, void *, void *);
 +// extern void GdkPixbufModuleSizeFunc(int, int, void *);
@@ -95,12 +95,12 @@ index e4350da7..daa33f9c 100644
 +// extern struct GdkPixbufModulePattern;
 +// extern struct GdkPixbufModule;
 +// extern struct GdkPixbufFormat;
-+typedef enum
-+{
-+  GDK_PIXBUF_FORMAT_WRITABLE = 1 << 0,
-+  GDK_PIXBUF_FORMAT_SCALABLE = 1 << 1,
-+  GDK_PIXBUF_FORMAT_THREADSAFE = 1 << 2
-+} GdkPixbufFormatFlags;
++// typedef enum
++// {
++//   GDK_PIXBUF_FORMAT_WRITABLE = 1 << 0,
++//   GDK_PIXBUF_FORMAT_SCALABLE = 1 << 1,
++//   GDK_PIXBUF_FORMAT_THREADSAFE = 1 << 2
++// } GdkPixbufFormatFlags;
 +#endif
  
  G_BEGIN_DECLS

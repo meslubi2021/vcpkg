@@ -47,17 +47,44 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..f456038a 100644
+index e4350da7..4c4ca5e5 100644
 --- a/rsvg.h
 +++ b/rsvg.h
-@@ -31,7 +31,27 @@
+@@ -31,7 +31,54 @@
  #include <glib-object.h>
  #include <gio/gio.h>
  
 +#ifndef INCLUDE_svg
  #include <gdk-pixbuf/gdk-pixbuf.h>
 +#else
-+extern struct GdkPixbuf;
++typedef enum {
++    STORAGE_UNINITIALIZED,
++    STORAGE_PIXELS,
++    STORAGE_BYTES
++} Storage;
++extern void GdkPixbufDestroyNotify(guchar *, gpointer);
++extern struct Pixels {
++    guchar *pixels;
++    GdkPixbufDestroyNotify destroy_fn;
++    gpointer destroy_fn_data;
++};
++extern struct Bytes {
++        GBytes *bytes;
++};
++extern struct GdkPixbuf {
++    GObject parent_instance;
++	GdkColorspace colorspace;
++	int n_channels;
++	int bits_per_sample;
++	int width, height;
++	int rowstride;
++    Storage storage;
++    struct {
++        Pixels pixels;
++        Bytes bytes;
++    } s;
++	guint has_alpha : 1;
++};
 +extern void GdkPixbufModuleUpdatedFunc(struct GdkPixbuf *, int, int, int, int, void *);
 +extern void GdkPixbufModulePreparedFunc(struct GdkPixbuf *, void *, void *);
 +extern void GdkPixbufModuleSizeFunc(int, int, void *);

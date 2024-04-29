@@ -102,6 +102,9 @@ else()
 endif()
 
 add_library(${LIBRSVG_TARGET} ${LIBRSVG_SOURCES})
+if(NOT BUILD_SHARED_LIBS AND ENABLE_GDK_PIXBUF_LOADER)
+    target_compile_definitions(${LIBRSVG_TARGET} PRIVATE -DINCLUDE_svg)
+endif()
 target_compile_definitions(${LIBRSVG_TARGET} PRIVATE
     -DRSVG_COMPILATION
     -D_CRT_SECURE_NO_WARNINGS

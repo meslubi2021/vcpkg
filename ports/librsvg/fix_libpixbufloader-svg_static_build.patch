@@ -1,36 +1,16 @@
 diff --git a/gdk-pixbuf-loader/io-svg.c b/gdk-pixbuf-loader/io-svg.c
-index bcdfd0bb..ff752c9f 100644
+index bcdfd0bb..3c31f757 100644
 --- a/gdk-pixbuf-loader/io-svg.c
 +++ b/gdk-pixbuf-loader/io-svg.c
-@@ -26,7 +26,27 @@
+@@ -26,7 +26,6 @@
  #include <stdlib.h>
  
  #include <rsvg.h>
-+#ifndef INCLUDE_svg
- #include <gdk-pixbuf/gdk-pixbuf.h>
-+#else
-+extern struct GdkPixbuf;
-+extern void GdkPixbufModuleUpdatedFunc(struct GdkPixbuf *, int, int, int, int, void *);
-+extern void GdkPixbufModulePreparedFunc(struct GdkPixbuf *, void *, void *);
-+extern void GdkPixbufModuleSizeFunc(int, int, void *);
-+// typedef bool gboolean;
-+// typedef void* gpointer;
-+// typedef char gchar;
-+// extern struct GError;
-+extern struct GdkPixbufModulePattern;
-+extern struct GdkPixbufModule;
-+extern struct GdkPixbufFormat;
-+typedef enum
-+{
-+  GDK_PIXBUF_FORMAT_WRITABLE = 1 << 0,
-+  GDK_PIXBUF_FORMAT_SCALABLE = 1 << 1,
-+  GDK_PIXBUF_FORMAT_THREADSAFE = 1 << 2
-+} GdkPixbufFormatFlags;
-+#endif
+-#include <gdk-pixbuf/gdk-pixbuf.h>
  
  #define N_(string) (string)
  #define _(string) (string)
-@@ -43,8 +63,8 @@ typedef struct {
+@@ -43,8 +42,8 @@ typedef struct {
          gpointer                    user_data;
  } SvgContext;
  
@@ -41,7 +21,7 @@ index bcdfd0bb..ff752c9f 100644
  
  enum {
          ERROR_WRITING = 1,
-@@ -173,16 +193,20 @@ gdk_pixbuf__svg_image_stop_load (gpointer data, GError **error)
+@@ -173,16 +172,20 @@ gdk_pixbuf__svg_image_stop_load (gpointer data, GError **error)
          return result;
  }
  
@@ -67,15 +47,33 @@ index bcdfd0bb..ff752c9f 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..98bdf2a3 100644
+index e4350da7..f456038a 100644
 --- a/rsvg.h
 +++ b/rsvg.h
-@@ -31,7 +31,9 @@
+@@ -31,7 +31,27 @@
  #include <glib-object.h>
  #include <gio/gio.h>
  
 +#ifndef INCLUDE_svg
  #include <gdk-pixbuf/gdk-pixbuf.h>
++#else
++extern struct GdkPixbuf;
++extern void GdkPixbufModuleUpdatedFunc(struct GdkPixbuf *, int, int, int, int, void *);
++extern void GdkPixbufModulePreparedFunc(struct GdkPixbuf *, void *, void *);
++extern void GdkPixbufModuleSizeFunc(int, int, void *);
++// typedef bool gboolean;
++// typedef void* gpointer;
++// typedef char gchar;
++// extern struct GError;
++extern struct GdkPixbufModulePattern;
++extern struct GdkPixbufModule;
++extern struct GdkPixbufFormat;
++typedef enum
++{
++  GDK_PIXBUF_FORMAT_WRITABLE = 1 << 0,
++  GDK_PIXBUF_FORMAT_SCALABLE = 1 << 1,
++  GDK_PIXBUF_FORMAT_THREADSAFE = 1 << 2
++} GdkPixbufFormatFlags;
 +#endif
  
  G_BEGIN_DECLS

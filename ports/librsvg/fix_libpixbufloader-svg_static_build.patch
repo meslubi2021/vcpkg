@@ -1,5 +1,5 @@
 diff --git a/gdk-pixbuf-loader/io-svg.c b/gdk-pixbuf-loader/io-svg.c
-index bcdfd0bb..2c6bd4a1 100644
+index bcdfd0bb..ff752c9f 100644
 --- a/gdk-pixbuf-loader/io-svg.c
 +++ b/gdk-pixbuf-loader/io-svg.c
 @@ -26,7 +26,27 @@
@@ -13,10 +13,10 @@ index bcdfd0bb..2c6bd4a1 100644
 +extern void GdkPixbufModuleUpdatedFunc(struct GdkPixbuf *, int, int, int, int, void *);
 +extern void GdkPixbufModulePreparedFunc(struct GdkPixbuf *, void *, void *);
 +extern void GdkPixbufModuleSizeFunc(int, int, void *);
-+typedef bool gboolean;
-+typedef void* gpointer;
-+typedef char gchar;
-+extern struct GError;
++// typedef bool gboolean;
++// typedef void* gpointer;
++// typedef char gchar;
++// extern struct GError;
 +extern struct GdkPixbufModulePattern;
 +extern struct GdkPixbufModule;
 +extern struct GdkPixbufFormat;
@@ -66,3 +66,17 @@ index bcdfd0bb..2c6bd4a1 100644
  {
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
+diff --git a/rsvg.h b/rsvg.h
+index e4350da7..98bdf2a3 100644
+--- a/rsvg.h
++++ b/rsvg.h
+@@ -31,7 +31,9 @@
+ #include <glib-object.h>
+ #include <gio/gio.h>
+ 
++#ifndef INCLUDE_svg
+ #include <gdk-pixbuf/gdk-pixbuf.h>
++#endif
+ 
+ G_BEGIN_DECLS
+ 

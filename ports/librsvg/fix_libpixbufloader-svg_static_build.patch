@@ -47,7 +47,7 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..190a4c06 100644
+index e4350da7..d0e387e5 100644
 --- a/rsvg.h
 +++ b/rsvg.h
 @@ -31,7 +31,54 @@
@@ -71,7 +71,7 @@ index e4350da7..190a4c06 100644
 +// extern struct Bytes {
 +//         GBytes *bytes;
 +// };
-+extern struct GdkPixbuf; //{
++struct GdkPixbuf; //{
 +//     GObject parent_instance;
 +// 	GdkColorspace colorspace;
 +// 	int n_channels;

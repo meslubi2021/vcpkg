@@ -47,7 +47,7 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..be195c59 100644
+index e4350da7..daa33f9c 100644
 --- a/rsvg.h
 +++ b/rsvg.h
 @@ -31,7 +31,54 @@
@@ -62,7 +62,7 @@ index e4350da7..be195c59 100644
 +    STORAGE_PIXELS,
 +    STORAGE_BYTES
 +} Storage;
-+extern typedef void (* GdkPixbufDestroyNotify) (guchar *pixels, gpointer data);
++typedef void (* GdkPixbufDestroyNotify) (guchar *pixels, gpointer data);
 +extern struct Pixels {
 +    guchar *pixels;
 +    GdkPixbufDestroyNotify destroy_fn;

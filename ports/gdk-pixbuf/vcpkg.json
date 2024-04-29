@@ -30,7 +30,7 @@
     "png",
     {
       "name": "svg",
-      "platform": "!static"
+      "platform": "static"
     },
     "tiff"
   ],

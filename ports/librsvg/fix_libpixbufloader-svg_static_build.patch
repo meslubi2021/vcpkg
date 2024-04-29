@@ -1,8 +1,47 @@
 diff --git a/gdk-pixbuf-loader/io-svg.c b/gdk-pixbuf-loader/io-svg.c
-index bcdfd0bb..55956b26 100644
+index bcdfd0bb..2c6bd4a1 100644
 --- a/gdk-pixbuf-loader/io-svg.c
 +++ b/gdk-pixbuf-loader/io-svg.c
-@@ -173,16 +173,20 @@ gdk_pixbuf__svg_image_stop_load (gpointer data, GError **error)
+@@ -26,7 +26,27 @@
+ #include <stdlib.h>
+ 
+ #include <rsvg.h>
++#ifndef INCLUDE_svg
+ #include <gdk-pixbuf/gdk-pixbuf.h>
++#else
++extern struct GdkPixbuf;
++extern void GdkPixbufModuleUpdatedFunc(struct GdkPixbuf *, int, int, int, int, void *);
++extern void GdkPixbufModulePreparedFunc(struct GdkPixbuf *, void *, void *);
++extern void GdkPixbufModuleSizeFunc(int, int, void *);
++typedef bool gboolean;
++typedef void* gpointer;
++typedef char gchar;
++extern struct GError;
++extern struct GdkPixbufModulePattern;
++extern struct GdkPixbufModule;
++extern struct GdkPixbufFormat;
++typedef enum
++{
++  GDK_PIXBUF_FORMAT_WRITABLE = 1 << 0,
++  GDK_PIXBUF_FORMAT_SCALABLE = 1 << 1,
++  GDK_PIXBUF_FORMAT_THREADSAFE = 1 << 2
++} GdkPixbufFormatFlags;
++#endif
+ 
+ #define N_(string) (string)
+ #define _(string) (string)
+@@ -43,8 +63,8 @@ typedef struct {
+         gpointer                    user_data;
+ } SvgContext;
+ 
+-G_MODULE_EXPORT void fill_vtable (GdkPixbufModule *module);
+-G_MODULE_EXPORT void fill_info (GdkPixbufFormat *info);
++// G_MODULE_EXPORT void fill_vtable (GdkPixbufModule *module);
++// G_MODULE_EXPORT void fill_info (GdkPixbufFormat *info);
+ 
+ enum {
+         ERROR_WRITING = 1,
+@@ -173,16 +193,20 @@ gdk_pixbuf__svg_image_stop_load (gpointer data, GError **error)
          return result;
  }
  

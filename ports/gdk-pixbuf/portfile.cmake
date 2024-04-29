@@ -10,6 +10,7 @@ vcpkg_from_gitlab(
         loaders-cache.patch
         use-libtiff-4-pkgconfig.patch
         fix-static-deps.patch
+        add_librsvg_dependency.patch
 )
 
 if("introspection" IN_LIST FEATURES)

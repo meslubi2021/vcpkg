@@ -12,7 +12,10 @@ Set(libdir "\${prefix}/lib")
 Set(includedir "\${prefix}/include")
 
 # Public required modules (cf. headers and librsvg.pc)
-set(librsvg_pc_requires glib-2.0 gio-2.0 gdk-pixbuf-2.0 cairo)
+set(librsvg_pc_requires glib-2.0 gio-2.0 cairo)
+if (ENABLE_GDK_PIXBUF_LOADER AND BUILD_SHARED_LIBS)
+    list(APPEND librsvg_pc_requires gdk-pixbuf-2.0)
+endif()
 # Other required modules from configure.ac
 set(librsvg_pc_requires_private
     libxml-2.0
@@ -137,52 +140,62 @@ set(gdk_pixbuf_pc_requires_private gdk-pixbuf-2.0)
 pkg_check_modules(GDK_PIXBUF ${gdk_pixbuf_pc_requires_private} IMPORTED_TARGET REQUIRED)
 pkg_get_variable(GDK_PIXBUF_MODULEDIR ${gdk_pixbuf_pc_requires_private} gdk_pixbuf_moduledir)
 
-set(PIXBUFLOADERSVG_SOURCES
-    gdk-pixbuf-loader/io-svg.c
-)
-if (BUILD_SHARED_LIBS)
-    add_library(pixbufloader-svg MODULE ${PIXBUFLOADERSVG_SOURCES})
-else()
-    add_library(pixbufloader-svg ${PIXBUFLOADERSVG_SOURCES})
-    target_compile_definitions(pixbufloader-svg PRIVATE -DINCLUDE_svg)
-endif()
-
-target_include_directories(pixbufloader-svg
-    PRIVATE
-        "${CMAKE_CURRENT_BINARY_DIR}"
-        "${CMAKE_CURRENT_SOURCE_DIR}"
-)
-target_compile_definitions(pixbufloader-svg PRIVATE
-    -DRSVG_COMPILATION
-    -D_CRT_SECURE_NO_WARNINGS
-    -DSRCDIR=""
-    -DGDK_PIXBUF_ENABLE_BACKEND
-    -DG_LOG_DOMAIN="libpixbufloader-svg"
-)
-target_link_libraries(pixbufloader-svg
-    PRIVATE
-        ${LIBRSVG_TARGET}
-        PkgConfig::GDK_PIXBUF
-)
-if (BUILD_SHARED_LIBS)
-    install(TARGETS pixbufloader-svg
-        RUNTIME DESTINATION "${GDK_PIXBUF_MODULEDIR}"
-        LIBRARY DESTINATION "${GDK_PIXBUF_MODULEDIR}"
+if (ENABLE_GDK_PIXBUF_LOADER)
+    set(PIXBUFLOADERSVG_SOURCES
+        gdk-pixbuf-loader/io-svg.c
     )
-else()
-    install(TARGETS pixbufloader-svg
-        RUNTIME DESTINATION bin
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib
-    )
-endif()
 
+    if (BUILD_SHARED_LIBS)
+        add_library(pixbufloader-svg MODULE ${PIXBUFLOADERSVG_SOURCES})
+    else()
+        add_library(pixbufloader-svg ${PIXBUFLOADERSVG_SOURCES})
+        target_compile_definitions(pixbufloader-svg PRIVATE -DINCLUDE_svg)
+    endif()
+
+    target_include_directories(pixbufloader-svg
+        PRIVATE
+            "${CMAKE_CURRENT_BINARY_DIR}"
+            "${CMAKE_CURRENT_SOURCE_DIR}"
+    )
+    target_compile_definitions(pixbufloader-svg PRIVATE
+        -DRSVG_COMPILATION
+        -D_CRT_SECURE_NO_WARNINGS
+        -DSRCDIR=""
+        -DGDK_PIXBUF_ENABLE_BACKEND
+        -DG_LOG_DOMAIN="libpixbufloader-svg"
+    )
+    if (BUILD_SHARED_LIBS)
+        target_link_libraries(pixbufloader-svg
+            PRIVATE
+                ${LIBRSVG_TARGET}
+        )
+    else()
+        target_link_libraries(pixbufloader-svg
+            PRIVATE
+                ${LIBRSVG_TARGET}
+                PkgConfig::GDK_PIXBUF
+        )
+    endif()
+
+    if (BUILD_SHARED_LIBS)
+        install(TARGETS pixbufloader-svg
+            RUNTIME DESTINATION "${GDK_PIXBUF_MODULEDIR}"
+            LIBRARY DESTINATION "${GDK_PIXBUF_MODULEDIR}"
+        )
+    else()
+        install(TARGETS pixbufloader-svg
+            RUNTIME DESTINATION bin
+            LIBRARY DESTINATION lib
+            ARCHIVE DESTINATION lib
+        )
+    endif()
+endif()
 
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/librsvg.pc.in" "${CMAKE_CURRENT_BINARY_DIR}/librsvg.pc" @ONLY)
 file(READ "${CMAKE_CURRENT_BINARY_DIR}/librsvg.pc" librsvg_pc)
 list(JOIN librsvg_pc_requires_private " " requires_private)
 string(REPLACE "Requires.private:" "Requires.private: ${requires_private}" librsvg_pc "${librsvg_pc}")
-if (NOT BUILD_SHARED_LIBS)
+if (ENABLE_GDK_PIXBUF_LOADER AND NOT BUILD_SHARED_LIBS)
     string(REPLACE "-lm" "-lpixbufloader-svg -lm" librsvg_pc "${librsvg_pc}")
 endif()
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/librsvg.pc" "${librsvg_pc}")

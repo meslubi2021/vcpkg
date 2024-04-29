@@ -28,6 +28,10 @@
   "default-features": [
     "jpeg",
     "png",
+    {
+      "name": "svg",
+      "platform": "!static"
+    },
     "tiff"
   ],
   "features": {
@@ -48,6 +52,17 @@
       "description": "Enable PNG loader (requires libpng)",
       "dependencies": [
         "libpng"
+      ]
+    },
+    "svg": {
+      "description": "Enable SVG loader (requires librsvg)",
+      "dependencies": [
+        {
+          "name": "librsvg",
+          "features": [
+            "pixbufloader"
+          ]
+        }
       ]
     },
     "tiff": {

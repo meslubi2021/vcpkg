@@ -8,7 +8,6 @@
   "dependencies": [
     "cairo",
     "fontconfig",
-    "gdk-pixbuf",
     "glib",
     "libcroco",
     {
@@ -20,5 +19,22 @@
       "name": "vcpkg-cmake",
       "host": true
     }
-  ]
+  ],
+  "default-features": [
+    {
+      "name": "pixbufloader",
+      "platform": "!static"
+    }
+  ],
+  "features": {
+    "pixbufloader": {
+      "description": "Build gdk-pixbuf svg loader",
+      "dependencies": [
+        {
+          "name": "gdk-pixbuf",
+          "platform": "!static"
+        }
+      ]
+    }
+  }
 }

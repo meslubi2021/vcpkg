@@ -15,7 +15,6 @@ vcpkg_from_gitlab(
     PATCHES
         0001-build.patch
         cairo-cpp-linkage.patch
-        add_librsvg_dependency.patch
 )
 
 vcpkg_find_acquire_program(PKGCONFIG)

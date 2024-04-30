@@ -47,16 +47,14 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg-cairo-draw.c b/rsvg-cairo-draw.c
-index caa91049..7cb1ab2f 100644
+index caa91049..7452cb4f 100644
 --- a/rsvg-cairo-draw.c
 +++ b/rsvg-cairo-draw.c
-@@ -1230,7 +1230,8 @@ rsvg_cairo_surface_to_pixbuf (cairo_surface_t *surface)
+@@ -1230,7 +1230,6 @@ rsvg_cairo_surface_to_pixbuf (cairo_surface_t *surface)
                            !!(content & CAIRO_CONTENT_ALPHA),
                            8,
                            width, height);
 -
-+    if (dest == NULL)
-+        return NULL;
      if (gdk_pixbuf_get_has_alpha (dest))
        convert_alpha (gdk_pixbuf_get_pixels (dest),
                      gdk_pixbuf_get_rowstride (dest),

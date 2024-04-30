@@ -47,10 +47,10 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..fa6036f8 100644
+index e4350da7..f4ecea18 100644
 --- a/rsvg.h
 +++ b/rsvg.h
-@@ -31,7 +31,120 @@
+@@ -31,7 +31,104 @@
  #include <glib-object.h>
  #include <gio/gio.h>
  
@@ -151,22 +151,6 @@ index e4350da7..fa6036f8 100644
 +#define GDK_PIXBUF_ERROR gdk_pixbuf_error_quark ()
 +#define GDK_PIXBUF_ERROR_FAILED 5
 +#define GDK_COLORSPACE_RGB 0
-+// extern void GdkPixbufModuleUpdatedFunc(struct GdkPixbuf *, int, int, int, int, void *);
-+// extern void GdkPixbufModulePreparedFunc(struct GdkPixbuf *, void *, void *);
-+// extern void GdkPixbufModuleSizeFunc(int, int, void *);
-+// // typedef bool gboolean;
-+// // typedef void* gpointer;
-+// // typedef char gchar;
-+// // extern struct GError;
-+// extern struct GdkPixbufModulePattern;
-+// extern struct GdkPixbufModule;
-+// extern struct GdkPixbufFormat;
-+// typedef enum
-+// {
-+//   GDK_PIXBUF_FORMAT_WRITABLE = 1 << 0,
-+//   GDK_PIXBUF_FORMAT_SCALABLE = 1 << 1,
-+//   GDK_PIXBUF_FORMAT_THREADSAFE = 1 << 2
-+// } GdkPixbufFormatFlags;
 +#endif
  
  G_BEGIN_DECLS

@@ -47,7 +47,7 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..ae910504 100644
+index e4350da7..68016746 100644
 --- a/rsvg.h
 +++ b/rsvg.h
 @@ -31,7 +31,81 @@
@@ -110,7 +110,7 @@ index e4350da7..ae910504 100644
 +#define GDK_PIXBUF_ERROR_FAILED 5
 +#define GDK_COLORSPACE_RGB 0
 +typedef void (* GdkPixbufModuleUpdatedFunc) (GdkPixbuf*, int, int, int, int, gpointer);
-+typedef void (* GdkPixbufModulePreparedFunc) (GdkPixbuf, GdkPixbufAnimation *anim, gpointer);
++typedef void (* GdkPixbufModulePreparedFunc) (GdkPixbuf*, GdkPixbufAnimation*, gpointer);
 +typedef void (* GdkPixbufModuleSizeFunc) (gint*, gint*, gpointer);
 +// extern void GdkPixbufModuleUpdatedFunc(struct GdkPixbuf *, int, int, int, int, void *);
 +// extern void GdkPixbufModulePreparedFunc(struct GdkPixbuf *, void *, void *);

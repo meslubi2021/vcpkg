@@ -47,10 +47,10 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..b3102252 100644
+index e4350da7..56df7560 100644
 --- a/rsvg.h
 +++ b/rsvg.h
-@@ -31,7 +31,80 @@
+@@ -31,7 +31,83 @@
  #include <glib-object.h>
  #include <gio/gio.h>
  
@@ -58,19 +58,22 @@ index e4350da7..b3102252 100644
  #include <gdk-pixbuf/gdk-pixbuf.h>
 +#else
 +typedef enum {
++	GDK_COLORSPACE_RGB
++} GdkColorspace;
++typedef enum {
 +    STORAGE_UNINITIALIZED,
 +    STORAGE_PIXELS,
 +    STORAGE_BYTES
 +} Storage;
 +typedef void (* GdkPixbufDestroyNotify) (guchar *pixels, gpointer data);
-+struct Pixels {
++struct struct {
 +    guchar *pixels;
 +    GdkPixbufDestroyNotify destroy_fn;
 +    gpointer destroy_fn_data;
-+};
-+struct Bytes {
++} Pixels;
++struct struct {
 +        GBytes *bytes;
-+};
++} Bytes;
 +struct _GdkPixbuf {
 +    GObject parent_instance;
 +	GdkColorspace colorspace;

@@ -47,10 +47,10 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..56df7560 100644
+index e4350da7..ae910504 100644
 --- a/rsvg.h
 +++ b/rsvg.h
-@@ -31,7 +31,83 @@
+@@ -31,7 +31,81 @@
  #include <glib-object.h>
  #include <gio/gio.h>
  
@@ -66,15 +66,15 @@ index e4350da7..56df7560 100644
 +    STORAGE_BYTES
 +} Storage;
 +typedef void (* GdkPixbufDestroyNotify) (guchar *pixels, gpointer data);
-+struct struct {
++typedef struct {
 +    guchar *pixels;
 +    GdkPixbufDestroyNotify destroy_fn;
 +    gpointer destroy_fn_data;
 +} Pixels;
-+struct struct {
++typedef struct {
 +        GBytes *bytes;
 +} Bytes;
-+struct _GdkPixbuf {
++typedef struct {
 +    GObject parent_instance;
 +	GdkColorspace colorspace;
 +	int n_channels;
@@ -87,13 +87,12 @@ index e4350da7..56df7560 100644
 +        Bytes bytes;
 +    } s;
 +	guint has_alpha : 1;
-+};
-+typedef struct _GdkPixbuf GdkPixbuf;
++} GdkPixbuf;
 +struct _GdkPixbufLoader;
 +typedef struct _GdkPixbufLoader GdkPixbufLoader;
 +struct _GdkPixbufModulePattern;
 +typedef struct _GdkPixbufModulePattern GdkPixbufModulePattern;
-+struct _GdkPixbufFormat {
++typedef struct {
 +  gchar *name;
 +  GdkPixbufModulePattern *signature;
 +  gchar *domain;
@@ -103,8 +102,7 @@ index e4350da7..56df7560 100644
 +  guint32 flags;
 +  gboolean disabled;
 +  gchar *license;
-+};
-+typedef struct _GdkPixbufFormat GdkPixbufFormat;
++} GdkPixbufFormat;
 +struct _GdkPixbufAnimation;
 +typedef struct _GdkPixbufAnimation GdkPixbufAnimation;
 +extern GQuark gdk_pixbuf_error_quark(void);

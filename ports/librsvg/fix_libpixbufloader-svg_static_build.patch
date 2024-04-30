@@ -47,7 +47,7 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..85edd403 100644
+index e4350da7..b3102252 100644
 --- a/rsvg.h
 +++ b/rsvg.h
 @@ -31,7 +31,80 @@
@@ -57,34 +57,34 @@ index e4350da7..85edd403 100644
 +#ifndef INCLUDE_svg
  #include <gdk-pixbuf/gdk-pixbuf.h>
 +#else
-+// typedef enum {
-+//     STORAGE_UNINITIALIZED,
-+//     STORAGE_PIXELS,
-+//     STORAGE_BYTES
-+// } Storage;
-+// typedef void (* GdkPixbufDestroyNotify) (guchar *pixels, gpointer data);
-+// extern struct Pixels {
-+//     guchar *pixels;
-+//     GdkPixbufDestroyNotify destroy_fn;
-+//     gpointer destroy_fn_data;
-+// };
-+// extern struct Bytes {
-+//         GBytes *bytes;
-+// };
-+struct _GdkPixbuf; //{
-+//     GObject parent_instance;
-+// 	GdkColorspace colorspace;
-+// 	int n_channels;
-+// 	int bits_per_sample;
-+// 	int width, height;
-+// 	int rowstride;
-+//     Storage storage;
-+//     struct {
-+//         Pixels pixels;
-+//         Bytes bytes;
-+//     } s;
-+// 	guint has_alpha : 1;
-+// };
++typedef enum {
++    STORAGE_UNINITIALIZED,
++    STORAGE_PIXELS,
++    STORAGE_BYTES
++} Storage;
++typedef void (* GdkPixbufDestroyNotify) (guchar *pixels, gpointer data);
++struct Pixels {
++    guchar *pixels;
++    GdkPixbufDestroyNotify destroy_fn;
++    gpointer destroy_fn_data;
++};
++struct Bytes {
++        GBytes *bytes;
++};
++struct _GdkPixbuf {
++    GObject parent_instance;
++	GdkColorspace colorspace;
++	int n_channels;
++	int bits_per_sample;
++	int width, height;
++	int rowstride;
++    Storage storage;
++    struct {
++        Pixels pixels;
++        Bytes bytes;
++    } s;
++	guint has_alpha : 1;
++};
 +typedef struct _GdkPixbuf GdkPixbuf;
 +struct _GdkPixbufLoader;
 +typedef struct _GdkPixbufLoader GdkPixbufLoader;

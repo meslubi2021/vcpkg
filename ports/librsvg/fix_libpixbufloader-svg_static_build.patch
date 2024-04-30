@@ -59,10 +59,10 @@ index caa91049..7452cb4f 100644
        convert_alpha (gdk_pixbuf_get_pixels (dest),
                      gdk_pixbuf_get_rowstride (dest),
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..eb4b1465 100644
+index e4350da7..b01a4128 100644
 --- a/rsvg.h
 +++ b/rsvg.h
-@@ -31,7 +31,106 @@
+@@ -31,7 +31,119 @@
  #include <glib-object.h>
  #include <gio/gio.h>
  
@@ -161,6 +161,19 @@ index e4350da7..eb4b1465 100644
 +    void (*_reserved3) (void);
 +    void (*_reserved4) (void);
 +} GdkPixbufModule;
++extern GdkPixbufLoader *gdk_pixbuf_loader_new_with_mime_type(const char*, GError**);
++extern GdkPixbufLoader *gdk_pixbuf_loader_new(void);
++extern gboolean gdk_pixbuf_loader_write(GdkPixbufLoader*, const guchar*, gsize, GError**);
++extern gboolean gdk_pixbuf_loader_close(GdkPixbufLoader*, GError**);
++extern GdkPixbuf *gdk_pixbuf_loader_get_pixbuf(GdkPixbufLoader*);
++extern GdkPixbufFormat *gdk_pixbuf_loader_get_format(GdkPixbufLoader*);
++extern gchar **gdk_pixbuf_format_get_mime_types(GdkPixbufFormat*);
++extern int gdk_pixbuf_get_width(const GdkPixbuf*);
++extern int gdk_pixbuf_get_height(const GdkPixbuf*);
++extern guchar *gdk_pixbuf_get_pixels(const GdkPixbuf*);
++extern int gdk_pixbuf_get_rowstride(const GdkPixbuf*);
++extern int gdk_pixbuf_get_n_channels(const GdkPixbuf*);
++gboolean gdk_pixbuf_get_has_alpha(const GdkPixbuf*);
 +extern GQuark gdk_pixbuf_error_quark(void);
 +#define GDK_PIXBUF_ERROR gdk_pixbuf_error_quark ()
 +#define GDK_PIXBUF_ERROR_FAILED 5

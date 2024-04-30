@@ -46,11 +46,25 @@ index bcdfd0bb..3c31f757 100644
  {
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
+diff --git a/rsvg-cairo-draw.c b/rsvg-cairo-draw.c
+index caa91049..7cb1ab2f 100644
+--- a/rsvg-cairo-draw.c
++++ b/rsvg-cairo-draw.c
+@@ -1230,7 +1230,8 @@ rsvg_cairo_surface_to_pixbuf (cairo_surface_t *surface)
+                           !!(content & CAIRO_CONTENT_ALPHA),
+                           8,
+                           width, height);
+-
++    if (dest == NULL)
++        return NULL;
+     if (gdk_pixbuf_get_has_alpha (dest))
+       convert_alpha (gdk_pixbuf_get_pixels (dest),
+                     gdk_pixbuf_get_rowstride (dest),
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..7a1ef4e6 100644
+index e4350da7..eb4b1465 100644
 --- a/rsvg.h
 +++ b/rsvg.h
-@@ -31,7 +31,105 @@
+@@ -31,7 +31,106 @@
  #include <glib-object.h>
  #include <gio/gio.h>
  
@@ -67,20 +81,20 @@ index e4350da7..7a1ef4e6 100644
 +  GDK_PIXBUF_FORMAT_SCALABLE = 1 << 1,
 +  GDK_PIXBUF_FORMAT_THREADSAFE = 1 << 2
 +} GdkPixbufFormatFlags;
-+typedef enum {
-+    STORAGE_UNINITIALIZED,
-+    STORAGE_PIXELS,
-+    STORAGE_BYTES
-+} Storage;
-+typedef void (* GdkPixbufDestroyNotify) (guchar *pixels, gpointer data);
-+typedef struct {
-+    guchar *pixels;
-+    GdkPixbufDestroyNotify destroy_fn;
-+    gpointer destroy_fn_data;
-+} Pixels;
-+typedef struct {
-+        GBytes *bytes;
-+} Bytes;
++// typedef enum {
++//     STORAGE_UNINITIALIZED,
++//     STORAGE_PIXELS,
++//     STORAGE_BYTES
++// } Storage;
++// typedef void (* GdkPixbufDestroyNotify) (guchar *pixels, gpointer data);
++// typedef struct {
++//     guchar *pixels;
++//     GdkPixbufDestroyNotify destroy_fn;
++//     gpointer destroy_fn_data;
++// } Pixels;
++// typedef struct {
++//         GBytes *bytes;
++// } Bytes;
 +// typedef struct {
 +//     GObject parent_instance;
 +// 	GdkColorspace colorspace;
@@ -96,8 +110,9 @@ index e4350da7..7a1ef4e6 100644
 +// 	guint has_alpha : 1;
 +// } GdkPixbuf;
 +typedef void GdkPixbuf;
-+struct _GdkPixbufLoader;
-+typedef struct _GdkPixbufLoader GdkPixbufLoader;
++// struct _GdkPixbufLoader;
++// typedef struct _GdkPixbufLoader GdkPixbufLoader;
++typedef void GdkPixbufLoader;
 +typedef struct {
 +	char *prefix;
 +	char *mask;

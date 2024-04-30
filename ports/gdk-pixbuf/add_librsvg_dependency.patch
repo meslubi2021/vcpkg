@@ -32,7 +32,7 @@ index e207d8143..8d6e1ba68 100644
  #undef try_module
          
 diff --git a/meson.build b/meson.build
-index 8a16c8f97..a51b4adca 100644
+index 8a16c8f97..db2de1de8 100644
 --- a/meson.build
 +++ b/meson.build
 @@ -335,6 +335,18 @@ if not tiff_opt.disabled() and not native_windows_loaders
@@ -47,7 +47,7 @@ index 8a16c8f97..a51b4adca 100644
 +
 +  if svg_dep.found()
 +    enabled_loaders += 'svg'
-+    loaders_deps += svg_dep
++    gdk_pixbuf_deps += svg_dep
 +  endif
 +endif
 +

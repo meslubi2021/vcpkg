@@ -59,10 +59,10 @@ index caa91049..7452cb4f 100644
        convert_alpha (gdk_pixbuf_get_pixels (dest),
                      gdk_pixbuf_get_rowstride (dest),
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..60da62e5 100644
+index e4350da7..5c403f32 100644
 --- a/rsvg.h
 +++ b/rsvg.h
-@@ -31,7 +31,120 @@
+@@ -31,7 +31,90 @@
  #include <glib-object.h>
  #include <gio/gio.h>
  
@@ -79,37 +79,7 @@ index e4350da7..60da62e5 100644
 +  GDK_PIXBUF_FORMAT_SCALABLE = 1 << 1,
 +  GDK_PIXBUF_FORMAT_THREADSAFE = 1 << 2
 +} GdkPixbufFormatFlags;
-+// typedef enum {
-+//     STORAGE_UNINITIALIZED,
-+//     STORAGE_PIXELS,
-+//     STORAGE_BYTES
-+// } Storage;
-+// typedef void (* GdkPixbufDestroyNotify) (guchar *pixels, gpointer data);
-+// typedef struct {
-+//     guchar *pixels;
-+//     GdkPixbufDestroyNotify destroy_fn;
-+//     gpointer destroy_fn_data;
-+// } Pixels;
-+// typedef struct {
-+//         GBytes *bytes;
-+// } Bytes;
-+// typedef struct {
-+//     GObject parent_instance;
-+// 	GdkColorspace colorspace;
-+// 	int n_channels;
-+// 	int bits_per_sample;
-+// 	int width, height;
-+// 	int rowstride;
-+//     Storage storage;
-+//     struct {
-+//         Pixels pixels;
-+//         Bytes bytes;
-+//     } s;
-+// 	guint has_alpha : 1;
-+// } GdkPixbuf;
 +typedef void GdkPixbuf;
-+// struct _GdkPixbufLoader;
-+// typedef struct _GdkPixbufLoader GdkPixbufLoader;
 +typedef void GdkPixbufLoader;
 +typedef struct {
 +	char *prefix;

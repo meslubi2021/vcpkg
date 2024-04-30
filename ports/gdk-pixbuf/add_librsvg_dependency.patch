@@ -32,10 +32,10 @@ index e207d8143..8d6e1ba68 100644
  #undef try_module
          
 diff --git a/meson.build b/meson.build
-index 8a16c8f97..db2de1de8 100644
+index 8a16c8f97..e6734e41b 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -335,6 +335,18 @@ if not tiff_opt.disabled() and not native_windows_loaders
+@@ -335,6 +335,19 @@ if not tiff_opt.disabled() and not native_windows_loaders
    endif
  endif
  
@@ -48,6 +48,7 @@ index 8a16c8f97..db2de1de8 100644
 +  if svg_dep.found()
 +    enabled_loaders += 'svg'
 +    gdk_pixbuf_deps += svg_dep
++    add_project_arguments([ '-DINCLUDE_svg' ], language: 'c')
 +  endif
 +endif
 +

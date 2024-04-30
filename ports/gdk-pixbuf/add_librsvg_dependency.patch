@@ -1,5 +1,5 @@
 diff --git a/gdk-pixbuf/gdk-pixbuf-io.c b/gdk-pixbuf/gdk-pixbuf-io.c
-index e207d8143..8d6e1ba68 100644
+index e207d8143..4366ba191 100644
 --- a/gdk-pixbuf/gdk-pixbuf-io.c
 +++ b/gdk-pixbuf/gdk-pixbuf-io.c
 @@ -659,6 +659,9 @@ gdk_pixbuf_io_init_builtin (void)
@@ -20,12 +20,11 @@ index e207d8143..8d6e1ba68 100644
  module (gdip_ico);
  module (gdip_wmf);
  module (gdip_emf);
-@@ -777,6 +781,10 @@ gdk_pixbuf_load_module_unlocked (GdkPixbufModule *image_module,
+@@ -777,6 +781,9 @@ gdk_pixbuf_load_module_unlocked (GdkPixbufModule *image_module,
  #ifdef INCLUDE_qtif
          try_module (qtif,qtif);
  #endif
 +#ifdef INCLUDE_svg
-+        #error "FUCK"
 +        try_module (svg,svg);
 +#endif
  

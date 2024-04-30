@@ -1,17 +1,18 @@
 diff --git a/gdk-pixbuf/gdk-pixbuf-io.c b/gdk-pixbuf/gdk-pixbuf-io.c
-index e207d8143..23ddf950e 100644
+index e207d8143..4366ba191 100644
 --- a/gdk-pixbuf/gdk-pixbuf-io.c
 +++ b/gdk-pixbuf/gdk-pixbuf-io.c
-@@ -660,6 +660,8 @@ gdk_pixbuf_io_init_builtin (void)
+@@ -659,6 +659,9 @@ gdk_pixbuf_io_init_builtin (void)
+         /* Except the gdip-png loader which normally isn't built at all even */
          load_one_builtin_module (png);
  #endif
++#ifdef INCLUDE_svg
++        load_one_builtin_module (svg);
++#endif
  
-+load_one_builtin_module (svg);
-+
  #undef load_one_builtin_module
  }
- 
-@@ -695,6 +697,7 @@ module (xbm);
+@@ -695,6 +698,7 @@ module (xbm);
  module (tga);
  module (icns);
  module (qtif);
@@ -19,11 +20,36 @@ index e207d8143..23ddf950e 100644
  module (gdip_ico);
  module (gdip_wmf);
  module (gdip_emf);
-@@ -777,6 +780,7 @@ gdk_pixbuf_load_module_unlocked (GdkPixbufModule *image_module,
+@@ -777,6 +781,9 @@ gdk_pixbuf_load_module_unlocked (GdkPixbufModule *image_module,
  #ifdef INCLUDE_qtif
          try_module (qtif,qtif);
  #endif
-+try_module (svg,svg);
++#ifdef INCLUDE_svg
++        try_module (svg,svg);
++#endif
  
  #undef try_module
          
+diff --git a/meson.build b/meson.build
+index 8a16c8f97..a51b4adca 100644
+--- a/meson.build
++++ b/meson.build
+@@ -335,6 +335,18 @@ if not tiff_opt.disabled() and not native_windows_loaders
+   endif
+ endif
+ 
++svg_opt = get_option('svg')
++if not svg_opt.disabled()
++  # We currently don't have a fallback subproject, but this handles error
++  # reporting if svg_opt is enabled.
++  svg_dep = dependency('librsvg-2.0', required: svg_opt)
++
++  if svg_dep.found()
++    enabled_loaders += 'svg'
++    loaders_deps += svg_dep
++  endif
++endif
++
+ # Determine whether we enable application bundle relocation support, and we use
+ # this always on Windows
+ if host_system == 'windows'

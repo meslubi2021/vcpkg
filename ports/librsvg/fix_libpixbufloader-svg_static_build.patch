@@ -59,10 +59,10 @@ index caa91049..7452cb4f 100644
        convert_alpha (gdk_pixbuf_get_pixels (dest),
                      gdk_pixbuf_get_rowstride (dest),
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..b01a4128 100644
+index e4350da7..60da62e5 100644
 --- a/rsvg.h
 +++ b/rsvg.h
-@@ -31,7 +31,119 @@
+@@ -31,7 +31,120 @@
  #include <glib-object.h>
  #include <gio/gio.h>
  
@@ -173,7 +173,8 @@ index e4350da7..b01a4128 100644
 +extern guchar *gdk_pixbuf_get_pixels(const GdkPixbuf*);
 +extern int gdk_pixbuf_get_rowstride(const GdkPixbuf*);
 +extern int gdk_pixbuf_get_n_channels(const GdkPixbuf*);
-+gboolean gdk_pixbuf_get_has_alpha(const GdkPixbuf*);
++extern gboolean gdk_pixbuf_get_has_alpha(const GdkPixbuf*);
++extern GdkPixbuf *gdk_pixbuf_new (GdkColorspace, gboolean, int, int, int);
 +extern GQuark gdk_pixbuf_error_quark(void);
 +#define GDK_PIXBUF_ERROR gdk_pixbuf_error_quark ()
 +#define GDK_PIXBUF_ERROR_FAILED 5

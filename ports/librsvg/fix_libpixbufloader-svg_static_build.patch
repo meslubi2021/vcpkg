@@ -47,16 +47,17 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..a3a6f2ab 100644
+index e4350da7..8c607d85 100644
 --- a/rsvg.h
 +++ b/rsvg.h
-@@ -31,7 +31,110 @@
+@@ -31,7 +31,111 @@
  #include <glib-object.h>
  #include <gio/gio.h>
  
 +#ifndef INCLUDE_svg
  #include <gdk-pixbuf/gdk-pixbuf.h>
 +#else
++#include <stdio.h>
 +typedef enum {
 +	GDK_COLORSPACE_RGB
 +} GdkColorspace;

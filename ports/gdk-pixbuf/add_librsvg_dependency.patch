@@ -53,3 +53,18 @@ index 8a16c8f97..a51b4adca 100644
  # Determine whether we enable application bundle relocation support, and we use
  # this always on Windows
  if host_system == 'windows'
+diff --git a/meson_options.txt b/meson_options.txt
+index d198d99d5..00ee61af8 100644
+--- a/meson_options.txt
++++ b/meson_options.txt
+@@ -10,6 +10,10 @@ option('jpeg',
+        description: 'Enable JPEG loader (requires libjpeg), disabled on Windows if "native_windows_loaders" is used',
+        type: 'feature',
+        value: 'enabled')
++option('svg',
++       description: 'Enable SVG loader (requires librsvg)',
++       type: 'feature',
++       value: 'auto')
+ option('builtin_loaders',
+        description: 'Comma-separated list of loaders to build into gdk-pixbuf',
+        type: 'array',

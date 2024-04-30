@@ -47,10 +47,10 @@ index bcdfd0bb..3c31f757 100644
          static const GdkPixbufModulePattern signature[] = {
                  {  " <svg",  "*    ", 100 },
 diff --git a/rsvg.h b/rsvg.h
-index e4350da7..68016746 100644
+index e4350da7..f9908ce4 100644
 --- a/rsvg.h
 +++ b/rsvg.h
-@@ -31,7 +31,81 @@
+@@ -31,7 +31,83 @@
  #include <glib-object.h>
  #include <gio/gio.h>
  
@@ -105,6 +105,8 @@ index e4350da7..68016746 100644
 +} GdkPixbufFormat;
 +struct _GdkPixbufAnimation;
 +typedef struct _GdkPixbufAnimation GdkPixbufAnimation;
++struct _GdkPixbufModule;
++typedef struct _GdkPixbufModule GdkPixbufModule;
 +extern GQuark gdk_pixbuf_error_quark(void);
 +#define GDK_PIXBUF_ERROR gdk_pixbuf_error_quark ()
 +#define GDK_PIXBUF_ERROR_FAILED 5

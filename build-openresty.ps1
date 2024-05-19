@@ -58,6 +58,9 @@ cd buildtrees\openresty\lualocal
 .\luarocks.bat install lsqlite3 0.9.5-1 "SQLITE_INCDIR=$vcpkg\include" "SQLITE_LIBDIR=$vcpkg\lib"
 .\luarocks.bat install luasql-sqlite3 2.5.0-1 "SQLITE_INCDIR=$vcpkg\include" "SQLITE_LIBDIR=$vcpkg\lib"
 
+.\luarocks.bat install lua-resty-session 3.10-1 # lua-resty-session must be pinned at 3.10-1 to be compatible with lua-resty-openidc 1.7.6-3
+.\luarocks.bat install lua-resty-openidc 1.7.6-3
+
 .\luarocks.bat unpack luaossl 20190731-0
 cd luaossl-20190731-0\luaossl-rel-20190731
 cp "$patches\luaossl\*" .\

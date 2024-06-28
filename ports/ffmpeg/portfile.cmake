@@ -539,7 +539,7 @@ if(VCPKG_TARGET_IS_UWP)
     string(APPEND OPTIONS " --extra-ldflags=-APPCONTAINER --extra-ldflags=WindowsApp.lib")
 endif()
 
-set(OPTIONS_DEBUG "--debug --disable-optimizations")
+set(OPTIONS_DEBUG "--debug --enable-optimizations")
 set(OPTIONS_RELEASE "--enable-optimizations")
 
 set(OPTIONS "${OPTIONS} ${OPTIONS_CROSS}")

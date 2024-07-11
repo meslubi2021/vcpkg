@@ -1,15 +1,12 @@
-# Download from Github
 vcpkg_from_github(
   OUT_SOURCE_PATH SOURCE_PATH
   REPO eclipse/paho.mqtt.cpp
-  REF 33921c8b68b351828650c36816e7ecf936764379 #v1.2.0
-  SHA512 3f4a91987e0106e50e637d8d4fb13a4f8aca14eea168102664fdcebd1260609434e679f5986a1c4d71746735530f1b72fc29d2ac05cb35b3ce734a6aab1a0a55
+  REF "v${VERSION}"
+  SHA512 bc965ce85e723fad06865bb8b7c6d0d2f48b08fee8074d7c5099d1648cd0579e0e52cea2f1c0ac2fe751970ac22c7f29df0c3eae8ee6357a13c901aaeff35c62
   HEAD_REF master
-  PATCHES
-    fix-dependency.patch
 )
 
-vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS 
+vcpkg_check_features(OUT_FEATURE_OPTIONS FEATURE_OPTIONS
   FEATURES
     "ssl" PAHO_WITH_SSL
 )
@@ -28,7 +25,7 @@ endif()
 set(PAHO_C_INC "${CURRENT_INSTALLED_DIR}/include")
 
 
-# NOTE: the Paho C++ cmake files on Github are problematic. 
+# NOTE: the Paho C++ cmake files on Github are problematic.
 # It uses two different options PAHO_BUILD_STATIC and PAHO_BUILD_SHARED instead of just using one variable.
 # Unless the open source community cleans up the cmake files, we are stuck with setting both of them.
 if (VCPKG_LIBRARY_LINKAGE STREQUAL "static")

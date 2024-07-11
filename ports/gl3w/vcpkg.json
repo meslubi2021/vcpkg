@@ -19,5 +19,10 @@
       "name": "vcpkg-tool-python3-interpreter",
       "host": true
     }
-  ]
+  ],
+  "features": {
+    "ext": {
+      "description": "include the GL Extensions in output header"
+    }
+  }
 }

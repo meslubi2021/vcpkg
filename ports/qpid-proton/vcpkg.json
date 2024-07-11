@@ -1,7 +1,7 @@
 {
   "name": "qpid-proton",
   "version": "0.38.0",
-  "port-version": 3,
+  "port-version": 2,
   "description": "Qpid Proton is a high-performance, lightweight messaging library.",
   "homepage": "https://github.com/apache/qpid-proton",
   "license": "Apache-2.0",
@@ -21,10 +21,6 @@
     },
     {
       "name": "vcpkg-cmake-config",
-      "host": true
-    },
-    {
-      "name": "vcpkg-tool-python3-interpreter",
       "host": true
     }
   ]

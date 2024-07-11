@@ -1,7 +1,7 @@
 {
   "name": "poppler",
-  "version": "23.1.0",
-  "port-version": 5,
+  "version": "24.3.0",
+  "port-version": 1,
   "description": "A PDF rendering library",
   "homepage": "https://poppler.freedesktop.org/",
   "license": "GPL-2.0-or-later",
@@ -14,17 +14,16 @@
     "libjpeg-turbo",
     "libpng",
     "openjpeg",
-    "tiff",
+    {
+      "name": "tiff",
+      "default-features": false
+    },
     {
       "name": "vcpkg-cmake",
       "host": true
     },
     {
       "name": "vcpkg-cmake-config",
-      "host": true
-    },
-    {
-      "name": "vcpkg-tool-python3-interpreter",
       "host": true
     }
   ],

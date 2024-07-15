@@ -1,3 +1,9 @@
+vcpkg_download_distfile(CMAKE_3_30_PATCH
+    URLS "https://github.com/jtv/libpqxx/commit/0444b8bcbd82679b9b22792e0f9ef74653c0b3fa.patch?full_index=1"
+    FILENAME "libpqxx-cmake-3-30-0444b8bcbd82679b9b22792e0f9ef74653c0b3fa.patch"
+    SHA512 fc6071b2c3a67670675b640b87d98675a77757fae73d84fb9acd0b9535f70a8c3e6d2b122a847f1473bbd581f67aa4e52f337fd1237fa8a02ff47c6a1284deed
+)
+
 vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO jtv/libpqxx
@@ -6,6 +12,7 @@ vcpkg_from_github(
     HEAD_REF master
     PATCHES
         fix_build_with_vs2017.patch
+        "${CMAKE_3_30_PATCH}"
 )
 
 file(COPY "${CMAKE_CURRENT_LIST_DIR}/config-public-compiler.h.in" DESTINATION "${SOURCE_PATH}")

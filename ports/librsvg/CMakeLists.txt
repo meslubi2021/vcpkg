@@ -117,8 +117,8 @@ add_library(${LIBRSVG_TARGET} ${LIBRSVG_SOURCES})
 target_compile_definitions(${LIBRSVG_TARGET} PRIVATE
     -DRSVG_COMPILATION
     -D_CRT_SECURE_NO_WARNINGS
-    -DSRCDIR="${CMAKE_CURRENT_SOURCE_DIR}" 
-    -DGDK_PIXBUF_ENABLE_BACKEND 
+    -DSRCDIR="${CMAKE_CURRENT_SOURCE_DIR}"
+    -DGDK_PIXBUF_ENABLE_BACKEND
     -DG_LOG_DOMAIN="libpixbufloader-svg"
     -DSRCDIR=""
     $<$<BOOL:${MINGW}>:HAVE_STRTOK_R>
@@ -168,7 +168,11 @@ set(PIXBUFLOADERSVG_SOURCES
     gdk-pixbuf-loader/io-svg.c
 )
 
-add_library(pixbufloader-svg MODULE ${PIXBUFLOADERSVG_SOURCES})
+if (BUILD_SHARED_LIBS)
+    add_library(pixbufloader-svg MODULE ${PIXBUFLOADERSVG_SOURCES})
+else()
+    add_library(pixbufloader-svg ${PIXBUFLOADERSVG_SOURCES})
+endif()
 target_include_directories(pixbufloader-svg
     PRIVATE
         "${CMAKE_CURRENT_BINARY_DIR}"
@@ -186,10 +190,18 @@ target_link_libraries(pixbufloader-svg
         ${LIBRSVG_TARGET}
         PkgConfig::GDK_PIXBUF
 )
-install(TARGETS pixbufloader-svg
-    RUNTIME DESTINATION "${GDK_PIXBUF_MODULEDIR}"
-    LIBRARY DESTINATION "${GDK_PIXBUF_MODULEDIR}"
-)
+if (BUILD_SHARED_LIBS)
+    install(TARGETS pixbufloader-svg
+        RUNTIME DESTINATION "${GDK_PIXBUF_MODULEDIR}"
+        LIBRARY DESTINATION "${GDK_PIXBUF_MODULEDIR}"
+    )
+else()
+    install(TARGETS pixbufloader-svg
+        RUNTIME DESTINATION bin
+        LIBRARY DESTINATION lib
+        ARCHIVE DESTINATION lib
+    )
+endif()
 
 configure_file("${CMAKE_CURRENT_SOURCE_DIR}/librsvg.pc.in" "${CMAKE_CURRENT_BINARY_DIR}/librsvg.pc" @ONLY)
 file(READ "${CMAKE_CURRENT_BINARY_DIR}/librsvg.pc" librsvg_pc)

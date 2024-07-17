@@ -1,14 +1,13 @@
 diff --git a/gdk-pixbuf/gdk-pixbuf-io.c b/gdk-pixbuf/gdk-pixbuf-io.c
-index e1df5900f..e9c928b78 100644
+index e1df5900f..ffe2873bb 100644
 --- a/gdk-pixbuf/gdk-pixbuf-io.c
 +++ b/gdk-pixbuf/gdk-pixbuf-io.c
-@@ -47,6 +47,13 @@
+@@ -47,6 +47,12 @@
  #include <mach-o/dyld.h>
  #endif
  
 +// To avoid circular dependency we have to make a forward declaration of the required functions here
 +#ifdef INCLUDE_svg
-+#error "WHY?????"
 +extern void _gdk_pixbuf__svg_fill_info (GdkPixbufFormat *info);
 +extern void _gdk_pixbuf__svg_fill_vtable (GdkPixbufModule *module);
 +#endif
@@ -16,7 +15,7 @@ index e1df5900f..e9c928b78 100644
  /**
   * GdkPixbufModule:
   * @module_name: the name of the module, usually the same as the
-@@ -659,6 +666,9 @@ gdk_pixbuf_io_init_builtin (void)
+@@ -659,6 +665,9 @@ gdk_pixbuf_io_init_builtin (void)
          /* Except the gdip-png loader which normally isn't built at all even */
          load_one_builtin_module (png);
  #endif
@@ -26,7 +25,7 @@ index e1df5900f..e9c928b78 100644
  
  #undef load_one_builtin_module
  }
-@@ -695,6 +705,7 @@ module (xbm);
+@@ -695,6 +704,7 @@ module (xbm);
  module (tga);
  module (icns);
  module (qtif);
@@ -34,7 +33,7 @@ index e1df5900f..e9c928b78 100644
  module (gdip_ico);
  module (gdip_wmf);
  module (gdip_emf);
-@@ -777,6 +788,9 @@ gdk_pixbuf_load_module_unlocked (GdkPixbufModule *image_module,
+@@ -777,6 +787,9 @@ gdk_pixbuf_load_module_unlocked (GdkPixbufModule *image_module,
  #ifdef INCLUDE_qtif
          try_module (qtif,qtif);
  #endif

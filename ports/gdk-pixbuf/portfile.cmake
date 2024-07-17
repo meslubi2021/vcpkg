@@ -44,6 +44,12 @@ else()
     list(APPEND OPTIONS -Dsvg=disabled)
 endif()
 
+if("tools" IN_LIST FEATURES)
+    list(APPEND OPTIONS -Dtools=enabled)
+else()
+    list(APPEND OPTIONS -Dtools=disabled)
+endif()
+
 if(CMAKE_HOST_WIN32 AND VCPKG_TARGET_ARCHITECTURE STREQUAL "x86")
     set(GIR_TOOL_DIR ${CURRENT_INSTALLED_DIR})
 else()

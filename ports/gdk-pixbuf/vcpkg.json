@@ -28,7 +28,8 @@
   "default-features": [
     "jpeg",
     "png",
-    "tiff"
+    "tiff",
+    "tools"
   ],
   "features": {
     "introspection": {
@@ -60,6 +61,9 @@
           "default-features": false
         }
       ]
+    },
+    "tools": {
+      "description": "Enable tools (incompatible with svg)"
     }
   }
 }

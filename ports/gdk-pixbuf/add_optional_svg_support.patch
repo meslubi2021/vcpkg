@@ -43,6 +43,26 @@ index e1df5900f..ffe2873bb 100644
  
  #undef try_module
          
+diff --git a/gdk-pixbuf/meson.build b/gdk-pixbuf/meson.build
+index 570625bfe..e3c524008 100644
+--- a/gdk-pixbuf/meson.build
++++ b/gdk-pixbuf/meson.build
+@@ -327,11 +327,15 @@ if native_windows_loaders
+   endif
+ endif
+ 
++if tools
+ gdkpixbuf_bin = [
+   [ 'gdk-pixbuf-csource' ],
+   [ 'gdk-pixbuf-pixdata' ],
+   [ 'gdk-pixbuf-query-loaders', [ 'queryloaders.c' ] ],
+ ]
++else
++gdkpixbuf_bin = []
++endif
+ 
+ foreach bin: gdkpixbuf_bin
+   bin_name = bin[0]
 diff --git a/meson.build b/meson.build
 index 3eb3fcc15..b11331239 100644
 --- a/meson.build
@@ -61,7 +81,7 @@ index 3eb3fcc15..b11331239 100644
  if not others_opt.disabled()
    # Keep sorted alphabetically
 diff --git a/meson_options.txt b/meson_options.txt
-index 74830154a..6961c9530 100644
+index 74830154a..e84ba78b8 100644
 --- a/meson_options.txt
 +++ b/meson_options.txt
 @@ -18,6 +18,10 @@ option('others',
@@ -75,3 +95,12 @@ index 74830154a..6961c9530 100644
  option('builtin_loaders',
         description: 'Comma-separated list of loaders to build into gdk-pixbuf',
         type: 'array',
+@@ -61,4 +65,7 @@ option('gio_sniffing',
+        description: 'Perform file type detection using GIO (Unused on MacOS and Windows)',
+        type: 'boolean',
+        value: true)
+-
++option('tools',
++       description: 'Build the tools',
++       type: 'boolean',
++       value: true)

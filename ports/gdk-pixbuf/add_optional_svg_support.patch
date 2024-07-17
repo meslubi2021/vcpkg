@@ -65,7 +65,7 @@ index 570625bfe..0bc5ba4e2 100644
  foreach bin: gdkpixbuf_bin
    bin_name = bin[0]
 diff --git a/meson.build b/meson.build
-index 3eb3fcc15..b11331239 100644
+index 3eb3fcc15..3ea57ac97 100644
 --- a/meson.build
 +++ b/meson.build
 @@ -280,6 +280,12 @@ if not gif_opt.disabled()
@@ -81,6 +81,21 @@ index 3eb3fcc15..b11331239 100644
  others_opt = get_option('others')
  if not others_opt.disabled()
    # Keep sorted alphabetically
+@@ -390,11 +396,14 @@ subdir('gdk-pixbuf')
+ # i18n
+ subdir('po')
+ 
++tools = get_option('tools')
+ if not meson.is_cross_build()
+   if get_option('tests')
+     subdir('tests')
+   endif
++  if tools
+   subdir('thumbnailer')
++  endif
+ endif
+ 
+ # Documentation
 diff --git a/meson_options.txt b/meson_options.txt
 index 74830154a..e84ba78b8 100644
 --- a/meson_options.txt

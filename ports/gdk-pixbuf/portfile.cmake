@@ -39,7 +39,9 @@ else()
 endif()
 
 if("svg" IN_LIST FEATURES)
-    list(APPEND OPTIONS -DINCLUDE_svg=ON)
+    list(APPEND OPTIONS -Dsvg=enabled)
+else()
+    list(APPEND OPTIONS -Dsvg=disabled)
 endif()
 
 if(CMAKE_HOST_WIN32 AND VCPKG_TARGET_ARCHITECTURE STREQUAL "x86")

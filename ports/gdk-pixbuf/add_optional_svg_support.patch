@@ -44,13 +44,14 @@ index e1df5900f..ffe2873bb 100644
  #undef try_module
          
 diff --git a/gdk-pixbuf/meson.build b/gdk-pixbuf/meson.build
-index 570625bfe..e3c524008 100644
+index 570625bfe..0bc5ba4e2 100644
 --- a/gdk-pixbuf/meson.build
 +++ b/gdk-pixbuf/meson.build
-@@ -327,11 +327,15 @@ if native_windows_loaders
+@@ -327,11 +327,16 @@ if native_windows_loaders
    endif
  endif
  
++tools = get_option('tools')
 +if tools
  gdkpixbuf_bin = [
    [ 'gdk-pixbuf-csource' ],

@@ -1,5 +1,5 @@
 diff --git a/gdk-pixbuf/gdk-pixbuf-io.c b/gdk-pixbuf/gdk-pixbuf-io.c
-index e1df5900f..4e41ac9b8 100644
+index e1df5900f..041946a1f 100644
 --- a/gdk-pixbuf/gdk-pixbuf-io.c
 +++ b/gdk-pixbuf/gdk-pixbuf-io.c
 @@ -47,6 +47,12 @@
@@ -8,8 +8,8 @@ index e1df5900f..4e41ac9b8 100644
  
 +// To avoid circular dependency we have to make a forward declaration of the required functions here
 +#ifdef INCLUDE_svg
-+//extern void _gdk_pixbuf__svg_fill_info (GdkPixbufFormat *info);
-+//extern void _gdk_pixbuf__svg_fill_vtable (GdkPixbufModule *module);
++extern static void _gdk_pixbuf__svg_fill_info (GdkPixbufFormat *info);
++extern static void _gdk_pixbuf__svg_fill_vtable (GdkPixbufModule *module);
 +#endif
 +
  /**

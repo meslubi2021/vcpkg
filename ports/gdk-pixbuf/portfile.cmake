@@ -98,7 +98,9 @@ if(EXISTS "${CURRENT_PACKAGES_DIR}/bin/gdk-pixbuf-thumbnailer${VCPKG_TARGET_EXEC
     list(APPEND TOOL_NAMES gdk-pixbuf-thumbnailer)
 endif()
 vcpkg_copy_pdbs()
-vcpkg_copy_tools(TOOL_NAMES ${TOOL_NAMES} AUTO_CLEAN)
+if("no-tools" NOT IN_LIST FEATURES)
+    vcpkg_copy_tools(TOOL_NAMES ${TOOL_NAMES} AUTO_CLEAN)
+endif()
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
 

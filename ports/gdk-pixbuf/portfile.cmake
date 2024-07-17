@@ -45,9 +45,9 @@ else()
 endif()
 
 if("tools" IN_LIST FEATURES)
-    list(APPEND OPTIONS -Dtools=enabled)
+    list(APPEND OPTIONS -Dtools=true)
 else()
-    list(APPEND OPTIONS -Dtools=disabled)
+    list(APPEND OPTIONS -Dtools=false)
 endif()
 
 if(CMAKE_HOST_WIN32 AND VCPKG_TARGET_ARCHITECTURE STREQUAL "x86")

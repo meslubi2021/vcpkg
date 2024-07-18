@@ -1,18 +1,5 @@
-diff --git a/build-aux/gen-thumbnailer.py b/build-aux/gen-thumbnailer.py
-index 05ac8218c..af8716944 100644
---- a/build-aux/gen-thumbnailer.py
-+++ b/build-aux/gen-thumbnailer.py
-@@ -28,7 +28,7 @@ if os.name == 'nt':
-     newenv['PATH'] = gdk_pixbuf_dll_buildpath + os.pathsep + newenv['PATH']
- 
- cmd = args.printer
--
-+print('!!!'+cmd+'!!!')
- mimetypes_out = subprocess.Popen(cmd, env=newenv, stdout=subprocess.PIPE).communicate()[0]
- if not mimetypes_out:
-     sys.exit(1)
 diff --git a/gdk-pixbuf/gdk-pixbuf-io.c b/gdk-pixbuf/gdk-pixbuf-io.c
-index e1df5900f..2d0ba8cce 100644
+index e1df5900f..afd77d40d 100644
 --- a/gdk-pixbuf/gdk-pixbuf-io.c
 +++ b/gdk-pixbuf/gdk-pixbuf-io.c
 @@ -659,6 +659,9 @@ gdk_pixbuf_io_init_builtin (void)
@@ -42,7 +29,7 @@ index e1df5900f..2d0ba8cce 100644
  #endif
 +#ifdef INCLUDE_svg
 +if (fill_info == NULL &&
-+            _gdk_pixbuf__svg_fill_info && _gdk_pixbuf__svg_fill_vtable &&
++            _gdk_pixbuf__svg_fill_info != NULL && _gdk_pixbuf__svg_fill_vtable != NULL &&
 +            strcmp (image_module->module_name, "svg") == 0) {
 +                fill_info = _gdk_pixbuf__svg_fill_info;
 +                fill_vtable = _gdk_pixbuf__svg_fill_vtable;

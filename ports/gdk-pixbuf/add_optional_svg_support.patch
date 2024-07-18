@@ -1,21 +1,8 @@
 diff --git a/gdk-pixbuf/gdk-pixbuf-io.c b/gdk-pixbuf/gdk-pixbuf-io.c
-index e1df5900f..ffe2873bb 100644
+index e1df5900f..2d0ba8cce 100644
 --- a/gdk-pixbuf/gdk-pixbuf-io.c
 +++ b/gdk-pixbuf/gdk-pixbuf-io.c
-@@ -47,6 +47,12 @@
- #include <mach-o/dyld.h>
- #endif
- 
-+// To avoid circular dependency we have to make a forward declaration of the required functions here
-+#ifdef INCLUDE_svg
-+extern void _gdk_pixbuf__svg_fill_info (GdkPixbufFormat *info);
-+extern void _gdk_pixbuf__svg_fill_vtable (GdkPixbufModule *module);
-+#endif
-+
- /**
-  * GdkPixbufModule:
-  * @module_name: the name of the module, usually the same as the
-@@ -659,6 +665,9 @@ gdk_pixbuf_io_init_builtin (void)
+@@ -659,6 +659,9 @@ gdk_pixbuf_io_init_builtin (void)
          /* Except the gdip-png loader which normally isn't built at all even */
          load_one_builtin_module (png);
  #endif
@@ -25,47 +12,34 @@ index e1df5900f..ffe2873bb 100644
  
  #undef load_one_builtin_module
  }
-@@ -695,6 +704,7 @@ module (xbm);
- module (tga);
- module (icns);
- module (qtif);
-+module (svg);
- module (gdip_ico);
- module (gdip_wmf);
- module (gdip_emf);
-@@ -777,6 +787,9 @@ gdk_pixbuf_load_module_unlocked (GdkPixbufModule *image_module,
+@@ -703,6 +706,10 @@ module (gdip_gif);
+ module (gdip_jpeg);
+ module (gdip_png);
+ module (gdip_tiff);
++#ifdef INCLUDE_svg
++extern void _gdk_pixbuf__svg_fill_info   (GdkPixbufFormat *info) __attribute__((weak));
++extern void _gdk_pixbuf__svg_fill_vtable (GdkPixbufModule *module) __attribute__((weak));
++#endif
+ 
+ #undef module
+ 
+@@ -777,6 +784,14 @@ gdk_pixbuf_load_module_unlocked (GdkPixbufModule *image_module,
  #ifdef INCLUDE_qtif
          try_module (qtif,qtif);
  #endif
 +#ifdef INCLUDE_svg
-+        try_module (svg,svg);
++if (fill_info == NULL &&
++            _gdk_pixbuf__svg_fill_info && _gdk_pixbuf__svg_fill_vtable &&
++            strcmp (image_module->module_name, "svg") == 0) {
++                fill_info = _gdk_pixbuf__svg_fill_info;
++                fill_vtable = _gdk_pixbuf__svg_fill_vtable;
++        }
 +#endif
  
  #undef try_module
          
-diff --git a/gdk-pixbuf/meson.build b/gdk-pixbuf/meson.build
-index 570625bfe..0bc5ba4e2 100644
---- a/gdk-pixbuf/meson.build
-+++ b/gdk-pixbuf/meson.build
-@@ -327,11 +327,16 @@ if native_windows_loaders
-   endif
- endif
- 
-+tools = get_option('tools')
-+if tools
- gdkpixbuf_bin = [
-   [ 'gdk-pixbuf-csource' ],
-   [ 'gdk-pixbuf-pixdata' ],
-   [ 'gdk-pixbuf-query-loaders', [ 'queryloaders.c' ] ],
- ]
-+else
-+gdkpixbuf_bin = []
-+endif
- 
- foreach bin: gdkpixbuf_bin
-   bin_name = bin[0]
 diff --git a/meson.build b/meson.build
-index 3eb3fcc15..73ffb41fb 100644
+index 3eb3fcc15..b11331239 100644
 --- a/meson.build
 +++ b/meson.build
 @@ -280,6 +280,12 @@ if not gif_opt.disabled()
@@ -81,31 +55,8 @@ index 3eb3fcc15..73ffb41fb 100644
  others_opt = get_option('others')
  if not others_opt.disabled()
    # Keep sorted alphabetically
-@@ -390,18 +396,21 @@ subdir('gdk-pixbuf')
- # i18n
- subdir('po')
- 
-+tools = get_option('tools')
- if not meson.is_cross_build()
-   if get_option('tests')
-     subdir('tests')
-   endif
-+  if tools
-   subdir('thumbnailer')
-+  endif
- endif
- 
- # Documentation
- build_docs = get_option('gtk_doc') or get_option('docs')
- subdir('docs')
- 
--if not meson.is_cross_build()
-+if not meson.is_cross_build() and tools
-   meson.add_install_script('build-aux/post-install.py',
-     gdk_pixbuf_bindir,
-     gdk_pixbuf_libdir,
 diff --git a/meson_options.txt b/meson_options.txt
-index 74830154a..e84ba78b8 100644
+index 74830154a..6961c9530 100644
 --- a/meson_options.txt
 +++ b/meson_options.txt
 @@ -18,6 +18,10 @@ option('others',
@@ -119,12 +70,3 @@ index 74830154a..e84ba78b8 100644
  option('builtin_loaders',
         description: 'Comma-separated list of loaders to build into gdk-pixbuf',
         type: 'array',
-@@ -61,4 +65,7 @@ option('gio_sniffing',
-        description: 'Perform file type detection using GIO (Unused on MacOS and Windows)',
-        type: 'boolean',
-        value: true)
--
-+option('tools',
-+       description: 'Build the tools',
-+       type: 'boolean',
-+       value: true)

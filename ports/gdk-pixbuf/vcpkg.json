@@ -60,9 +60,6 @@
           "default-features": false
         }
       ]
-    },
-    "no-tools": {
-      "description": "Disable tools (incompatible with svg)"
     }
   }
 }

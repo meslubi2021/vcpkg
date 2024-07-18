@@ -44,12 +44,6 @@ else()
     list(APPEND OPTIONS -Dsvg=disabled)
 endif()
 
-if("no-tools" IN_LIST FEATURES)
-    list(APPEND OPTIONS -Dtools=false)
-else()
-    list(APPEND OPTIONS -Dtools=true)
-endif()
-
 if(CMAKE_HOST_WIN32 AND VCPKG_TARGET_ARCHITECTURE STREQUAL "x86")
     set(GIR_TOOL_DIR ${CURRENT_INSTALLED_DIR})
 else()
@@ -98,9 +92,7 @@ if(EXISTS "${CURRENT_PACKAGES_DIR}/bin/gdk-pixbuf-thumbnailer${VCPKG_TARGET_EXEC
     list(APPEND TOOL_NAMES gdk-pixbuf-thumbnailer)
 endif()
 vcpkg_copy_pdbs()
-if(NOT "no-tools" IN_LIST FEATURES)
-    vcpkg_copy_tools(TOOL_NAMES ${TOOL_NAMES} AUTO_CLEAN)
-endif()
+vcpkg_copy_tools(TOOL_NAMES ${TOOL_NAMES} AUTO_CLEAN)
 
 file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
 

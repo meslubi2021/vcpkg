@@ -1,5 +1,5 @@
 diff --git a/gdk-pixbuf/gdk-pixbuf-io.c b/gdk-pixbuf/gdk-pixbuf-io.c
-index e1df5900f..afd77d40d 100644
+index e1df5900f..fd0265311 100644
 --- a/gdk-pixbuf/gdk-pixbuf-io.c
 +++ b/gdk-pixbuf/gdk-pixbuf-io.c
 @@ -659,6 +659,9 @@ gdk_pixbuf_io_init_builtin (void)
@@ -17,8 +17,8 @@ index e1df5900f..afd77d40d 100644
  module (gdip_png);
  module (gdip_tiff);
 +#ifdef INCLUDE_svg
-+extern void _gdk_pixbuf__svg_fill_info   (GdkPixbufFormat *info) __attribute__((weak));
-+extern void _gdk_pixbuf__svg_fill_vtable (GdkPixbufModule *module) __attribute__((weak));
++extern void _gdk_pixbuf__svg_fill_info   (GdkPixbufFormat *info) __attribute__((weakref));
++extern void _gdk_pixbuf__svg_fill_vtable (GdkPixbufModule *module) __attribute__((weakref));
 +#endif
  
  #undef module

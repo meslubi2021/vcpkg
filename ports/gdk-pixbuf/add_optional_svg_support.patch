@@ -1,5 +1,5 @@
 diff --git a/build-aux/gen-thumbnailer.py b/build-aux/gen-thumbnailer.py
-index 05ac8218c..f7e106a09 100644
+index 05ac8218c..af8716944 100644
 --- a/build-aux/gen-thumbnailer.py
 +++ b/build-aux/gen-thumbnailer.py
 @@ -28,7 +28,7 @@ if os.name == 'nt':
@@ -7,7 +7,7 @@ index 05ac8218c..f7e106a09 100644
  
  cmd = args.printer
 -
-+print(cmd)
++print('!!!'+cmd+'!!!')
  mimetypes_out = subprocess.Popen(cmd, env=newenv, stdout=subprocess.PIPE).communicate()[0]
  if not mimetypes_out:
      sys.exit(1)

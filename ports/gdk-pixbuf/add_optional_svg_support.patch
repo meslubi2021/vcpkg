@@ -1,5 +1,5 @@
 diff --git a/gdk-pixbuf/gdk-pixbuf-io.c b/gdk-pixbuf/gdk-pixbuf-io.c
-index e1df5900f..001e09ecb 100644
+index e1df5900f..269266097 100644
 --- a/gdk-pixbuf/gdk-pixbuf-io.c
 +++ b/gdk-pixbuf/gdk-pixbuf-io.c
 @@ -659,6 +659,9 @@ gdk_pixbuf_io_init_builtin (void)
@@ -7,7 +7,7 @@ index e1df5900f..001e09ecb 100644
          load_one_builtin_module (png);
  #endif
 +#ifdef INCLUDE_svg
-+        load_one_builtin_module (svg);
++//        load_one_builtin_module (svg);
 +#endif
  
  #undef load_one_builtin_module
@@ -17,8 +17,8 @@ index e1df5900f..001e09ecb 100644
  module (gdip_png);
  module (gdip_tiff);
 +#ifdef INCLUDE_svg
-+extern void _gdk_pixbuf__svg_fill_info   (GdkPixbufFormat *info) __attribute__((weak));
-+extern void _gdk_pixbuf__svg_fill_vtable (GdkPixbufModule *module) __attribute__((weak));
++// extern void _gdk_pixbuf__svg_fill_info   (GdkPixbufFormat *info) __attribute__((weak));
++// extern void _gdk_pixbuf__svg_fill_vtable (GdkPixbufModule *module) __attribute__((weak));
 +#endif
  
  #undef module
@@ -28,13 +28,13 @@ index e1df5900f..001e09ecb 100644
          try_module (qtif,qtif);
  #endif
 +#ifdef INCLUDE_svg
-+if (fill_info == NULL &&            
-+            strcmp (image_module->module_name, "svg") == 0) {
-+                if (_gdk_pixbuf__svg_fill_info && _gdk_pixbuf__svg_fill_vtable) {
++//if (fill_info == NULL &&            
++//            strcmp (image_module->module_name, "svg") == 0) {
++//                if (_gdk_pixbuf__svg_fill_info && _gdk_pixbuf__svg_fill_vtable) {
 +                        //fill_info = _gdk_pixbuf__svg_fill_info;
 +                        //fill_vtable = _gdk_pixbuf__svg_fill_vtable;
-+                }
-+        }
++//                }
++//        }
 +#endif
  
  #undef try_module

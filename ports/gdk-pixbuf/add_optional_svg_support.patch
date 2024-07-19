@@ -1,28 +1,30 @@
 diff --git a/gdk-pixbuf/gdk-pixbuf-io.c b/gdk-pixbuf/gdk-pixbuf-io.c
-index e1df5900f..62c88aeef 100644
+index e1df5900f..dad61bb6b 100644
 --- a/gdk-pixbuf/gdk-pixbuf-io.c
 +++ b/gdk-pixbuf/gdk-pixbuf-io.c
-@@ -659,6 +659,9 @@ gdk_pixbuf_io_init_builtin (void)
-         /* Except the gdip-png loader which normally isn't built at all even */
-         load_one_builtin_module (png);
- #endif
-+#ifdef INCLUDE_svg
-+        load_one_builtin_module (svg);
-+#endif
- 
- #undef load_one_builtin_module
+@@ -592,7 +592,10 @@ gdk_pixbuf_init_modules (const char  *path,
+ 	g_free (filename);
+ 	return ret;
  }
-@@ -703,6 +706,10 @@ module (gdip_gif);
- module (gdip_jpeg);
- module (gdip_png);
- module (gdip_tiff);
+-
 +#ifdef INCLUDE_svg
 +extern void _gdk_pixbuf__svg_fill_info   (GdkPixbufFormat *info) __attribute__((weak));
 +extern void _gdk_pixbuf__svg_fill_vtable (GdkPixbufModule *module) __attribute__((weak));
 +#endif
+ static void
+ gdk_pixbuf_io_init_builtin (void)
+ {
+@@ -659,6 +662,10 @@ gdk_pixbuf_io_init_builtin (void)
+         /* Except the gdip-png loader which normally isn't built at all even */
+         load_one_builtin_module (png);
+ #endif
++#ifdef INCLUDE_svg
++        if (_gdk_pixbuf__svg_fill_info && _gdk_pixbuf__svg_fill_vtable)
++                load_one_builtin_module (svg);
++#endif
  
- #undef module
- 
+ #undef load_one_builtin_module
+ }
 @@ -777,6 +784,15 @@ gdk_pixbuf_load_module_unlocked (GdkPixbufModule *image_module,
  #ifdef INCLUDE_qtif
          try_module (qtif,qtif);

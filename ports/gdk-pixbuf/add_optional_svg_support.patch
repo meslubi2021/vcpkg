@@ -1,5 +1,5 @@
 diff --git a/gdk-pixbuf/gdk-pixbuf-io.c b/gdk-pixbuf/gdk-pixbuf-io.c
-index e1df5900f..dad61bb6b 100644
+index e1df5900f..d7018da6e 100644
 --- a/gdk-pixbuf/gdk-pixbuf-io.c
 +++ b/gdk-pixbuf/gdk-pixbuf-io.c
 @@ -592,7 +592,10 @@ gdk_pixbuf_init_modules (const char  *path,
@@ -30,13 +30,13 @@ index e1df5900f..dad61bb6b 100644
          try_module (qtif,qtif);
  #endif
 +#ifdef INCLUDE_svg
-+//if (fill_info == NULL &&            
-+//            strcmp (image_module->module_name, "svg") == 0) {
-+//                if (_gdk_pixbuf__svg_fill_info && _gdk_pixbuf__svg_fill_vtable) {
-+                        //fill_info = _gdk_pixbuf__svg_fill_info;
-+                        //fill_vtable = _gdk_pixbuf__svg_fill_vtable;
-+//                }
-+//        }
++if (fill_info == NULL &&
++           strcmp (image_module->module_name, "svg") == 0) {
++               if (_gdk_pixbuf__svg_fill_info && _gdk_pixbuf__svg_fill_vtable) {
++                        fill_info = _gdk_pixbuf__svg_fill_info;
++                        fill_vtable = _gdk_pixbuf__svg_fill_vtable;
++               }
++       }
 +#endif
  
  #undef try_module

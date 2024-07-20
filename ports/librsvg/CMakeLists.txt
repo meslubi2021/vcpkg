@@ -207,7 +207,7 @@ configure_file("${CMAKE_CURRENT_SOURCE_DIR}/librsvg.pc.in" "${CMAKE_CURRENT_BINA
 file(READ "${CMAKE_CURRENT_BINARY_DIR}/librsvg.pc" librsvg_pc)
 list(JOIN librsvg_pc_requires_private " " requires_private)
 string(REPLACE "Requires.private:" "Requires.private: ${requires_private}" librsvg_pc "${librsvg_pc}")
-if (not BUILD_SHARED_LIBS)
+if (NOT BUILD_SHARED_LIBS)
     string(REPLACE "-lm" "-lpixbufloader-svg -lm" librsvg_pc "${librsvg_pc}")
 endif()
 file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/librsvg.pc" "${librsvg_pc}")

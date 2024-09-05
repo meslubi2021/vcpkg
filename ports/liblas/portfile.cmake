@@ -34,6 +34,7 @@ vcpkg_cmake_configure(
         ${FEATURE_OPTIONS}
         -DBUILD_OSGEO4W=OFF
         -DWITH_TESTS=OFF
+        -DWITH_GDAL=ON
     OPTIONS_DEBUG
         -DWITH_UTILITIES=OFF
 )
